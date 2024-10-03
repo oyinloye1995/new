@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ferringworld</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <style>
+        body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url('https://master-3.corporate.ferring.tech/wp-content/uploads/sites/16/2019/10/2.1.4._Clinical_trials_1_Header.jpg') no-repeat center center; /* Image background */
+    background-size: cover; /* Cover the entire body */
+    background-color: #f5f5f5; /* Fallback color */
+}
+
+        header {
+    position: fixed;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 100%;
+    padding: 20px;
+    background: #DAA520;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    display: flex;
+    justify-content: space-between; /* Keep space between logo and nav */
+}
+
+nav {
+    margin-inline-start: auto; /* Push the nav to the right */
+    padding-block-start: 30px;
+    padding-inline-end: 20px;
+}
+
+        .logo img {
+            max-inline-size: 150px; /* Adjust the size as needed */
+            block-size: auto;     /* Maintains aspect ratio */
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: white; /* Change link color for better contrast */
+            font-weight: bold;
+            position: relative; /* For the pseudo-element */
+        }
+        nav a::after {
+            content: "";
+            position: absolute;
+            inset-inline-start: 0;
+            inset-inline-end: 0;
+            inset-block-end: -5px; /* Adjust for spacing */
+            block-size: 2px; /* Thickness of the underline */
+            background: #462abe; /* Color of the underline */
+            transform: scaleX(0); /* Initially hidden */
+            transition: transform 0.3s ease; /* Animation for sliding */
+        }
+        nav a:hover::after {
+            transform: scaleX(1); /* Slide in on hover */
+        }
+
+        #banner {
+            position: relative;
+            inline-size: 100%;
+            block-size: 300px;
+        }
+        #banner::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(70, 42, 190, 0.7); /* Faded background */
+            filter: blur(2px); /* Blurry effect */
+            z-index: 0; /* Behind other elements */
+        }
+        .logo-text {
+            position: absolute;
+            inset-inline-start: 20px; /* Align to the left */
+            inset-block-start: 10px; /* Space from the top */
+            color: rgb(13, 13, 14);
+            font-size: 24px; /* Adjust the font size */
+            font-weight: bold; /* Make it bold */
+            background: linear-gradient(to right, rgba(13, 13, 14, 1), rgba(13, 13, 14, 0.2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* Make the text transparent to show gradient */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Add shadow */
+            z-index: 1; /* Above the blurred background */
+        }
+        #banner h1 {
+            position: absolute;
+            inset-block-end: 20px; /* Space from the bottom */
+            inset-inline-start: 20px; /* Align to the left */
+            color: rgb(13, 13, 14);
+            background: linear-gradient(to right, rgba(13, 13, 14, 1), rgba(13, 13, 14, 0.2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* Make the text transparent to show gradient */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Add shadow */
+            z-index: 1; /* Above the blurred background */
+            font-size: 48px; /* Adjust the size as needed */
+            font-weight: bold; /* Make text bold */
+            text-align: start; /* Align text to the left */
+        }
+
+        /* New styles for the login form */
+        .login-container {
+    max-inline-size: 400px;
+    margin: 50px auto;
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blurry effect */
+    color: white; /* Set text color to white for contrast */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.login-container h2 {
+    text-align: center;
+    margin-block-end: 20px;
+}
+
+.login-container input[type="text"], 
+.login-container input[type="password"] {
+    inline-size: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-block-end: 15px;
+}
+
+.login-container button {
+    inline-size: 100%;
+    padding: 10px;
+    background: #462abe; /* Button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-container button:hover {
+    background: #4b3bb1; /* Darker shade on hover */
+}
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .quote {
+    background: linear-gradient(135deg, rgba(70, 42, 190, 0.8), rgba(253, 187, 45, 0.8)); /* Gradient background */
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Hide overflow for animation */
+    animation: fadeIn 1s ease forwards; /* Fade-in effect */
+}
+
+.quote h2 {
+    font-size: 1.5em;
+    margin: 0;
+    animation: slideIn 1s ease forwards; /* Slide-in effect */
+}
+
+.quote p {
+    margin: 10px 0;
+    animation: popIn 0.5s ease forwards; /* Individual pop-in effect */
+    font-family: 'Lobster', cursive; /* Use the Lobster font */
+    font-size: 20px; /* Font size */
+}
+.commitment h2 {
+    font-size: 1.5em;
+    margin: 0;
+}
+.commitment {
+    text-align: center; /* Center the text */
+    font-family: 'Lobster', cursive; /* Use the Lobster font */
+    font-size: 20px; /* Font size */
+    color: #462abe; /* Text color */
+    margin: 20px 0; /* Space around the text */
+    animation: fadeIn 1s ease; /* Optional: Add a fade-in animation */
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes blinkZoom {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+}
+
+.nav-link {
+    animation: blinkZoom 3s infinite; /* Blinking and zooming animation */
+    color: #007BFF; /* Blue color for the link */
+    font-weight: bold; /* Make the text bold */
+    font-size: 1.2em; /* Increase the font size */
+}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the boxes */
+    max-inline-size: 1200px; /* Max width of the container */
+    margin: 50px auto; /* Center the container */
+}
+
+.box {
+    background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Blurry effect */
+    color: white; /* Text color */
+    padding: 20px;
+    border-radius: 8px;
+    margin: 10px; /* Space between boxes */
+    flex: 1 1 200px; /* Flex properties to make boxes responsive */
+    max-inline-size: 300px; /* Max width of each box */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Shadow effect */
+}
+.scroll-text {
+    opacity: 0; /* Start invisible */
+    transform: translateY(20px); /* Start from below */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Transition effects */
+}
+
+.scroll-text.visible {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Move to original position */
+}
+
+    </style>
+</head>
+<body>
+    
+    <header>
+        <div class="logo">
+            <img src="https://media.licdn.com/dms/image/v2/D4E22AQEkmimi6ZXOoQ/feedshare-shrink_800/feedshare-shrink_800/0/1683741298837?e=2147483647&v=beta&t=ixbdU2yI1-l10DyRbweKznaAv_uttXFsHEt8D-lhrmo" alt="Your Logo" />
+        </div>
+        <nav>
+            <a href="register.html" class="nav-link">Register</a> <!-- Added the class here -->
+            <a href="#">Products</a>
+            <a href="index.html">Home</a>
+            
+            
+        </nav>
+        
+    </header>
+
+    <div id="banner">
+        <div class="logo-text">Industry</div>
+        <h1>FERRING PHARMACEUTICALS</h1>
+    </div>
+    <div class="login-container" id="loginContainer">
+        <h2>Log in</h2>
+        <form>
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Log in</button>
+        </form>
+    </div>
+    
+    <div class="container">
+        <div class="box commitment">
+            <h2>Commitment</h2>
+            <p class="scroll-text">At Ferring, we are committed to helping people become
+                 parents and to keeping mothers and babies healthy, from conception to birth. 
+                 Over one third of our research and development investment goes towards finding 
+                 innovative treatments in reproductive medicine and maternal health.</p>
+        </div>
+        <div class="box quote">
+            <h2>Quote</h2>
+            <p class="scroll-text">“We organized with UFCW Local 5 because 
+                pharmacy professionals need to have a voice in an increasingly corporate 
+                retail pharmacy sector. We must now work together to improve our careers, 
+                create a better future for our profession and give the type of service and
+                 patient care that our patients deserve.”</p>
+        </div>
+        <div class="box other">
+            <h2>New</h2>
+            <p class="scroll-text">Ferring demonstrates effectiveness of a treat-to-target 
+                approach in mild-to-moderate ulcerative colitis in first major study</p>
+        </div>
+        <div class="box additional">
+            <h2>Contact Us</h2>
+            <p class="scroll-text">Any additional information you want to include.</p>
+        </div>
+    </div>
+     
+    
+
+    <footer>
+        <p>&copy; 2024 Your E-commerce Website</p>
+    </footer>
+    <script>
+        document.addEventListener("scroll", function() {
+            const texts = document.querySelectorAll('.scroll-text');
+            texts.forEach(text => {
+                const rect = text.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    text.classList.add('visible');
+                }
+            });
+        });
+    </script>
+    
+    <script>
+        async function checkout(productName, amount) {
+            const email = prompt('Enter your email for payment:');
+            if (!email) return;
+
+            try {
+                const response = await fetch('http://localhost:5000/api/payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, amount })
+                });
+
+                const data = await response.json();
+                if (data.status) {
+                    window.location.href = data.data.authorization_url;
+                } else {
+                    alert('Payment initialization failed: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during payment processing.');
+            }
+        }
+    </script>
+</body>
+</html>
