@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet"> <!-- Unique font -->
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, sans-serif;  
             margin: 0;
             padding: 20px;
             background-image: url('https://media.licdn.com/dms/image/v2/D4E22AQHE2W1qWNL2jQ/feedshare-shrink_800/feedshare-shrink_800/0/1714741673173?e=2147483647&v=beta&t=kEN2v1qKE0JW41WeZJd5O4YpNhbEExNLYjvBcI1nZTw'); /* Background image */
@@ -48,7 +48,7 @@
         h1::after {
             content: '';
             display: block;
-            inline-size: 100%;
+            inline-size: 100%; /* Full width */
             block-size: 5px; /* Height of the wave underline */
             background: linear-gradient(90deg, #007bff 0%, #0056b3 50%, #007bff 100%);
             position: absolute;
@@ -81,21 +81,18 @@
             background-color: #0056b3; /* Darker blue on hover */
         }
         form {
-    background: rgba(18, 18, 18, 0.8); /* Slight transparency */
-    padding: 20px; /* Reduced padding */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(245, 242, 242, 0.1);
-    inline-size: 300px; /* Fixed width for the form */
-    margin-block-start: 100px; /* Increased space below the fixed header */
-    color: white; /* Set text color to white */
-}
-
-
+            background: rgba(18, 18, 18, 0.8); /* Slight transparency */
+            padding: 20px; /* Reduced padding */
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(245, 242, 242, 0.1);
+            inline-size: 300px; /* Fixed width for the form */
+            margin-block-start: 100px; /* Increased space below the fixed header */
+            color: white; /* Set text color to white */
+        }
         label {
             display: block; /* Each label on a new line */
             margin: 5px 0; /* Reduced margin */
         }
-
         input[type="text"],
         input[type="password"],
         input[type="number"],
@@ -106,7 +103,6 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-
         button {
             padding: 10px; /* Keep button padding */
             background-color: #007bff;
@@ -116,30 +112,45 @@
             cursor: pointer;
             inline-size: 100%; /* Full width */
         }
-
         button:hover {
             background-color: #0056b3;
         }
+        #output {
+            margin-block-start: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
     </style>
-  <script>
+   <script>
     function handleSubmit(event) {
-        event.preventDefault(); // Prevent default form submission
-        const formData = new FormData(event.target); // Capture form data
-        const data = Object.fromEntries(formData.entries()); // Convert to an object
-        console.log(data); // Log data to console
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData.entries());
 
-        // Display data in the output div
+    fetch('/api/register', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert(data.message);
         const outputDiv = document.getElementById('output');
         outputDiv.innerHTML = ''; // Clear previous output
-        for (const [key, value] of Object.entries(data)) {
+        for (const [key, value] of Object.entries(data.data)) {
             const p = document.createElement('p');
-            p.textContent = `${key}: ${value}`; // Create a paragraph for each key-value pair
-            outputDiv.appendChild(p); // Append to the output div
+            p.textContent = `${key}: ${value}`;
+            outputDiv.appendChild(p);
         }
-    }
-</script>
+    })
+    .catch(error => console.error('Error:', error));
+}
 
-    <div id="output" style="margin-block-start: 20px; background: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);"></div>
+</script>
 
 </head>
 <body>
@@ -153,30 +164,30 @@
         </div>
     </header>
     <form onsubmit="handleSubmit(event)">
-        <label for="name"> Full name: <input type="text" required name="Full name"></label>
-        <label for="name"> City: <input type="text" required name="City"></label>
-        <label for="name"> State: <input type="text" required name="State"></label>
-        <label for="name"> ZipCode: <input type="text" required name="ZipCode"></label>
-        <label for="ssn">SSN: <input id="ssn" type="text" name="ssn" required /></label>
-        <label for="age">Input your age (years): <input id="age" type="number" name="age" min="13" max="120" /></label>
+        <label for="full-name">Full Name: <input type="text" required name="Full Name" id="full-name"></label>
+        <label for="city">City: <input type="text" required name="City" id="city"></label>
+        <label for="state">State: <input type="text" required name="State" id="state"></label>
+        <label for="zipcode">Zip Code: <input type="text" required name="ZipCode" id="zipcode"></label>
+        <label for="ssn">SSN: <input id="ssn" type="text" name="SSN" required /></label>
+        <label for="age">Age (years): <input id="age" type="number" name="Age" min="13" max="120" required /></label>
         <label for="cvv">CVV:</label>
-        <input type="text" id="cvv" name="cvv" required />
-        <label for="exp-date">Expiration Date: <input type="date" required name="date"></label>
-        <input type="text" id="exp-date" name="exp-date" placeholder="MM/YY" required />
+        <input type="text" id="cvv" name="CVV" required />
+        <label for="exp-date">Expiration Date:</label>
+        <input type="date" id="exp-date" name="ExpirationDate" required />
         <label for="drivers-license">Driver's License:</label>
-        <input type="text" id="drivers-license" name="drivers-license" required />
+        <input type="text" id="drivers-license" name="DriversLicense" required />
         <label for="card-type">Card Type:</label>
-        <select id="card-type" name="card-type" required>
+        <select id="card-type" name="CardType" required>
             <option value="visa">Visa</option>
             <option value="verve">Verve</option>
             <option value="mastercard">MasterCard</option>
         </select>
         <label for="email">Email:</label>
-        <input type="text" id="email" name="email" required />
-        <label for="password">Password: </label>
-        <input type="password" id="password" name="password" required />
+        <input type="text" id="email" name="Email" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="Password" required />
         <button type="submit">Submit</button>
     </form>
+    <div id="output"></div>
 </body>
 </html>
-
