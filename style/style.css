@@ -1,0 +1,188 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-image: url('https://media.licdn.com/dms/image/v2/D4E22AQHE2W1qWNL2jQ/feedshare-shrink_800/feedshare-shrink_800/0/1714741673173?e=2147483647&v=beta&t=kEN2v1qKE0JW41WeZJd5O4YpNhbEExNLYjvBcI1nZTw');
+    /* Background image */
+    background-size: cover;
+    /* ensures the image covers the whole background */
+    background-repeat: no-repeat;
+    /* prevents the image from repeating */
+    background-position: center;
+    /* centers the image */
+    display: flex;
+    flex-direction: column;
+    /* stack elements vertically */
+    align-items: center;
+    /* center elements horizontally */
+    min-block-size: 100vh;
+    /* ensures the body takes the full height of the viewport */
+}
+
+header {
+    inline-size: 100%;
+    /* full width for header */
+    display: flex;
+    justify-content: space-between;
+    /* space out items */
+    align-items: center;
+    /* center vertically */
+    padding: 10px 20px;
+    /* padding for the header */
+    position: fixed;
+    /* fixed positioning */
+    inset-block-start: 0;
+    /* stick to the top */
+    inset-inline-start: 0;
+    /* align to the left */
+    background: rgba(70, 42, 190, 0.9);
+    /* Faded background */
+    z-index: 1000;
+    /* ensure it stays above other content */
+    border-block-end: 4px solid #fff;
+    /* Thick white line at the bottom */
+}
+
+.logo {
+    max-block-size: 50px;
+    /* Adjust the size as needed */
+}
+
+h1 {
+    margin: 0;
+    /* Remove default margin */
+    color: white;
+    /* Color for the title */
+    position: absolute;
+    /* Center the title */
+    inset-inline-start: 50%;
+    /* Center horizontally */
+    transform: translateX(-50%);
+    /* Adjust for centering */
+    font-family: 'Poppins', sans-serif;
+    /* Unique font */
+    font-size: 36px;
+    /* Adjust font size */
+    overflow: hidden;
+    /* To hide overflow */
+}
+
+h1::after {
+    content: '';
+    display: block;
+    inline-size: 100%;
+    /* Full width */
+    block-size: 5px;
+    /* Height of the wave underline */
+    background: linear-gradient(90deg, #007bff 0%, #0056b3 50%, #007bff 100%);
+    position: absolute;
+    inset-block-end: -10px;
+    /* Position below the text */
+    inset-inline-start: 0;
+    animation: wave 1.5s infinite;
+    /* Wave animation */
+}
+
+@keyframes wave {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+        /* Start position */
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(10px);
+        /* Move down */
+    }
+}
+
+.home-link {
+    margin-inline-end: 50px;
+    /* Adjust this value to move the Home link left */
+}
+
+.home-button {
+    background-color: #007bff;
+    /* Non-transparent background */
+    color: white;
+    /* Text color */
+    padding: 10px 15px;
+    /* Padding for the button */
+    border: none;
+    /* Remove border */
+    border-radius: 4px;
+    /* Rounded corners */
+    text-decoration: none;
+    /* Remove underline from link */
+    display: inline-block;
+    /* Allows width and height */
+    transition: background-color 0.3s;
+    /* Smooth transition for hover effect */
+}
+
+.home-button:hover {
+    background-color: #0056b3;
+    /* Darker blue on hover */
+}
+
+form {
+    background: rgba(18, 18, 18, 0.8);
+    /* Slight transparency */
+    padding: 20px;
+    /* Reduced padding */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(245, 242, 242, 0.1);
+    inline-size: 300px;
+    /* Fixed width for the form */
+    margin-block-start: 100px;
+    /* Increased space below the fixed header */
+    color: white;
+    /* Set text color to white */
+}
+
+label {
+    display: block;
+    /* Each label on a new line */
+    margin: 5px 0;
+    /* Reduced margin */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select {
+    inline-size: 100%;
+    /* Full width */
+    padding: 8px;
+    /* Reduced padding */
+    margin: 5px 0;
+    /* Reduced margin */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px;
+    /* Keep button padding */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    inline-size: 100%;
+    /* Full width */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#output {
+    margin-block-start: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
