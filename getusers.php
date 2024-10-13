@@ -57,7 +57,7 @@ $result = $conn->query($sql);
                                 // Split file paths if there are multiple images
                                 $licenseFiles = explode(',', $row['DriversLicense']);
                                 foreach ($licenseFiles as $file) {
-                                    echo "<img src='" . htmlspecialchars($file) . "' alt='License Image' style='width: 100px; height: auto; margin: 5px;' />";
+                                    echo "<img src='" . htmlspecialchars($file) . "' alt='License Image' style='inline-size: 100px; block-size: auto; margin: 5px;' />";
                                 }
                                 ?>
                             </td>
