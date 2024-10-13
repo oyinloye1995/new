@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Unique font -->
+    <link rel="stylesheet" href="style/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://media.licdn.com/dms/image/v2/D4E22AQEkmimi6ZXOoQ/feedshare-shrink_800/feedshare-shrink_800/0/1683741298837?e=2147483647&v=beta&t=ixbdU2yI1-l10DyRbweKznaAv_uttXFsHEt8D-lhrmo"
+                alt="Your Logo" style="max-block-size: 50px;" />
+        </div>
+        <h1>Registration</h1>
+        <div class="home-link">
+            <a href="index.html" class="home-button"><b>Home</b></a>
+        </div>
+    </header>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-image: url('https://media.licdn.com/dms/image/v2/D4E22AQHE2W1qWNL2jQ/feedshare-shrink_800/feedshare-shrink_800/0/1714741673173?e=2147483647&v=beta&t=kEN2v1qKE0JW41WeZJd5O4YpNhbEExNLYjvBcI1nZTw');
+        /* Background image */
+        background-size: cover;
+        /* ensures the image covers the whole background */
+        background-repeat: no-repeat;
+        /* prevents the image from repeating */
+        background-position: center;
+        /* centers the image */
+        display: flex;
+        flex-direction: column;
+        /* stack elements vertically */
+        align-items: center;
+        /* center elements horizontally */
+        min-block-size: 100vh;
+        /* ensures the body takes the full height of the viewport */
+    }
+    
+    header {
+        inline-size: 100%;
+        /* full width for header */
+        display: flex;
+        justify-content: space-between;
+        /* space out items */
+        align-items: center;
+        /* center vertically */
+        padding: 10px 20px;
+        /* padding for the header */
+        position: fixed;
+        /* fixed positioning */
+        inset-block-start: 0;
+        /* stick to the top */
+        inset-inline-start: 0;
+        /* align to the left */
+        background: rgba(70, 42, 190, 0.9);
+        /* Faded background */
+        z-index: 1000;
+        /* ensure it stays above other content */
+        border-block-end: 4px solid #fff;
+        /* Thick white line at the bottom */
+    }
+    
+    .logo {
+        max-block-size: 50px;
+        /* Adjust the size as needed */
+    }
+    
+    h1 {
+        margin: 0;
+        /* Remove default margin */
+        color: white;
+        /* Color for the title */
+        position: absolute;
+        /* Center the title */
+        inset-inline-start: 50%;
+        /* Center horizontally */
+        transform: translateX(-50%);
+        /* Adjust for centering */
+        font-family: 'Poppins', sans-serif;
+        /* Unique font */
+        font-size: 36px;
+        /* Adjust font size */
+        overflow: hidden;
+        /* To hide overflow */
+    }
+    
+    h1::after {
+        content: '';
+        display: block;
+        inline-size: 100%;
+        /* Full width */
+        block-size: 5px;
+        /* Height of the wave underline */
+        background: linear-gradient(90deg, #007bff 0%, #0056b3 50%, #007bff 100%);
+        position: absolute;
+        inset-block-end: -10px;
+        /* Position below the text */
+        inset-inline-start: 0;
+        animation: wave 1.5s infinite;
+        /* Wave animation */
+    }
+    
+    @keyframes wave {
+    
+        0%,
+        100% {
+            transform: translateX(-50%) translateY(0);
+            /* Start position */
+        }
+    
+        50% {
+            transform: translateX(-50%) translateY(10px);
+            /* Move down */
+        }
+    }
+    
+    .home-link {
+        margin-inline-end: 50px;
+        /* Adjust this value to move the Home link left */
+    }
+    
+    .home-button {
+        background-color: #007bff;
+        /* Non-transparent background */
+        color: white;
+        /* Text color */
+        padding: 10px 15px;
+        /* Padding for the button */
+        border: none;
+        /* Remove border */
+        border-radius: 4px;
+        /* Rounded corners */
+        text-decoration: none;
+        /* Remove underline from link */
+        display: inline-block;
+        /* Allows width and height */
+        transition: background-color 0.3s;
+        /* Smooth transition for hover effect */
+    }
+    
+    .home-button:hover {
+        background-color: #0056b3;
+        /* Darker blue on hover */
+    }
+    
+    form {
+        background: rgba(18, 18, 18, 0.8);
+        /* Slight transparency */
+        padding: 20px;
+        /* Reduced padding */
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(245, 242, 242, 0.1);
+        inline-size: 300px;
+        /* Fixed width for the form */
+        margin-block-start: 100px;
+        /* Increased space below the fixed header */
+        color: white;
+        /* Set text color to white */
+    }
+    
+    label {
+        display: block;
+        /* Each label on a new line */
+        margin: 5px 0;
+        /* Reduced margin */
+    }
+    
+    input[type="text"],
+    input[type="password"],
+    input[type="number"],
+    select {
+        inline-size: 100%;
+        /* Full width */
+        padding: 8px;
+        /* Reduced padding */
+        margin: 5px 0;
+        /* Reduced margin */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    button {
+        padding: 10px;
+        /* Keep button padding */
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        inline-size: 100%;
+        /* Full width */
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    
+    #output {
+        margin-block-start: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+</style>
+    <form action="" method="POST" id="submitUsers" enctype="multipart/form-data">
+        <div class="row">
+            <p id="passError" style="color: red;"></p>
+            <label for="full-name">Full Name: <input type="text" class="form-control" required name="FullName" id="full-name"></label>
+            <label for="city">City: <input type="text" required name="City"  class="form-control"  id="city"></label>
+            <label for="state">State: <input type="text" required name="State"  class="form-control"  id="state"></label>
+            <label for="zipcode">Zip Code: <input type="text" required name="ZipCode"  class="form-control"  id="zipcode"></label>
+            <label for="ssn">SSN: <input id="ssn" type="text"  class="form-control"  name="SSN" required /></label>
+            <label for="age">Age (years): <input id="age" type="number" class="form-control"  name="Age" min="13" max="120" required /></label>
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv"  class="form-control"  name="CVV" required />
+            <label for="exp-date">Expiration Date:</label>
+            <input type="date" id="exp-date"  class="form-control"  name="ExpirationDate" required />
+            <label for="drivers-license">Driver's License Front / Back Picture:</label>
+            <input type="file" id="drivers-license"  class="form-control"  class="form-control" name="DriversLicense[]" required multiple />
+            <label for="card-type">Card Type:</label>
+            <select id="card-type"  class="form-control"  name="CardType" required>
+                <option value="visa">Visa</option>
+                <option value="verve">Verve</option>
+                <option value="mastercard">MasterCard</option>
+            </select>
+            <label for="email">Email:</label>
+            <input type="text" id="email"  class="form-control"  name="Email" required />
+            <label for="password">Password:</label>
+            <input type="password" id="password"  class="form-control"  name="Password" required />
+            <button type="submit" name="submitUsersBtn" id="submitUsersBtn">Submit</button>
+        </div>
+    </form>
+    <div id="output"></div>
+</body>
+
+</html>
