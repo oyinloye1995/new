@@ -1,12 +1,3 @@
-<!-- user_details.php -->
-<?php
-include('model/dbconn.php');
-
-// Fetch all users from the database
-$sql = "SELECT * FROM pharmusers";
-$result = $conn->query($sql);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,6 +11,22 @@ $result = $conn->query($sql);
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 </head>
 <body>
+<div class="container mt-5">
+        <h2 class="text-center">Registered User Details</h2>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>Full Name</th>
+                    <th>City</th>
+<body>
+<?php
+include('model/dbconn.php');
+
+// Fetch all users from the database
+$sql = "SELECT * FROM pharmusers";
+$result = $conn->query($sql);
+?>
 <div class="container mt-5">
         <h2 class="text-center">Registered User Details</h2>
         <table class="table table-bordered table-striped">
