@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="style/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <!-- Google reCAPTCHA (replace with your site key for production) -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -43,11 +42,10 @@
         position: fixed;
         inset-block-start: 0;
         inset-inline-start: 0;
-        background: rgba(70, 42, 190, 0.9);
+        background: rgba(46, 27, 128, 0.95);
         z-index: 1000;
-        border-block-end: 4px solid #fff;
+        border-block-end: 2px solid #ffda79;
         block-size: 70px;
-        /* Set a fixed height for header */
     }
     
     .logo {
@@ -57,44 +55,25 @@
     }
     
     .logo-img {
-        max-block-size: 40px;
-        /* Reduce logo height */
+        max-block-size: 50px;
         inline-size: auto;
         display: block;
+        filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
     }
     
     h1 {
         margin: 0;
-        /* Remove default margin */
         color: white;
-        /* Color for the title */
         font-family: 'Poppins', sans-serif;
-        /* Unique font */
-        font-size: 32px;
-        /* Adjust font size */
+        font-size: 28px;
         position: static;
-        /* Remove absolute positioning */
         transform: none;
         flex: 1;
         text-align: center;
         z-index: 1;
         overflow: visible;
-    }
-    
-    h1::after {
-        content: '';
-        display: block;
-        inline-size: 100%;
-        /* Full width */
-        block-size: 5px;
-        /* Height of the wave underline */
-        background: linear-gradient(90deg, #007bff 0%, #0056b3 50%, #007bff 100%);
-        position: absolute;
-        inset-block-end: -10px;
-        /* Position below the text */
-        inset-inline-start: 0;
-        animation: wave 1.5s infinite;
-        /* Wave animation */
+        letter-spacing: 2px;
+        color: #ffda79;
     }
     
     @keyframes wave {
@@ -102,12 +81,9 @@
         0%,
         100% {
             transform: translateX(-50%) translateY(0);
-            /* Start position */
         }
     
         50% {
-            transform: translateX(-50%) translateY(10px);
-            /* Move down */
         }
     }
     
@@ -117,75 +93,64 @@
     }
     
     .home-button {
-        background-color: #007bff;
-        /* Non-transparent background */
+        background-color: transparent;
+        border: 2px solid #ffda79;
         color: white;
-        /* Text color */
         padding: 10px 15px;
-        /* Padding for the button */
-        border: none;
-        /* Remove border */
         border-radius: 4px;
-        /* Rounded corners */
         text-decoration: none;
-        /* Remove underline from link */
         display: inline-block;
-        /* Allows width and height */
-        transition: background-color 0.3s;
-        /* Smooth transition for hover effect */
+        transition: all 0.3s;
     }
     
     .home-button:hover {
-        background-color: #0056b3;
-        /* Darker blue on hover */
+        background-color: #ffda79;
+        color: #2e1b80;
+        box-shadow: 0 0 15px rgba(255, 218, 121, 0.4);
     }
     
     form {
-        background: rgba(18, 18, 18, 0.8);
-        /* Slight transparency */
-        padding: 20px;
-        /* Reduced padding */
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(245, 242, 242, 0.1);
-        inline-size: 300px;
-        /* Fixed width for the form */
-        margin-block-start: 100px;
-        /* Increased space below the fixed header */
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        inline-size: 450px;
+        margin-block-start: 120px;
         color: white;
-        /* Set text color to white */
+        border: 1px solid rgba(255,255,255,0.1);
     }
     
     label {
         display: block;
-        /* Each label on a new line */
-        margin: 5px 0;
-        /* Reduced margin */
+        margin: 15px 0 5px;
+        font-weight: 600;
+        color: #ffda79;
     }
     
     input[type="text"],
     input[type="password"],
     input[type="number"],
+    input[type="email"],
+    input[type="tel"],
     select {
-        inline-size: 100%;
-        /* Full width */
-        padding: 8px;
-        /* Reduced padding */
-        margin: 5px 0;
-        /* Reduced margin */
-        border: 1px solid #ccc;
-        border-radius: 4px;
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+        border-radius: 8px;
+        padding: 12px;
+        transition: 0.3s;
+    }
+
+    input:focus, select:focus {
+        background: rgba(46, 27, 128, 0.2);
+        border-color: #ffda79;
+        box-shadow: 0 0 15px rgba(255, 218, 121, 0.3);
+        outline: none;
     }
     
     button {
-        padding: 10px;
-        /* Keep button padding */
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        inline-size: 100%;
-        /* Full width */
     }
     
     button:hover {
@@ -229,18 +194,17 @@
     }
     /* Progress bar */
     .progress {
-        block-size: 8px;
-        margin-block-end: 20px;
-        background: #eee;
-        border-radius: 4px;
+        block-size: 10px;
+        margin-block-end: 30px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 10px;
         overflow: hidden;
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
     }
     .progress-bar {
-        background: linear-gradient(90deg, #007bff 0%, #0056b3 100%);
-        block-size: 100%;
-        transition: width 0.4s;
-        inline-size: 33%;
-        /* Use width instead of inline-size for compatibility */
+        background: linear-gradient(90deg, #462abe, #ffda79);
+        box-shadow: 0 0 10px rgba(255, 218, 121, 0.5);
+        transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     }
     /* Animated transitions */
     .fade-in {
@@ -249,11 +213,6 @@
     @keyframes fadeIn {
         from { opacity: 0; transform: translateY(20px);}
         to { opacity: 1; transform: translateY(0);}
-    }
-    /* Accessibility focus */
-    input:focus, select:focus, button:focus {
-        outline: 2px solid #007bff;
-        outline-offset: 2px;
     }
     /* Password strength meter */
     #password-strength {
@@ -277,12 +236,15 @@
     .step-nav span {
         flex: 1;
         text-align: center;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
         font-weight: bold;
-        color: #aaa;
+        color: rgba(255,255,255,0.3);
     }
     .step-nav .active {
-        color: #007bff;
-        border-block-end: 2px solid #007bff;
+        color: #ffda79;
+        text-shadow: 0 0 10px rgba(255, 218, 121, 0.5);
     }
     /* Error message */
     .error-msg {
@@ -365,6 +327,17 @@
     .social-signup {
         margin-block-start: 15px;
     }
+    .social-signup-title {
+        color: #aaa;
+        font-size: 12px;
+    }
+    .social-signup-actions {
+        display: flex;
+        gap: 10px;
+    }
+    .social-signup-btn {
+        flex: 1;
+    }
     .margin-block-end-10 {
         margin-block-end: 10px;
     }
@@ -399,12 +372,12 @@
         </div>
         <h1>Registration</h1>
         <div class="home-link">
-            <a href="index.html" class="home-button"><b>Home</b></a>
+            <a href="/" class="home-button"><b>Home</b></a>
         </div>
     </header>
     <form id="registerForm" class="fade-in" autocomplete="on" enctype="multipart/form-data">
         <!-- Progress bar -->
-            <div class="progress-bar" id="progressBar"></div>
+        <div class="progress">
             <div class="progress-bar" id="progressBar"></div>
         </div>
         <!-- Step navigation -->
@@ -425,7 +398,7 @@
                 <input type="email" id="confirm-email" class="form-control" name="ConfirmEmail" required autocomplete="email" aria-required="true">
                 <span class="error-msg" id="emailError"></span>
             </label>
-            <label for="password">Password:
+            <label>Password:
                 <span class="tooltip-custom">?
                     <span class="tooltiptext">At least 8 characters, 1 uppercase, 1 number, 1 symbol.</span>
                 </span>
@@ -436,11 +409,13 @@
                     <button class="btn btn-default" type="button" id="togglePassword">Show</button>
                 </span>
             </div>
+            <div id="password-strength" style="font-size: 12px; margin-top: 5px;"></div>
+
             <label for="confirm-password">Confirm Password:
                 <input type="password" id="confirm-password" class="form-control" name="ConfirmPassword" required aria-required="true" autocomplete="new-password">
                 <span class="error-msg" id="passError"></span>
             </label>
-            <small id="passwordHelp" class="text-muted">At least 8 characters, 1 uppercase, 1 number, 1 symbol.</small>
+            <br>
             <button type="button" class="btn btn-primary" id="next1">Next</button>
         </div>
         <!-- Step 2 -->
@@ -488,10 +463,14 @@
                     <span class="tooltiptext">Format: 123-45-6789</span>
                 </span>
             </label>
-            <label for="cvv">CVV:
+            
             <div class="row margin-block-end-10">
-            </label>
-            <label for="exp-month">Expiration Date:</label>
+                <div class="col-xs-12">
+                    <label for="cvv">CVV:</label>
+                    <input id="cvv" type="text" class="form-control" name="CVV" required aria-required="true" maxlength="4">
+                </div>
+            </div>
+            <label>Expiration Date:</label>
             <div class="row margin-block-end-10">
                 <div class="col-xs-6">
                     <select id="exp-month" class="form-control" name="ExpMonth" required aria-required="true">
@@ -535,14 +514,17 @@
             </label>
             <!-- Google reCAPTCHA widget (replace with your site key) -->
             <div class="g-recaptcha" data-sitekey="your_site_key"></div>
+            <button type="button" class="btn btn-warning" id="saveLaterBtn">Save & Continue Later</button>
             <button type="button" class="btn btn-default" id="prev3">Back</button>
             <button type="submit" class="btn btn-success" id="submitBtn">Submit</button>
-        <div class="social-signup">
-            <button type="button" class="btn btn-danger" disabled>Sign up with Google (Demo)</button>
-            <button type="button" class="btn btn-primary" disabled>Sign up with Facebook (Demo)</button>
-        </div>
-            <button type="button" class="btn btn-danger" disabled>Sign up with Google (Demo)</button>
-            <button type="button" class="btn btn-primary" disabled>Sign up with Facebook (Demo)</button>
+
+            <div class="social-signup text-center" style="margin-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                <p style="color: #aaa; font-size: 12px;">OR REGISTER WITH</p>
+                <div style="display: flex; gap: 10px;">
+                    <button type="button" class="btn btn-danger" style="flex: 1;" disabled>Google</button>
+                    <button type="button" class="btn btn-primary" style="flex: 1;" disabled>Facebook</button>
+                </div>
+            </div>
         </div>
     </form>
     <div id="output"></div>
@@ -641,16 +623,19 @@
     });
 
     // Save & Continue Later (localStorage)
-    document.getElementById('saveLaterBtn').onclick = function() {
-        let data = {};
-        document.querySelectorAll('#registerForm input, #registerForm select').forEach(el => {
-            if(el.type === 'checkbox') data[el.name] = el.checked;
-            else if(el.type === 'file') return;
-            else data[el.name] = el.value;
-        });
-        localStorage.setItem('registerData', JSON.stringify(data));
-        swal("Saved!", "Your progress has been saved. You can continue later.", "success");
-    };
+    const saveLaterBtn = document.getElementById('saveLaterBtn');
+    if (saveLaterBtn) {
+        saveLaterBtn.onclick = function() {
+            let data = {};
+            document.querySelectorAll('#registerForm input, #registerForm select').forEach(el => {
+                if(el.type === 'checkbox') data[el.name] = el.checked;
+                else if(el.type === 'file') return;
+                else data[el.name] = el.value;
+            });
+            localStorage.setItem('registerData', JSON.stringify(data));
+            swal("Saved!", "Your progress has been saved. You can continue later.", "success");
+        };
+    }
     // Load saved data if exists
     window.onload = function() {
         let data = localStorage.getItem('registerData');
@@ -700,7 +685,7 @@
     })();
 
     // Form submission
-    document.getElementById('registerForm').onsubmit = function(e) {
+    document.getElementById('registerForm').onsubmit = async function(e) {
         e.preventDefault();
         let valid = true;
         document.querySelectorAll('.form-step[style*="block"] input[required], .form-step[style*="block"] select[required]').forEach(el => {
@@ -710,17 +695,31 @@
             swal("Error", "Please fill all required fields.", "error");
             return false;
         }
-        // Placeholder for reCAPTCHA validation
-        // if(grecaptcha.getResponse() === "") {
-        //     swal("Error", "Please complete the reCAPTCHA.", "error");
-        //     return false;
-        // }
-        // Placeholder for email verification, backend, etc.
-        swal("Success!", "Registration complete. (Demo: No backend)", "success");
+
+        const form = e.currentTarget;
+        const formData = Object.fromEntries(new FormData(form).entries());
+        const expMonth = formData.ExpMonth || '';
+        const expYear = formData.ExpYear || '';
+        formData.ExpirationDate = expMonth && expYear ? `${expMonth}/${expYear}` : '';
+        formData.Country = formData.Country || 'US';
+
+        const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+        if (!response.ok) {
+            swal('Error', result.error || 'Registration failed.', 'error');
+            return false;
+        }
+
         localStorage.removeItem('registerData');
-        document.getElementById('registerForm').reset();
+        form.reset();
         showStep(1);
         document.getElementById('profile-preview').style.display = 'none';
+        window.location.href = '/success';
         return false;
     };
     </script>
