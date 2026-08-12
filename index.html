@@ -4,494 +4,528 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ferring World</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: url('https://master-3.corporate.ferring.tech/wp-content/uploads/sites/16/2019/10/2.1.4._Clinical_trials_1_Header.jpg') no-repeat center center;
-            background-size: cover;
-            background-attachment: fixed;
+        /* ============================================
+           MODERN PHARMACEUTICAL WEBSITE CSS
+           ============================================ */
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
         }
 
-        header {
-            position: fixed;
-            inset-block-start: 0;
-            inset-inline-start: 0;
-            inline-size: 100%;
-            padding: 20px;
-            background: rgba(218, 165, 32, 0.9);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            -webkit-backdrop-filter: blur(6px);
-            backdrop-filter: blur(6px);
+        :root{
+            --primary:#0ea5e9;
+            --secondary:#14b8a6;
+            --accent:#2563eb;
+            --white:#ffffff;
+            --text:#1e293b;
+            --light:#f8fafc;
+            --shadow:0 10px 30px rgba(0,0,0,0.12);
         }
 
-        .logo img {
-            max-inline-size: 150px;
-            block-size: auto;
-            transition: transform 0.3s ease;
+        body{
+            min-height:100vh;
+            background:linear-gradient(-45deg,#e0f2fe,#ecfeff,#dbeafe,#f0fdfa);
+            background-size:400% 400%;
+            animation:bgMove 15s ease infinite;
+            overflow-x:hidden;
+            position:relative;
+            color:var(--text);
         }
 
-        .logo img:hover {
-            transform: scale(1.05);
+        /* Animated background */
+        @keyframes bgMove{
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
         }
 
-        nav {
-            display: flex;
-            align-items: center;
+        /* Floating medical bubbles */
+        body::before,
+        body::after{
+            content:"";
+            position:absolute;
+            border-radius:50%;
+            filter:blur(40px);
+            opacity:0.35;
+            z-index:-1;
         }
 
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 16px;
-            color: white;
-            font-weight: bold;
-            position: relative;
-            transition: color 0.3s ease;
+        body::before{
+            width:280px;
+            height:280px;
+            background:#0ea5e9;
+            top:-80px;
+            left:-80px;
+            animation:float 8s ease-in-out infinite;
         }
 
-        nav a:hover {
-            color: #ffda79;
+        body::after{
+            width:320px;
+            height:320px;
+            background:#14b8a6;
+            bottom:-100px;
+            right:-100px;
+            animation:float 10s ease-in-out infinite reverse;
         }
 
-        nav a::after {
-            content: "";
-            position: absolute;
-            inset-inline-start: 0;
-            inset-block-end: -5px;
-            block-size: 2px;
-            inline-size: 100%;
-            background: #462abe;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
+        @keyframes float{
+            0%,100%{transform:translateY(0) translateX(0);}
+            50%{transform:translateY(-25px) translateX(15px);}
         }
 
-        nav a:hover::after {
-            transform: scaleX(1);
-            transform-origin: left;
+        /* ================= NAVBAR ================= */
+        nav{
+            width:100%;
+            padding:18px 8%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            background:rgba(255,255,255,0.75);
+            backdrop-filter:blur(14px);
+            position:sticky;
+            top:0;
+            z-index:1000;
+            box-shadow:0 2px 15px rgba(0,0,0,0.05);
         }
 
-        /* Banner */
-        #banner {
-            position: relative;
-            padding-top: 80px; /* Creates space so text isn't hidden by the fixed header */
-            inline-size: 100%;
-            block-size: 450px; /* Increased height for a more premium feel */
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            animation: fadeIn 1.5s ease-out;
+        nav .logo{
+            font-size:1.7rem;
+            font-weight:700;
+            color:var(--accent);
         }
 
-        #banner::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(70, 42, 190, 0.4);
-            filter: blur(6px);
-            z-index: 0;
-            animation: fadeBlur 2s ease forwards;
+        nav ul{
+            display:flex;
+            list-style:none;
+            gap:28px;
         }
 
-        .logo-text {
-            position: relative;
-            color: white;
-            font-size: 28px;
-            font-weight: bold;
-            z-index: 1;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-            animation: slideInLeft 1s ease forwards;
+        nav ul li a{
+            text-decoration:none;
+            color:var(--text);
+            font-weight:500;
+            transition:0.3s ease;
         }
 
-        #banner h1 {
-            position: relative;
-            color: white;
-            font-size: 56px;
-            letter-spacing: 2px;
-            font-weight: bold;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-            z-index: 1;
-            animation: slideInUp 1s ease forwards;
+        nav ul li a:hover{
+            color:var(--primary);
         }
 
-        /* Button Style from Prop Firm */
-        .btn {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 15px 45px;
-            background: linear-gradient(135deg, #ffda79 0%, #ffb800 100%);
-            color: #2e1b80;
-            border: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 18px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-decoration: none;
-            cursor: pointer;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 0 15px rgba(255, 218, 121, 0.4);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
+        /* ================= HERO SECTION ================= */
+        .hero{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:100px 8% 60px;
         }
 
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 25px rgba(255, 218, 121, 0.6);
-            color: #000;
+        .hero-content{
+            max-width:1200px;
+            width:100%;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:50px;
+            align-items:center;
         }
 
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: rgba(255,255,255,0.2);
-            transform: rotate(45deg);
-            transition: 0.5s;
-            pointer-events: none;
+        .hero-text h1{
+            font-size:clamp(2.5rem,5vw,4.5rem);
+            line-height:1.1;
+            margin-bottom:20px;
+            color:#0f172a;
         }
 
-        /* Login Container */
-        .login-container {
-            max-inline-size: 400px;
-            margin: 100px auto 50px auto;
-            background: rgba(0, 0, 0, 0.6);
-            -webkit-backdrop-filter: blur(12px);
-            backdrop-filter: blur(12px);
-            color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            animation: fadeInUp 1.2s ease;
+        .hero-text h1 span{
+            color:var(--primary);
         }
 
-        .login-container h2 {
-            text-align: center;
-            margin-block-end: 20px;
+        .hero-text p{
+            font-size:1.05rem;
+            line-height:1.8;
+            margin-bottom:30px;
+            color:#475569;
+        }
+
+        /* ================= BUTTONS ================= */
+        .btn{
+            display:inline-block;
+            padding:14px 28px;
+            border-radius:14px;
+            background:linear-gradient(135deg,var(--primary),var(--secondary));
+            color:var(--white);
+            text-decoration:none;
+            font-weight:600;
+            transition:all 0.35s ease;
+            box-shadow:0 8px 20px rgba(14,165,233,0.35);
+            cursor:pointer;
+            border:none;
+        }
+
+        .btn:hover{
+            transform:translateY(-4px) scale(1.03);
+            box-shadow:0 12px 28px rgba(20,184,166,0.45);
+        }
+
+        /* ================= GLASS CARD ================= */
+        .glass-card{
+            background:rgba(255,255,255,0.7);
+            backdrop-filter:blur(18px);
+            border:1px solid rgba(255,255,255,0.5);
+            border-radius:24px;
+            padding:40px;
+            box-shadow:var(--shadow);
+            animation:cardFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat{
+            0%,100%{transform:translateY(0);}
+            50%{transform:translateY(-8px);}
+        }
+
+        .glass-card h2{
+            margin-bottom:22px;
+            color:var(--accent);
+            font-size:1.8rem;
+        }
+
+        /* ================= FORM ================= */
+        .form-group{
+            margin-bottom:18px;
+        }
+
+        .form-group input,
+        .form-group textarea{
+            width:100%;
+            padding:15px 16px;
+            border:2px solid transparent;
+            border-radius:14px;
+            background:rgba(255,255,255,0.95);
+            font-size:1rem;
+            transition:0.3s ease;
+            color:var(--text);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus{
+            outline:none;
+            border-color:var(--primary);
+            box-shadow:0 0 0 4px rgba(14,165,233,0.15);
+        }
+
+        /* ================= SERVICES ================= */
+        .services{
+            padding:80px 8%;
+        }
+
+        .section-title{
+            text-align:center;
+            margin-bottom:50px;
+        }
+
+        .section-title h2{
+            font-size:2.3rem;
+            color:#0f172a;
+            margin-bottom:12px;
+        }
+
+        .section-title p{
+            color:#64748b;
+        }
+
+        .service-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:24px;
+        }
+
+        .service-card{
+            background:rgba(255,255,255,0.75);
+            backdrop-filter:blur(14px);
+            border-radius:22px;
+            padding:30px;
+            text-align:center;
+            transition:all 0.35s ease;
+            border:1px solid rgba(255,255,255,0.5);
+            box-shadow:0 8px 25px rgba(0,0,0,0.06);
+        }
+
+        .service-card:hover{
+            transform:translateY(-10px);
+            box-shadow:0 16px 35px rgba(14,165,233,0.15);
+        }
+
+        .service-card .icon{
+            width:72px;
+            height:72px;
+            margin:0 auto 18px;
+            border-radius:18px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:2rem;
+            background:linear-gradient(135deg,var(--primary),var(--secondary));
+            color:var(--white);
+            animation:pulse 3s infinite;
+        }
+
+        @keyframes pulse{
+            0%,100%{transform:scale(1);}
+            50%{transform:scale(1.08);}
+        }
+
+        .service-card h3{
+            margin-bottom:12px;
+            color:#0f172a;
+        }
+
+        .service-card p{
+            color:#64748b;
+            line-height:1.7;
+        }
+
+        /* ================= LOGIN FORM ================= */
+        .login-container{
+            max-width:380px;
+            margin:40px auto;
+            padding:0;
+        }
+
+        .login-container h2{
+            text-align:center;
+            margin-bottom:22px;
+            color:#0f172a;
+        }
+
+        .login-container form{
+            display:flex;
+            flex-direction:column;
+            gap:14px;
         }
 
         .login-container input[type="text"],
-        .login-container input[type="password"] {
-            inline-size: calc(100% - 20px);
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            margin-block-end: 15px;
-            background: rgba(255,255,255,0.1);
-            color: white;
+        .login-container input[type="password"]{
+            padding:14px 16px;
+            border:2px solid transparent;
+            border-radius:12px;
+            background:rgba(255,255,255,0.85);
+            font-size:0.95rem;
+            transition:0.3s ease;
+            color:var(--text);
         }
 
-        .login-container input::placeholder {
-            color: #ccc;
+        .login-container input:focus{
+            outline:none;
+            border-color:var(--primary);
+            box-shadow:0 0 0 3px rgba(14,165,233,0.15);
         }
 
-        .login-container button {
-            inline-size: 100%;
-            padding: 12px;
-            background: linear-gradient(90deg, #462abe, #6e5dd8);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: transform 0.2s ease, background 0.3s ease;
+        .login-container button{
+            padding:12px 20px;
+            background:linear-gradient(135deg,var(--primary),var(--secondary));
+            color:white;
+            border:none;
+            border-radius:12px;
+            font-weight:600;
+            cursor:pointer;
+            transition:all 0.3s ease;
         }
 
-        .login-container button:hover {
-            transform: scale(1.03);
-            background: linear-gradient(90deg, #5a3ff0, #836eff);
+        .login-container button:hover{
+            transform:translateY(-2px);
+            box-shadow:0 8px 20px rgba(14,165,233,0.3);
         }
 
-        /* Boxes */
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-inline-size: 1200px;
-            margin: 50px auto;
-            gap: 20px;
-            padding: 0 20px;
+        /* ================= FOOTER ================= */
+        footer{
+            padding:30px 8%;
+            text-align:center;
+            background:rgba(255,255,255,0.75);
+            backdrop-filter:blur(10px);
+            color:#475569;
+            margin-top:50px;
         }
 
-        .card {
-            background: rgba(0, 0, 0, 0.6);
-            -webkit-backdrop-filter: blur(8px);
-            backdrop-filter: blur(8px);
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            flex: 1 1 250px;
-            max-inline-size: 300px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s ease, background 0.3s ease;
-            opacity: 0;
-            transform: translateY(30px);
+        /* ================= RESPONSIVE ================= */
+        @media (max-width:992px){
+            nav{
+                padding:16px 5%;
+            }
+
+            .hero{
+                padding:120px 5% 60px;
+            }
+
+            .services{
+                padding:70px 5%;
+            }
         }
 
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            background: rgba(70, 42, 190, 0.8);
+        @media (max-width:768px){
+            nav{
+                flex-direction:column;
+                gap:14px;
+            }
+
+            nav ul{
+                flex-wrap:wrap;
+                justify-content:center;
+                gap:16px;
+            }
+
+            .hero-content{
+                text-align:center;
+            }
+
+            .hero-text h1{
+                font-size:2.5rem;
+            }
+
+            .glass-card{
+                padding:28px;
+            }
+
+            .login-container{
+                max-width:90%;
+            }
         }
 
-        /* Pricing Section */
-        .pricing {
-            padding: 80px 20px;
-            text-align: center;
-            color: white;
-            background: rgba(0,0,0,0.4);
-            margin-top: 50px;
-        }
+        @media (max-width:480px){
+            nav .logo{
+                font-size:1.4rem;
+            }
 
-        .pricing h1 {
-            font-size: 42px;
-            margin-bottom: 40px;
-            color: #ffda79;
-        }
+            nav{
+                padding:14px 4%;
+            }
 
-        .price-cards {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+            nav ul{
+                gap:12px;
+            }
 
-        .price-card {
-            background: rgba(255, 255, 255, 0.1);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 15px;
-            width: 280px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.3s;
-        }
+            nav ul li a{
+                font-size:0.9rem;
+            }
 
-        .price-card:hover {
-            border-color: #ffda79;
-            transform: translateY(-10px);
-        }
+            .hero{
+                padding:80px 4% 40px;
+            }
 
-        .price-card h2 {
-            color: #ffda79;
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
+            .hero-text h1{
+                font-size:1.8rem;
+            }
 
-        /* Scroll Animation */
-        .scroll-text {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
+            .hero-text p{
+                font-size:0.95rem;
+            }
 
-        .scroll-text.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+            .btn{
+                width:100%;
+                text-align:center;
+            }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+            .glass-card{
+                padding:22px;
+            }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+            .services{
+                padding:50px 4%;
+            }
 
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+            .section-title h2{
+                font-size:1.8rem;
+            }
 
-        @keyframes slideInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+            .service-grid{
+                grid-template-columns:1fr;
+            }
 
-        @keyframes fadeBlur {
-            from { opacity: 0; filter: blur(20px); }
-            to { opacity: 1; filter: blur(6px); }
+            .login-container{
+                max-width:95%;
+            }
         }
-
-        /* Scroll Guide Person */
-        .guide {
-            position: fixed;
-            inset-block-end: 30px;
-            inset-inline-end: 30px;
-            inline-size: 100px;
-            block-size: 100px;
-            z-index: 100;
-            pointer-events: none;
-        }
-        .person {
-            position: relative;
-            inline-size: 100%;
-            block-size: 100%;
-        }
-        .head {
-            inline-size: 30px;
-            block-size: 30px;
-            background: #fff;
-            border-radius: 50%;
-            margin: 0 auto;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        .body {
-            inline-size: 15px;
-            block-size: 40px;
-            background: #fff;
-            margin: 5px auto;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        .hand {
-            inline-size: 50px;
-            block-size: 6px;
-            background: #ffda79;
-            position: absolute;
-            inset-block-start: 45px;
-            inset-inline-start: 50%;
-            transform-origin: left center;
-            transform: rotate(0deg);
-            transition: transform 0.3s ease;
-        }
-        .hand::after {
-            content: '';
-            position: absolute;
-            inset-inline-end: -10px;
-            inset-block-start: -5px;
-            border-inline-start: 10px solid #ffda79;
-            border-block-start: 5px solid transparent;
-            border-block-end: 5px solid transparent;
-        }
-    </style>
+    
+</style>
 </head>
 <body>
     
-    <header>
-        <div class="logo">
-        <img src="https://media.licdn.com/dms/image/v2/D4E22AQEkmimi6ZXOoQ/feedshare-shrink_800/feedshare-shrink_800/0/1683741298837?e=2147483647&v=beta&t=ixbdU2yI1-l10DyRbweKznaAv_uttXFsHEt8D-lhrmo" alt="Your Logo" />
-    </div>
-        <nav>
-            <a href="/">Home</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#">Products</a>
-            <a href="/register">Register</a>
-        </nav>
-    </header>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Ferring</div>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="/register">Register</a></li>
+        </ul>
+    </nav>
 
-    <div id="banner">
-        <div class="logo-text">Industry</div>
-        <h1>FERRING PHARMACEUTICALS</h1>
-        <a href="/register" class="btn">Start Your Journey</a>
-    </div>
-
-    <div class="login-container">
-        <h2>Log in</h2>
-        <form id="loginForm">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Log in</button>
-        </form>
-    </div>
-    
-    <div class="features">
-        <div class="card">
-            <h2>Commitment</h2>
-            <p class="scroll-text">At Ferring, we are committed to helping people become parents and to keeping mothers and babies healthy...</p>
-        </div>
-        <div class="card">
-            <h2>Quote</h2>
-            <p class="scroll-text">“We organized with UFCW Local 5 because pharmacy professionals need to have a voice...”</p>
-        </div>
-        <div class="card">
-            <h2>New</h2>
-            <p class="scroll-text">Ferring demonstrates effectiveness of a treat-to-target approach...</p>
-        </div>
-        <div class="card">
-            <h2>Contact Us</h2>
-            <p class="scroll-text">Any additional information you want to include.</p>
-        </div>
-    </div>
-
-    <!-- NEW PRICING SECTION -->
-    <section class="pricing" id="pricing">
-        <h1>Choose Your Support Plan</h1>
-        <div class="price-cards">
-            <div class="price-card">
-                <h2>Basic</h2>
-                <p>Access to fundamental clinical insights</p>
-                <button class="btn">Select</button>
-            </div>
-            <div class="price-card">
-                <h2>Premium</h2>
-                <p>Advanced reporting and analytics</p>
-                <button class="btn">Select</button>
-            </div>
-            <div class="price-card">
-                <h2>Enterprise</h2>
-                <p>Full-scale pharmaceutical integration</p>
-                <button class="btn">Select</button>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Welcome to <span>Ferring Pharmaceuticals</span></h1>
+                <p>Advancing healthcare through innovative pharmaceutical solutions and clinical excellence. Join our community of industry leaders.</p>
+                <a href="/register" class="btn">Get Started Today</a>
             </div>
         </div>
     </section>
-     
+
+    <!-- Login Section -->
+    <section class="hero" style="min-height: auto; padding: 60px 8%;">
+        <div class="login-container">
+            <div class="glass-card">
+                <h2>Sign In</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <input type="text" name="username" placeholder="Username or Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%; text-align: center;">Log In</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p>Comprehensive pharmaceutical solutions tailored to your needs</p>
+        </div>
+        <div class="service-grid">
+            <div class="service-card">
+                <div class="icon">💊</div>
+                <h3>Commitment</h3>
+                <p>We are dedicated to helping people become parents and keeping mothers and babies healthy through our innovative treatments.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">🏥</div>
+                <h3>Clinical Excellence</h3>
+                <p>Our treat-to-target approach demonstrates effectiveness and clinical excellence in pharmaceutical development.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon">📞</div>
+                <h3>Customer Support</h3>
+                <p>Contact our dedicated team for any additional information or support you may need about our services.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Your E-commerce Website</p>
+        <p>&copy; 2024 Ferring Pharmaceuticals. All rights reserved.</p>
     </footer>
 
-    <div class="guide">
-        <div class="person">
-            <div class="head"></div>
-            <div class="body"></div>
-            <div class="hand" id="scrollHand"></div>
-        </div>
-    </div>
-
     <script>
-        let lastScroll = 0;
-        const scrollHand = document.getElementById("scrollHand");
-
-        document.addEventListener("scroll", function() {
-            const texts = document.querySelectorAll('.scroll-text');
-            texts.forEach(text => {
-                const rect = text.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    text.classList.add('visible');
-                }
-            });
-
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                let position = card.getBoundingClientRect().top;
-                if(position < window.innerHeight - 100){
-                    card.style.opacity = 1;
-                    card.style.transform = "translateY(0)";
-                }
-            });
-
-            let currentScroll = window.scrollY;
-            if (currentScroll > lastScroll) {
-                scrollHand.style.transform = "rotate(45deg)";
-            } else {
-                scrollHand.style.transform = "rotate(-45deg)";
-            }
-            lastScroll = currentScroll;
-        });
-
         document.getElementById('loginForm').addEventListener('submit', async function (e) {
             e.preventDefault();
             const form = e.currentTarget;
@@ -500,20 +534,25 @@
                 password: form.password.value
             };
 
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(payload)
-            });
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(payload)
+                });
 
-            const result = await response.json();
-            if (!response.ok) {
-                alert(result.message || 'Login failed');
-                return;
+                const result = await response.json();
+                if (!response.ok) {
+                    alert(result.message || 'Login failed');
+                    return;
+                }
+
+                alert(result.message || 'Login successful');
+                window.location.href = '/users';
+            } catch (error) {
+                alert('An error occurred. Please try again.');
+                console.error(error);
             }
-
-            alert(result.message || 'Login successful');
-            window.location.href = '/users';
         });
     </script>
 </body>
