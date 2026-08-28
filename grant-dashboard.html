@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grant Approval</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Poppins',sans-serif;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+            background:linear-gradient(135deg,#e0f7ff,#eef9ff,#dff6f2);
+        }
+
+        .card{
+            width:100%;
+            max-width:850px;
+            background:rgba(255,255,255,.95);
+            border-radius:30px;
+            padding:50px 40px;
+            text-align:center;
+            box-shadow:0 25px 60px rgba(15,23,42,.15);
+        }
+
+        .logo img{
+            width:120px;
+            margin-bottom:20px;
+        }
+
+        .badge{
+            display:inline-block;
+            padding:8px 18px;
+            border-radius:999px;
+            background:#dcfce7;
+            color:#15803d;
+            font-weight:600;
+            margin-bottom:20px;
+        }
+
+        h1{
+            font-size:2.5rem;
+            color:#0f172a;
+            margin-bottom:18px;
+        }
+
+        p{
+            color:#475569;
+            line-height:1.8;
+            margin-bottom:35px;
+        }
+
+        .grant-grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+            gap:24px;
+            margin-bottom:30px;
+        }
+
+        .box{
+            padding:28px;
+            border-radius:24px;
+            background:#f8fafc;
+            box-shadow:0 10px 25px rgba(15,23,42,.08);
+        }
+
+        .box h3{
+            color:#0369a1;
+            margin-bottom:12px;
+            font-size:1rem;
+            text-transform:uppercase;
+        }
+
+        .amount{
+            font-size:2rem;
+            font-weight:700;
+            color:#0f172a;
+        }
+
+        .winner{
+            background:linear-gradient(135deg,#0ea5e9,#14b8a6);
+            color:white;
+        }
+
+        .winner h3{
+            color:#e6fffa;
+        }
+
+        .winner .amount{
+            color:white;
+            font-size:2.3rem;
+        }
+
+        .status{
+            background:#eff6ff;
+            padding:22px;
+            border-radius:18px;
+            color:#0f172a;
+            line-height:1.8;
+        }
+
+        .btn{
+            display:inline-block;
+            margin-top:30px;
+            padding:14px 30px;
+            border-radius:999px;
+            text-decoration:none;
+            font-weight:600;
+            background:linear-gradient(135deg,#0ea5e9,#14b8a6);
+            color:white;
+        }
+
+        @media(max-width:768px){
+            .card{
+                padding:35px 22px;
+            }
+
+            h1{
+                font-size:2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+
+    <div class="logo">
+        <img src="https://media.licdn.com/dms/image/v2/D4E22AQEkmimi6ZXOoQ/feedshare-shrink_800/feedshare-shrink_800/0/1683741298837?e=2147483647&v=beta&t=ixbdU2yI1-l10DyRbweKznaAv_uttXFsHEt8D-lhrmo" alt="Ferring Logo">
+    </div>
+
+    <div class="badge">✔ Eligible for Grant Program</div>
+
+    <h1>Congratulations!</h1>
+
+    <p>
+        Your registration has been successfully reviewed and approved.
+        We are pleased to inform you that you are eligible to receive support
+        through the Ferring World Grant program.
+    </p>
+
+    <div class="grant-grid">
+
+        <div class="box">
+            <h3>Estimated Grant Pool</h3>
+            <div class="amount">$8,000,000</div>
+        </div>
+
+        <div class="box winner">
+            <h3>Your Approved Award</h3>
+            <div class="amount">$120,000</div>
+        </div>
+
+    </div>
+
+    <div class="status">
+        <strong>Status:</strong> Approved for Grant Disbursement Review<br>
+        <strong>Reference ID:</strong> FWG-2026-004000<br>
+        <strong>Processing Stage:</strong> Final Verification and Payment Preparation
+    </div>
+
+    <a href="index.html" class="btn">Return to Homepage</a>
+
+</div>
+
+</body>
+</html>

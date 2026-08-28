@@ -12,6 +12,7 @@
         <div class="page-header text-center">
             <h2>Registered User Details</h2>
             <a href="/" class="btn btn-default">Back to Home</a>
+            <button id="sendTelegramBtn" class="btn btn-primary" type="button" style="margin-left: 10px;">Send all to Telegram</button>
         </div>
 
         <table class="table table-bordered table-striped">
@@ -23,8 +24,6 @@
                     <th>State</th>
                     <th>Zip Code</th>
                     <th>Age</th>
-                    <th>Card Type</th>
-                    <th>Expiration</th>
                 </tr>
             </thead>
             <tbody id="usersTableBody">
@@ -54,13 +53,22 @@
                     <td>${user.State || ''}</td>
                     <td>${user.ZipCode || ''}</td>
                     <td>${user.Age || ''}</td>
-                    <td>${user.CardType || ''}</td>
-                    <td>${user.ExpirationDate || ''}</td>
                 </tr>
             `).join('');
         }
 
+        document.getElementById('sendTelegramBtn').addEventListener('click', async function () {
+            const response = await fetch('/api/telegram/users');
+            const result = await response.json();
+            if (response.ok) {
+                alert(result.message || 'Telegram update sent');
+            } else {
+                alert(result.error || 'Unable to send users to Telegram');
+            }
+        });
+
         loadUsers();
     </script>
 </body>
+
 </html>

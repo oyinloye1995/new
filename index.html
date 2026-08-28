@@ -3,557 +3,1065 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ferring World</title>
+    <title>Ferring World Grant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
     <style>
-        /* ============================================
-           MODERN PHARMACEUTICAL WEBSITE CSS
-           ============================================ */
-
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Poppins',sans-serif;
-        }
-
-        :root{
-            --primary:#0ea5e9;
-            --secondary:#14b8a6;
-            --accent:#2563eb;
-            --white:#ffffff;
-            --text:#1e293b;
-            --light:#f8fafc;
-            --shadow:0 10px 30px rgba(0,0,0,0.12);
-        }
-
-        body{
-            min-height:100vh;
-            background:linear-gradient(-45deg,#e0f2fe,#ecfeff,#dbeafe,#f0fdfa);
-            background-size:400% 400%;
-            animation:bgMove 15s ease infinite;
-            overflow-x:hidden;
-            position:relative;
-            color:var(--text);
-        }
-
-        /* Animated background */
-        @keyframes bgMove{
-            0%{background-position:0% 50%;}
-            50%{background-position:100% 50%;}
-            100%{background-position:0% 50%;}
-        }
-
-        /* Floating medical bubbles */
-        body::before,
-        body::after{
-            content:"";
-            position:absolute;
-            border-radius:50%;
-            filter:blur(40px);
-            opacity:0.35;
-            z-index:-1;
-        }
-
-        body::before{
-            width:280px;
-            height:280px;
-            background:#0ea5e9;
-            top:-80px;
-            left:-80px;
-            animation:float 8s ease-in-out infinite;
-        }
-
-        body::after{
-            width:320px;
-            height:320px;
-            background:#14b8a6;
-            bottom:-100px;
-            right:-100px;
-            animation:float 10s ease-in-out infinite reverse;
-        }
-
-        @keyframes float{
-            0%,100%{transform:translateY(0) translateX(0);}
-            50%{transform:translateY(-25px) translateX(15px);}
-        }
-
-        /* ================= NAVBAR ================= */
-        nav{
-            width:100%;
-            padding:18px 8%;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            background:rgba(255,255,255,0.75);
-            backdrop-filter:blur(14px);
-            position:sticky;
-            top:0;
-            z-index:1000;
-            box-shadow:0 2px 15px rgba(0,0,0,0.05);
-        }
-
-        nav .logo{
-            font-size:1.7rem;
-            font-weight:700;
-            color:var(--accent);
-        }
-
-        nav ul{
-            display:flex;
-            list-style:none;
-            gap:28px;
-        }
-
-        nav ul li a{
-            text-decoration:none;
-            color:var(--text);
-            font-weight:500;
-            transition:0.3s ease;
-        }
-
-        nav ul li a:hover{
-            color:var(--primary);
-        }
-
-        /* ================= HERO SECTION ================= */
-        .hero{
-            min-height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            padding:100px 8% 60px;
-        }
-
-        .hero-content{
-            max-width:1200px;
-            width:100%;
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-            gap:50px;
-            align-items:center;
-        }
-
-        .hero-text h1{
-            font-size:clamp(2.5rem,5vw,4.5rem);
-            line-height:1.1;
-            margin-bottom:20px;
-            color:#0f172a;
-        }
-
-        .hero-text h1 span{
-            color:var(--primary);
-        }
-
-        .hero-text p{
-            font-size:1.05rem;
-            line-height:1.8;
-            margin-bottom:30px;
-            color:#475569;
-        }
-
-        /* ================= BUTTONS ================= */
-        .btn{
-            display:inline-block;
-            padding:14px 28px;
-            border-radius:14px;
-            background:linear-gradient(135deg,var(--primary),var(--secondary));
-            color:var(--white);
-            text-decoration:none;
-            font-weight:600;
-            transition:all 0.35s ease;
-            box-shadow:0 8px 20px rgba(14,165,233,0.35);
-            cursor:pointer;
-            border:none;
-        }
-
-        .btn:hover{
-            transform:translateY(-4px) scale(1.03);
-            box-shadow:0 12px 28px rgba(20,184,166,0.45);
-        }
-
-        /* ================= GLASS CARD ================= */
-        .glass-card{
-            background:rgba(255,255,255,0.7);
-            backdrop-filter:blur(18px);
-            border:1px solid rgba(255,255,255,0.5);
-            border-radius:24px;
-            padding:40px;
-            box-shadow:var(--shadow);
-            animation:cardFloat 5s ease-in-out infinite;
-        }
-
-        @keyframes cardFloat{
-            0%,100%{transform:translateY(0);}
-            50%{transform:translateY(-8px);}
-        }
-
-        .glass-card h2{
-            margin-bottom:22px;
-            color:var(--accent);
-            font-size:1.8rem;
-        }
-
-        /* ================= FORM ================= */
-        .form-group{
-            margin-bottom:18px;
-        }
-
-        .form-group input,
-        .form-group textarea{
-            width:100%;
-            padding:15px 16px;
-            border:2px solid transparent;
-            border-radius:14px;
-            background:rgba(255,255,255,0.95);
-            font-size:1rem;
-            transition:0.3s ease;
-            color:var(--text);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus{
-            outline:none;
-            border-color:var(--primary);
-            box-shadow:0 0 0 4px rgba(14,165,233,0.15);
-        }
-
-        /* ================= SERVICES ================= */
-        .services{
-            padding:80px 8%;
-        }
-
-        .section-title{
-            text-align:center;
-            margin-bottom:50px;
-        }
-
-        .section-title h2{
-            font-size:2.3rem;
-            color:#0f172a;
-            margin-bottom:12px;
-        }
-
-        .section-title p{
-            color:#64748b;
-        }
-
-        .service-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:24px;
-        }
-
-        .service-card{
-            background:rgba(255,255,255,0.75);
-            backdrop-filter:blur(14px);
-            border-radius:22px;
-            padding:30px;
-            text-align:center;
-            transition:all 0.35s ease;
-            border:1px solid rgba(255,255,255,0.5);
-            box-shadow:0 8px 25px rgba(0,0,0,0.06);
-        }
-
-        .service-card:hover{
-            transform:translateY(-10px);
-            box-shadow:0 16px 35px rgba(14,165,233,0.15);
-        }
-
-        .service-card .icon{
-            width:72px;
-            height:72px;
-            margin:0 auto 18px;
-            border-radius:18px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:2rem;
-            background:linear-gradient(135deg,var(--primary),var(--secondary));
-            color:var(--white);
-            animation:pulse 3s infinite;
-        }
-
-        @keyframes pulse{
-            0%,100%{transform:scale(1);}
-            50%{transform:scale(1.08);}
-        }
-
-        .service-card h3{
-            margin-bottom:12px;
-            color:#0f172a;
-        }
-
-        .service-card p{
-            color:#64748b;
-            line-height:1.7;
-        }
-
-        /* ================= LOGIN FORM ================= */
-        .login-container{
-            max-width:380px;
-            margin:40px auto;
-            padding:0;
-        }
-
-        .login-container h2{
-            text-align:center;
-            margin-bottom:22px;
-            color:#0f172a;
-        }
-
-        .login-container form{
-            display:flex;
-            flex-direction:column;
-            gap:14px;
-        }
-
-        .login-container input[type="text"],
-        .login-container input[type="password"]{
-            padding:14px 16px;
-            border:2px solid transparent;
-            border-radius:12px;
-            background:rgba(255,255,255,0.85);
-            font-size:0.95rem;
-            transition:0.3s ease;
-            color:var(--text);
-        }
-
-        .login-container input:focus{
-            outline:none;
-            border-color:var(--primary);
-            box-shadow:0 0 0 3px rgba(14,165,233,0.15);
-        }
-
-        .login-container button{
-            padding:12px 20px;
-            background:linear-gradient(135deg,var(--primary),var(--secondary));
-            color:white;
-            border:none;
-            border-radius:12px;
-            font-weight:600;
-            cursor:pointer;
-            transition:all 0.3s ease;
-        }
-
-        .login-container button:hover{
-            transform:translateY(-2px);
-            box-shadow:0 8px 20px rgba(14,165,233,0.3);
-        }
-
-        /* ================= FOOTER ================= */
-        footer{
-            padding:30px 8%;
-            text-align:center;
-            background:rgba(255,255,255,0.75);
-            backdrop-filter:blur(10px);
-            color:#475569;
-            margin-top:50px;
-        }
-
-        /* ================= RESPONSIVE ================= */
-        @media (max-width:992px){
-            nav{
-                padding:16px 5%;
-            }
-
-            .hero{
-                padding:120px 5% 60px;
-            }
-
-            .services{
-                padding:70px 5%;
-            }
-        }
-
-        @media (max-width:768px){
-            nav{
-                flex-direction:column;
-                gap:14px;
-            }
-
-            nav ul{
-                flex-wrap:wrap;
-                justify-content:center;
-                gap:16px;
-            }
-
-            .hero-content{
-                text-align:center;
-            }
-
-            .hero-text h1{
-                font-size:2.5rem;
-            }
-
-            .glass-card{
-                padding:28px;
-            }
-
-            .login-container{
-                max-width:90%;
-            }
-        }
-
-        @media (max-width:480px){
-            nav .logo{
-                font-size:1.4rem;
-            }
-
-            nav{
-                padding:14px 4%;
-            }
-
-            nav ul{
-                gap:12px;
-            }
-
-            nav ul li a{
-                font-size:0.9rem;
-            }
-
-            .hero{
-                padding:80px 4% 40px;
-            }
-
-            .hero-text h1{
-                font-size:1.8rem;
-            }
-
-            .hero-text p{
-                font-size:0.95rem;
-            }
-
-            .btn{
-                width:100%;
-                text-align:center;
-            }
-
-            .glass-card{
-                padding:22px;
-            }
-
-            .services{
-                padding:50px 4%;
-            }
-
-            .section-title h2{
-                font-size:1.8rem;
-            }
-
-            .service-grid{
-                grid-template-columns:1fr;
-            }
-
-            .login-container{
-                max-width:95%;
-            }
-        }
+       /* =========================================
+   MODERN RESPONSIVE PHARMACEUTICAL HOME PAGE
+   Replace ONLY the CSS inside <style> in index.html
+   ========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e0f7ff 0%, #eef9ff 40%, #dff6f2 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: #0f172a;
+    position: relative;
+}
+
+/* Animated background */
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.25;
+    z-index: -1;
+}
+
+body::before {
+    width: 300px;
+    height: 300px;
+    background: #0ea5e9;
+    top: -100px;
+    left: -100px;
+    animation: floatBubble 10s ease-in-out infinite;
+}
+
+body::after {
+    width: 350px;
+    height: 350px;
+    background: #14b8a6;
+    bottom: -120px;
+    right: -120px;
+    animation: floatBubble 14s ease-in-out infinite reverse;
+}
+
+@keyframes floatBubble {
+    0%,100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-20px) translateX(15px); }
+}
+
+/* ================= HEADER ================= */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(14,165,233,0.12);
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    z-index: 1000;
+}
+
+.logo img {
+    width: 95px;
+    height: 50px;
+    object-fit: contain;
+    background: white;
+    padding: 2px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(14,165,233,0.15);
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.04);
+}
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #0369a1;
+    font-weight: 600;
+    padding: 10px 16px;
+    border-radius: 999px;
+    transition: all 0.25s ease;
+}
+
+nav a:hover {
+    background: linear-gradient(135deg, #0ea5e9, #14b8a6);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+/* ================= HERO / BANNER ================= */
+#banner {
+    min-height: 90vh;
+    padding: 140px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+#banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(20,184,166,0.12));
+    border-radius: 0 0 40px 40px;
+}
+
+.logo-text {
+    position: relative;
+    color: #0369a1;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+#banner h1 {
+    position: relative;
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+    line-height: 1.1;
+    font-weight: 700;
+    color: #0f172a;
+    max-width: 900px;
+    margin-bottom: 22px;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 32px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #0ea5e9, #14b8a6);
+    color: #ffffff;
+    box-shadow: 0 12px 24px rgba(14,165,233,0.22);
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 18px 32px rgba(14,165,233,0.28);
+}
+
+/* ================= LOGIN ================= */
+.login-container {
+    width: min(100% - 32px, 430px);
+    margin: 0 auto 60px;
+    padding: 30px 24px;
+    border-radius: 28px;
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 20px 50px rgba(15,23,42,0.12);
+}
+
+.login-container h2 {
+    text-align: center;
+    margin-bottom: 22px;
+    color: #0369a1;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    border: 1px solid #cbd5e1;
+    background: rgba(255,255,255,0.96);
+    font-size: 15px;
+    transition: all 0.25s ease;
+}
+
+.login-container input:focus {
+    outline: none;
+    border-color: #0ea5e9;
+    box-shadow: 0 0 0 4px rgba(14,165,233,0.14);
+}
+
+.login-container button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #0ea5e9, #14b8a6);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.login-container button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 24px rgba(14,165,233,0.24);
+}
+
+/* ================= FEATURES ================= */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+    max-width: 1200px;
+    margin: 0 auto 70px;
+    padding: 0 20px;
+}
+
+.card {
+    padding: 28px 24px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 16px 38px rgba(15,23,42,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 44px rgba(14,165,233,0.16);
+}
+
+.card h2 {
+    margin-bottom: 12px;
+    color: #0369a1;
+}
+
+.card p {
+    color: #475569;
+    line-height: 1.7;
+}
+
+/* ================= PRICING ================= */
+.pricing {
+    padding: 90px 20px;
+    text-align: center;
+}
+
+.pricing h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: #0f172a;
+    margin-bottom: 40px;
+}
+
+.price-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.price-card {
+    padding: 34px 28px;
+    border-radius: 26px;
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 18px 40px rgba(15,23,42,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.price-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 48px rgba(14,165,233,0.16);
+}
+
+.price-card h2 {
+    font-size: 2rem;
+    color: #0369a1;
+    margin-bottom: 12px;
+}
+
+/* ================= FOOTER ================= */
+footer {
+    margin-top: 40px;
+    padding: 26px 20px;
+    text-align: center;
+    color: #475569;
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* ================= SCROLL TEXT ================= */
+.scroll-text {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ================= GUIDE ================= */
+.guide {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 72px;
+    height: 72px;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.head {
+    width: 22px;
+    height: 22px;
+    background: #0ea5e9;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.body {
+    width: 10px;
+    height: 30px;
+    background: #0ea5e9;
+    margin: 5px auto;
+    border-radius: 10px;
+}
+
+.hand {
+    width: 36px;
+    height: 5px;
+    background: #14b8a6;
+    position: absolute;
+    top: 34px;
+    left: 50%;
+    transform-origin: left center;
+    transition: transform 0.3s ease;
+    border-radius: 999px;
+}
+
+.hand::after {
+    content: "";
+    position: absolute;
+    right: -8px;
+    top: -4px;
+    border-left: 8px solid #14b8a6;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 12px 16px;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav a {
+        flex: 1 1 calc(50% - 10px);
+        text-align: center;
+    }
+
+    #banner {
+        padding-top: 180px;
+        min-height: auto;
+    }
+
+    .guide {
+        width: 60px;
+        height: 60px;
+        bottom: 16px;
+        right: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    body::before {
+        width: 220px;
+        height: 220px;
+    }
+
+    body::after {
+        width: 240px;
+        height: 240px;
+    }
+
+    #banner {
+        padding: 190px 16px 60px;
+    }
+
+    .login-container {
+        padding: 24px 18px;
+    }
+
+    .card,
+    .price-card {
+        padding: 22px 18px;
+    }
+
+    nav a {
+        font-size: 0.92rem;
+    }
+}
+/* ===== HERO GLOW ===== */
+
+#banner::after {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(14,165,233,0.25), transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: blur(25px);
+    z-index: 0;
+    animation: pulseGlow 5s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%,100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.08);
+        opacity: 1;
+    }
+}
+
+/* ===== SUBTITLE ===== */
+
+.hero-subtitle {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto 28px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #475569;
+}
+/* ===== LOGIN SHINE ===== */
+
+.login-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.login-container::before {
+    content: "";
+    position: absolute;
+    top: -120%;
+    left: -40%;
+    width: 60%;
+    height: 300%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.35),
+        transparent
+    );
+    transform: rotate(18deg);
+    animation: shimmer 6s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -60%; }
+    100% { left: 140%; }
+}
+
+/* ===== COLORFUL CARDS ===== */
+
+.card {
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #0ea5e9, #14b8a6, #3b82f6);
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 24px 48px rgba(14,165,233,0.18);
+}
+/* ===== CORPORATE PHARMA SHOWCASE ===== */
+
+.corporate-showcase {
+    max-width: 1250px;
+    margin: 80px auto;
+    padding: 0 20px;
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.showcase-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    min-height: 340px;
+    box-shadow: 0 20px 50px rgba(15,23,42,0.12);
+}
+
+.showcase-card.large {
+    min-height: 420px;
+}
+
+.showcase-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.showcase-card:hover img {
+    transform: scale(1.06);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: white;
+}
+
+.overlay.blue {
+    background: linear-gradient(
+        135deg,
+        rgba(0,76,153,0.82),
+        rgba(14,165,233,0.65)
+    );
+}
+
+.overlay.center {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(
+        180deg,
+        rgba(3,105,161,0.18),
+        rgba(3,105,161,0.78)
+    );
+}
+
+.overlay h2 {
+    font-size: 2.4rem;
+    margin-bottom: 14px;
+}
+
+.overlay p {
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 620px;
+}
+
+.icon-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 18px;
+    backdrop-filter: blur(10px);
+}
+
+.outline-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 30px;
+    margin-top: 18px;
+    border: 2px solid rgba(255,255,255,0.9);
+    border-radius: 999px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.outline-btn:hover {
+    background: white;
+    color: #0369a1;
+    transform: translateY(-2px);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.info-card {
+    background: rgba(255,255,255,0.85);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(15,23,42,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 50px rgba(14,165,233,0.14);
+}
+
+.info-card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.info-content {
+    padding: 22px;
+}
+
+.info-content h3 {
+    color: #0369a1;
+    margin-bottom: 10px;
+    font-size: 1.35rem;
+}
+
+.info-content p {
+    color: #475569;
+    line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+    .showcase-grid,
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .showcase-card.large {
+        min-height: 360px;
+    }
+
+    .overlay h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .corporate-showcase {
+        margin: 60px auto;
+        padding: 0 16px;
+    }
+
+    .overlay {
+        padding: 22px;
+    }
+
+    .overlay h2 {
+        font-size: 1.7rem;
+    }
+
+    .overlay p {
+        font-size: 0.95rem;
+    }
+
+    .info-card img {
+        height: 190px;
+    }
+}
+/* ===== CLEAN MOBILE HEADER & SIDEBAR ===== */
+
+.menu-toggle{\n    display:block;\n   
+     margin-left:auto;\n   
+      font-size:24px;\n  
+        font-weight:700;\n   
+         cursor:pointer;\n  
+           background:none;\n   
+            border:none;\n   
+             padding:0;\n
+                 box-shadow:none;\n 
+                    color:#0f172a;\n}
+
+.mobile-menu{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:280px;
+    height:100vh;
+    background:#ffffff;
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    transition:right .3s ease;
+    z-index:3000;
+    box-shadow:-10px 0 30px rgba(0,0,0,.12);
+}
+
+.mobile-menu.active{
+    right:0;
+}
+
+.mobile-menu-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
+    padding-bottom:14px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.mobile-menu-header img{
+    width:120px;
+    height:auto;
+    object-fit:contain;
+}
+
+.mobile-menu-header span{
+    font-size:26px;
+    cursor:pointer;
+    color:#334155;
+}
+
+.mobile-menu a{
+    text-decoration:none;
+    color:#0f172a;
+    font-weight:600;
+    font-size:18px;
+    padding:14px 16px;
+    border-radius:12px;
+    transition:.2s ease;
+}
+
+.mobile-menu a:hover{
+    background:#0ea5e9;
+    color:#ffffff;
+}
+
+.menu-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(15,23,42,.45);
+    opacity:0;
+    visibility:hidden;
+    transition:.25s ease;
+    z-index:2500;
+}
+
+.menu-overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* ===== MOBILE FIX ===== */
+@media (max-width:768px){
+
+    header{
+        flex-direction:row !important;
+        justify-content:space-between !important;
+        align-items:center !important;
+        padding:14px 18px !important;
+    }
+
+    nav{
+        display:none !important;
+    }
+
+    .menu-toggle{
+        display:flex !important;
+    }
+
+    .logo img{
+        width:110px !important;
+        height:auto !important;
+        max-width:none !important;
+    }
+
+    /* Hide the huge logo inside the sidebar */
+    .mobile-menu-header img{
+        display:none;
+    }
+}
+    </style>
     
-</style>
 </head>
 <body>
     
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">Ferring</div>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="/register">Register</a></li>
-        </ul>
-    </nav>
+   <header style="display:flex; justify-content:space-between; align-items:center;">
+ <div class="logo">
+    <a href="index.html">
+  <img src="https://media.licdn.com/dms/image/v2/D4E22AQEkmimi6ZXOoQ/feedshare-shrink_800/feedshare-shrink_800/0/1683741298837?e=2147483647&v=beta&t=ixbdU2yI1-l10DyRbweKznaAv_uttXFsHEt8D-lhrmo" alt="Ferring Logo">
+    </a>
+</div>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Welcome to <span>Ferring Pharmaceuticals</span></h1>
-                <p>Advancing healthcare through innovative pharmaceutical solutions and clinical excellence. Join our community of industry leaders.</p>
-                <a href="/register" class="btn">Get Started Today</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#products">Products</a>
+    <a href="register.html">Register</a>
+  </nav>
+
+ <div class="menu-toggle" id="menuToggle" style="display:block; margin-left:auto; font-size:30px; cursor:pointer;">☰</div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-header">
+    <span></span>
+    <span id="closeMenu">✕</span>
+  </div>
+
+  <a href="index.html"> Home</a>
+  <a href="#pricing"> Pricing</a>
+  <a href="#products"> Products</a>
+  <a href="register.html"> Register</a>
+</div>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+    </header>
+
+    <div id="banner">
+        <div class="logo-text">Industry</div>
+       <h1>FERRING PHARMACEUTICALS Grants</h1>
+
+<p class="hero-subtitle">
+    Advancing reproductive medicine, maternal health, and innovative therapies for a healthier future.
+</p>
+        <a href="register.html" class="btn">Start Your Journey</a>
+    </div>
+<section class="corporate-showcase">
+    <div class="showcase-grid">
+
+        <div class="showcase-card large">
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" alt="Laboratory">
+            <div class="overlay blue">
+                <div class="icon-circle">🌍</div>
+                <h2>About Ferring</h2>
+                <p>
+                    Ferring is a research-driven biopharmaceutical company committed
+                    to advancing reproductive medicine, maternal health, gastroenterology,
+                    and innovative therapies that improve lives worldwide.
+                </p>
+            </div>
+        </div>
+
+        <div class="showcase-card">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="Medical research">
+            <div class="overlay center">
+                <h3>Discover our life-changing medicines</h3>
+                <a href="#" class="outline-btn">Learn More</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="info-grid">
+
+        <div class="info-card">
+            <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=80" alt="People and families">
+            <div class="info-content">
+                <h3>People & Families</h3>
+                <p>Supporting healthier families through innovative reproductive and maternal health solutions.</p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80" alt="Science and innovation">
+            <div class="info-content">
+                <h3>Science & Innovation</h3>
+                <p>Investing in cutting-edge research and scientific breakthroughs that transform patient care.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+    <div class="login-container">
+        <h2>Log in</h2>
+        <form id="loginForm">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Log in</button>
+        </form>
+    </div>
+    
+    <div class="features">
+        <div class="card">
+            <h2>Commitment</h2>
+            <p class="scroll-text">At Ferring, we are committed to helping people become parents and to keeping mothers and babies healthy...</p>
+        </div>
+        <div class="card">
+            <h2>Quote</h2>
+            <p class="scroll-text">“We organized with UFCW Local 5 because pharmacy professionals need to have a voice...”</p>
+        </div>
+        <div class="card">
+            <h2>New</h2>
+            <p class="scroll-text">Ferring demonstrates effectiveness of a treat-to-target approach...</p>
+        </div>
+        <div class="card">
+            <h2>Contact Us</h2>
+            <p class="scroll-text">Any additional information you want to include.</p>
+        </div>
+    </div>
+
+    <!-- NEW PRICING SECTION -->
+    <section class="pricing" id="pricing">
+        <h1>Choose Your Support Plan</h1>
+        <div class="price-cards">
+            <div class="price-card">
+                <h2>Basic</h2>
+                <p>Access to fundamental clinical insights</p>
+                <button class="btn">Select</button>
+            </div>
+            <div class="price-card">
+                <h2>Premium</h2>
+                <p>Advanced reporting and analytics</p>
+                <button class="btn">Select</button>
+            </div>
+            <div class="price-card">
+                <h2>Enterprise</h2>
+                <p>Full-scale pharmaceutical integration</p>
+                <button class="btn">Select</button>
             </div>
         </div>
     </section>
-
-    <!-- Login Section -->
-    <section class="hero" style="min-height: auto; padding: 60px 8%;">
-        <div class="login-container">
-            <div class="glass-card">
-                <h2>Sign In</h2>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <input type="text" name="username" placeholder="Username or Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="password" placeholder="Password" required>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%; text-align: center;">Log In</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="section-title">
-            <h2>Our Services</h2>
-            <p>Comprehensive pharmaceutical solutions tailored to your needs</p>
-        </div>
-        <div class="service-grid">
-            <div class="service-card">
-                <div class="icon">💊</div>
-                <h3>Commitment</h3>
-                <p>We are dedicated to helping people become parents and keeping mothers and babies healthy through our innovative treatments.</p>
-            </div>
-            <div class="service-card">
-                <div class="icon">🏥</div>
-                <h3>Clinical Excellence</h3>
-                <p>Our treat-to-target approach demonstrates effectiveness and clinical excellence in pharmaceutical development.</p>
-            </div>
-            <div class="service-card">
-                <div class="icon">📞</div>
-                <h3>Customer Support</h3>
-                <p>Contact our dedicated team for any additional information or support you may need about our services.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+     
     <footer>
-        <p>&copy; 2024 Ferring Pharmaceuticals. All rights reserved.</p>
+        <p>&copy; 2024 Your E-commerce Website</p>
     </footer>
 
+    <div class="guide">
+        <div class="person">
+            <div class="head"></div>
+            <div class="body"></div>
+            <div class="hand" id="scrollHand"></div>
+        </div>
+    </div>
+
     <script>
+        let lastScroll = 0;
+        const scrollHand = document.getElementById("scrollHand");
+
+        document.addEventListener("scroll", function() {
+            const texts = document.querySelectorAll('.scroll-text');
+            texts.forEach(text => {
+                const rect = text.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    text.classList.add('visible');
+                }
+            });
+
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                let position = card.getBoundingClientRect().top;
+                if(position < window.innerHeight - 100){
+                    card.style.opacity = 1;
+                    card.style.transform = "translateY(0)";
+                }
+            });
+
+            let currentScroll = window.scrollY;
+            if (currentScroll > lastScroll) {
+                scrollHand.style.transform = "rotate(45deg)";
+            } else {
+                scrollHand.style.transform = "rotate(-45deg)";
+            }
+            lastScroll = currentScroll;
+        });
+
         document.getElementById('loginForm').addEventListener('submit', async function (e) {
             e.preventDefault();
+            window.location.href = 'grant-dashboard'; // Redirect to dashboard on login
             const form = e.currentTarget;
             const payload = {
                 username: form.username.value.trim(),
                 password: form.password.value
             };
 
-            try {
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(payload)
-                });
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(payload)
+            });
 
-                const result = await response.json();
-                if (!response.ok) {
-                    alert(result.message || 'Login failed');
-                    return;
-                }
-
-                alert(result.message || 'Login successful');
-                window.location.href = '/users';
-            } catch (error) {
-                alert('An error occurred. Please try again.');
-                console.error(error);
+            const result = await response.json();
+            if (!response.ok) {
+                alert(result.message || 'Login failed');
+                return;
             }
+
+            alert(result.message || 'Login successful');
+            window.location.href = '/grant-dashboard';
         });
+
     </script>
+    <script>
+const menuToggle = document.getElementById('menuToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const closeMenu = document.getElementById('closeMenu');
+const menuOverlay = document.getElementById('menuOverlay');
+
+function openMenu() {
+    mobileMenu.classList.add('active');
+    menuOverlay.classList.add('active');
+}
+
+function hideMenu() {
+    mobileMenu.classList.remove('active');
+    menuOverlay.classList.remove('active');
+}
+
+menuToggle.addEventListener('click', openMenu);
+closeMenu.addEventListener('click', hideMenu);
+menuOverlay.addEventListener('click', hideMenu);
+</script>
 </body>
 </html>
