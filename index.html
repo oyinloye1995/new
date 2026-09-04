@@ -832,7 +832,555 @@ footer {
         display:none;
     }
 }
-    </style>
+
+/* ===== ABOUT SECTION ===== */
+.showcase-card.large {
+    min-height: 840px;
+}
+
+.showcase-card.large .overlay.blue {
+    justify-content: flex-start;
+    padding: clamp(78px, 7vw, 105px) clamp(30px, 4vw, 56px) clamp(36px, 4vw, 56px);
+    background: linear-gradient(
+        135deg,
+        rgba(0, 66, 132, 0.92),
+        rgba(3, 105, 161, 0.82)
+    );
+}
+
+.showcase-card.large .overlay h2 {
+    font-size: clamp(2rem, 3.2vw, 3rem);
+    line-height: 1.12;
+    margin-bottom: 20px;
+}
+
+.about-scroll {
+    width: 100%;
+    max-width: 780px;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+}
+
+.about-slide {
+    opacity: 0;
+    filter: blur(2px);
+    transition: opacity 0.6s ease, filter 0.6s ease;
+    margin: 0 0 16px;
+    font-size: clamp(0.93rem, 1.1vw, 1.02rem);
+    line-height: 1.72;
+    letter-spacing: 0.005em;
+}
+
+.about-slide strong {
+    display: inline;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.about-slide.visible {
+    opacity: 1;
+    filter: blur(0);
+}
+
+.about-slide:first-child {
+    font-size: clamp(1rem, 1.3vw, 1.12rem);
+    line-height: 1.7;
+}
+
+@media (max-width: 1100px) {
+    .showcase-grid {
+        grid-template-columns: 1.6fr 1fr;
+    }
+
+    .showcase-card.large {
+        min-height: 880px;
+    }
+}
+
+@media (max-width: 900px) {
+    .showcase-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .showcase-card.large {
+        min-height: 900px;
+    }
+
+    .showcase-card.large .overlay.blue {
+        padding: 70px 32px 36px;
+    }
+
+    .about-scroll {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .showcase-card.large {
+        min-height: 980px;
+        border-radius: 22px;
+    }
+
+    .showcase-card.large .overlay.blue {
+        justify-content: flex-start;
+        padding: 48px 22px 28px;
+    }
+
+    .showcase-card.large .icon-circle {
+        width: 54px;
+        height: 54px;
+        margin-bottom: 14px;
+    }
+
+    .showcase-card.large .overlay h2 {
+        margin-bottom: 16px;
+    }
+
+    .about-slide {
+        margin-bottom: 15px;
+        line-height: 1.64;
+    }
+}
+
+/* ===== CLICKABLE ABOUT CARD + FULL ABOUT MODAL ===== */
+.about-card-clickable {
+    cursor: pointer;
+    min-height: 520px !important;
+}
+
+.about-card-clickable:focus-visible {
+    outline: 3px solid rgba(255,255,255,0.95);
+    outline-offset: 4px;
+}
+
+.about-card-clickable .overlay.blue {
+    justify-content: flex-end;
+    padding: clamp(54px, 6vw, 82px) clamp(30px, 4vw, 56px) clamp(46px, 5vw, 70px);
+}
+
+.about-card-clickable .about-slide {
+    opacity: 1;
+    filter: none;
+    max-width: 700px;
+}
+
+.about-read-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8px;
+    padding: 12px 22px;
+    border: 1px solid rgba(255,255,255,.85);
+    border-radius: 999px;
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: background .25s ease, transform .25s ease;
+}
+
+.about-card-clickable:hover .about-read-more {
+    background: rgba(255,255,255,.22);
+    transform: translateY(-2px);
+}
+
+.about-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(15,23,42,.72);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    z-index: 5200;
+}
+
+.about-modal.active { display: flex; }
+
+.about-panel {
+    width: min(900px, 96vw);
+    max-height: 88vh;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 28px;
+    box-shadow: 0 30px 80px rgba(15,23,42,.30);
+    padding: clamp(24px, 4vw, 44px);
+    position: relative;
+}
+
+.about-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.about-panel-header h2 {
+    color: #0369a1;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    margin: 0;
+}
+
+.about-close {
+    flex: 0 0 auto;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: #eef6fb;
+    color: #0f172a;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.about-full-content p {
+    color: #475569;
+    line-height: 1.8;
+    margin: 0 0 18px;
+    font-size: 1rem;
+}
+
+.about-full-content h3 {
+    color: #0369a1;
+    margin: 26px 0 8px;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 600px) {
+    .about-card-clickable { min-height: 560px !important; }
+    .about-card-clickable .overlay.blue { padding: 44px 22px 34px; }
+    .about-panel { border-radius: 20px; padding: 22px 18px; }
+    .about-panel-header { gap: 12px; }
+}
+
+/* ===== MEDICINE GALLERY MODAL ===== */
+.medicine-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background: rgba(15, 23, 42, 0.68);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 5000;
+}
+
+.medicine-modal.active {
+    display: flex;
+}
+
+.medicine-panel {
+    width: min(1180px, 96vw);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #f8fbff;
+    border-radius: 28px;
+    box-shadow: 0 30px 80px rgba(15, 23, 42, 0.28);
+    padding: 28px;
+    position: relative;
+}
+
+.medicine-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.medicine-panel-header h2 {
+    color: #0f172a;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin-bottom: 8px;
+}
+
+.medicine-panel-header p {
+    color: #64748b;
+    line-height: 1.7;
+    max-width: 760px;
+}
+
+.medicine-close {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: #e0f2fe;
+    color: #0369a1;
+    font-size: 24px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.medicine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.medicine-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 20px;
+    min-height: 245px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07);
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.medicine-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 16px 34px rgba(14, 165, 233, 0.14);
+}
+
+.medicine-logo-wrap {
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    background: #f8fafc;
+    border-radius: 14px;
+}
+
+.medicine-logo-wrap img {
+    max-width: 120px;
+    max-height: 68px;
+    object-fit: contain;
+}
+
+.medicine-card h3 {
+    color: #0369a1;
+    font-size: 1.12rem;
+    margin-bottom: 7px;
+}
+
+.medicine-area {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #0f766e;
+    margin-bottom: 10px;
+}
+
+.medicine-card p {
+    color: #64748b;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-bottom: 16px;
+}
+
+.medicine-link {
+    margin-top: auto;
+    text-decoration: none;
+    color: #0369a1;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.medicine-disclaimer {
+    margin-top: 22px;
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: #eef8ff;
+    color: #475569;
+    line-height: 1.6;
+    font-size: 0.88rem;
+}
+
+@media (max-width: 600px) {
+    .medicine-modal { padding: 10px; }
+    .medicine-panel { padding: 20px 15px; border-radius: 20px; }
+    .medicine-panel-header { align-items: flex-start; }
+    .medicine-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ===== THERAPEUTIC FOCUS REPLACEMENT ===== */
+.therapeutic-focus {
+    max-width: 1250px;
+    margin: 30px auto 80px;
+    padding: 70px 20px;
+    text-align: left;
+}
+
+.therapeutic-intro {
+    max-width: 760px;
+    margin: 0 auto 38px;
+    text-align: center;
+}
+
+.section-kicker {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #0284c7;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.therapeutic-focus .therapeutic-intro h1 {
+    margin-bottom: 14px;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+.therapeutic-intro p {
+    color: #475569;
+    line-height: 1.8;
+    font-size: 1.02rem;
+}
+
+.therapeutic-showcase {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
+    gap: 28px;
+    align-items: stretch;
+}
+
+.medicine-visual {
+    position: relative;
+    min-height: 520px;
+    overflow: hidden;
+    border-radius: 30px;
+    box-shadow: 0 24px 60px rgba(15,23,42,0.14);
+}
+
+.medicine-visual img {
+    width: 100%;
+    height: 100%;
+    min-height: 520px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+}
+
+.medicine-visual:hover img {
+    transform: scale(1.035);
+}
+
+.medicine-visual-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 38px;
+    color: #fff;
+    background: linear-gradient(180deg, rgba(3,105,161,0.04) 18%, rgba(3,105,161,0.82) 100%);
+}
+
+.medicine-visual-overlay span {
+    margin-bottom: 12px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.medicine-visual-overlay h2 {
+    max-width: 560px;
+    font-size: clamp(1.65rem, 3vw, 2.6rem);
+    line-height: 1.2;
+}
+
+.therapeutic-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+.therapy-card {
+    position: relative;
+    padding: 26px 26px 24px;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.88);
+    border: 1px solid rgba(14,165,233,0.12);
+    box-shadow: 0 14px 34px rgba(15,23,42,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.therapy-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 44px rgba(14,165,233,0.14);
+}
+
+.therapy-icon {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #0ea5e9, #14b8a6);
+    color: #fff;
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+.therapy-card h3 {
+    margin-bottom: 9px;
+    color: #0369a1;
+    font-size: 1.18rem;
+}
+
+.therapy-card p {
+    color: #475569;
+    line-height: 1.68;
+}
+
+.therapeutic-action {
+    margin-top: 32px;
+    text-align: center;
+}
+
+@media (max-width: 900px) {
+    .therapeutic-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .medicine-visual,
+    .medicine-visual img {
+        min-height: 420px;
+    }
+}
+
+@media (max-width: 600px) {
+    .therapeutic-focus {
+        padding: 55px 16px;
+        margin-bottom: 55px;
+    }
+
+    .therapeutic-intro {
+        margin-bottom: 28px;
+    }
+
+    .medicine-visual,
+    .medicine-visual img {
+        min-height: 360px;
+    }
+
+    .medicine-visual-overlay {
+        padding: 24px;
+    }
+
+    .therapy-card {
+        padding: 22px 20px;
+    }
+}
+</style>
     
 </head>
 <body>
@@ -846,8 +1394,8 @@ footer {
 
   <nav>
     <a href="index.html">Home</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#products">Products</a>
+    <a href="#pricing">Our Science</a>
+    <a href="#" class="products-trigger">Products</a>
     <a href="register.html">Register</a>
   </nav>
 
@@ -861,8 +1409,8 @@ footer {
   </div>
 
   <a href="index.html"> Home</a>
-  <a href="#pricing"> Pricing</a>
-  <a href="#products"> Products</a>
+  <a href="#pricing"> Our Science</a>
+  <a href="#" class="products-trigger"> Products</a>
   <a href="register.html"> Register</a>
 </div>
 
@@ -881,16 +1429,16 @@ footer {
 <section class="corporate-showcase">
     <div class="showcase-grid">
 
-        <div class="showcase-card large">
+        <div class="showcase-card large about-card-clickable" id="openAbout" role="button" tabindex="0" aria-label="Open full About Ferring information">
             <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" alt="Laboratory">
             <div class="overlay blue">
                 <div class="icon-circle">🌍</div>
                 <h2>About Ferring</h2>
-                <p>
-                    Ferring is a research-driven biopharmaceutical company committed
-                    to advancing reproductive medicine, maternal health, gastroenterology,
-                    and innovative therapies that improve lives worldwide.
-                </p>
+                <div class="about-scroll">
+                    <p class="about-slide visible">Ferring Pharmaceuticals is a research-driven, specialty biopharmaceutical company dedicated to developing innovative medicines that help people build families and live better lives.</p>
+                    <p class="about-slide visible">Through research, development, manufacturing, and commercialization, Ferring works to address important and often complex healthcare needs.</p>
+                    <button type="button" class="about-read-more">Read Full About Ferring →</button>
+                </div>
             </div>
         </div>
 
@@ -898,7 +1446,7 @@ footer {
             <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="Medical research">
             <div class="overlay center">
                 <h3>Discover our life-changing medicines</h3>
-                <a href="#" class="outline-btn">Learn More</a>
+                <a href="#" class="outline-btn" id="openMedicines">Explore Medicines</a>
             </div>
         </div>
 
@@ -952,28 +1500,183 @@ footer {
         </div>
     </div>
 
-    <!-- NEW PRICING SECTION -->
-    <section class="pricing" id="pricing">
-        <h1>Choose Your Support Plan</h1>
-        <div class="price-cards">
-            <div class="price-card">
-                <h2>Basic</h2>
-                <p>Access to fundamental clinical insights</p>
-                <button class="btn">Select</button>
+    <!-- THERAPEUTIC FOCUS SECTION -->
+    <section class="pricing therapeutic-focus" id="pricing">
+        <div class="therapeutic-intro">
+            <span class="section-kicker">Science with purpose</span>
+            <h1>Our Therapeutic Focus</h1>
+            <p>
+                Ferring combines research, science and patient-focused innovation across
+                specialist areas where meaningful advances can improve health and quality of life.
+            </p>
+        </div>
+
+        <div class="therapeutic-showcase">
+            <div class="medicine-visual">
+                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=85" alt="Pharmaceutical capsules and medicine">
+                <div class="medicine-visual-overlay">
+                    <span>Research • Innovation • Patient Care</span>
+                    <h2>Turning science into meaningful treatment options.</h2>
+                </div>
             </div>
-            <div class="price-card">
-                <h2>Premium</h2>
-                <p>Advanced reporting and analytics</p>
-                <button class="btn">Select</button>
+
+            <div class="therapeutic-cards">
+                <article class="therapy-card">
+                    <div class="therapy-icon">01</div>
+                    <h3>Reproductive Medicine &amp; Maternal Health</h3>
+                    <p>Supporting fertility care, assisted reproduction and important areas of maternal health.</p>
+                </article>
+
+                <article class="therapy-card">
+                    <div class="therapy-icon">02</div>
+                    <h3>Gastroenterology &amp; the Microbiome</h3>
+                    <p>Advancing approaches to digestive health and serious gastrointestinal conditions.</p>
+                </article>
+
+                <article class="therapy-card">
+                    <div class="therapy-icon">03</div>
+                    <h3>Urology &amp; Uro-Oncology</h3>
+                    <p>Developing specialist therapies for significant urological conditions and uro-oncology.</p>
+                </article>
             </div>
-            <div class="price-card">
-                <h2>Enterprise</h2>
-                <p>Full-scale pharmaceutical integration</p>
-                <button class="btn">Select</button>
-            </div>
+        </div>
+
+        <div class="therapeutic-action">
+            <a href="#" class="btn" id="therapyMedicineButton">Discover Our Medicines</a>
         </div>
     </section>
      
+
+
+<!-- FULL ABOUT FERRING MODAL -->
+<div class="about-modal" id="aboutModal" aria-hidden="true">
+    <div class="about-panel" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
+        <div class="about-panel-header">
+            <h2 id="aboutModalTitle">About Ferring Pharmaceuticals</h2>
+            <button class="about-close" id="closeAbout" aria-label="Close About Ferring">&times;</button>
+        </div>
+        <div class="about-full-content">
+            <p>Ferring Pharmaceuticals is a research-driven, specialty biopharmaceutical company dedicated to developing innovative medicines that help people build families and live better lives.</p>
+            <p>Through research, development, manufacturing, and commercialization, Ferring works to address important and often complex healthcare needs. The company combines scientific expertise with a strong commitment to patients, healthcare professionals, and the communities it serves.</p>
+            <h3>Reproductive Medicine &amp; Maternal Health</h3>
+            <p>Ferring has a longstanding commitment to reproductive medicine, providing treatments that support fertility care, including assisted reproductive technologies such as in vitro fertilization (IVF), as well as other areas of reproductive and maternal health.</p>
+            <h3>Urology &amp; Uro-Oncology</h3>
+            <p>Ferring develops and provides therapies addressing significant urological conditions, with a growing focus on uro-oncology and treatments for diseases such as bladder cancer.</p>
+            <h3>Gastroenterology &amp; the Microbiome</h3>
+            <p>Ferring is advancing treatments in gastroenterology and microbiome science, including innovative approaches to serious gastrointestinal conditions such as recurrent <em>Clostridioides difficile</em> (C. difficile) infection.</p>
+            <h3>Driven by Science. Focused on Patients.</h3>
+            <p>Across its therapeutic areas, Ferring is committed to translating scientific research into meaningful treatments. By investing in innovation and addressing areas of significant unmet medical need, Ferring aims to improve health outcomes and make a lasting difference in the lives of patients and families.</p>
+        </div>
+    </div>
+</div>
+
+<!-- FERRING MEDICINE GALLERY -->
+<div class="medicine-modal" id="medicineModal" aria-hidden="true">
+    <div class="medicine-panel" role="dialog" aria-modal="true" aria-labelledby="medicineTitle">
+        <div class="medicine-panel-header">
+            <div>
+                <h2 id="medicineTitle">Ferring Medicines</h2>
+                <p>Explore selected medicines from Ferring's U.S. portfolio across reproductive medicine, gastroenterology, orthopaedics, urology, uro-oncology, endocrinology and hematology.</p>
+            </div>
+            <button class="medicine-close" id="closeMedicines" aria-label="Close medicines">&times;</button>
+        </div>
+
+        <div class="medicine-grid">
+            <article class="medicine-card">
+                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2024/01/Menopur_PMS_85K_r-e1706045810274-70x70.png" alt="MENOPUR logo"></div>
+                <h3>MENOPUR®</h3>
+                <div class="medicine-area">Reproductive Medicine</div>
+                <p>Menotropins for injection used as part of fertility treatment under medical supervision.</p>
+                <a class="medicine-link" href="https://www.menopur.com/" target="_blank" rel="noopener">Visit official product site →</a>
+            </article>
+
+            <article class="medicine-card">
+                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2024/01/endometrin_2-70x70.png" alt="ENDOMETRIN logo"></div>
+                <h3>ENDOMETRIN®</h3>
+                <div class="medicine-area">Reproductive Medicine</div>
+                <p>Progesterone vaginal insert used in assisted reproductive treatment as directed by a healthcare professional.</p>
+                <a class="medicine-link" href="https://www.endometrin.com/" target="_blank" rel="noopener">Visit official product site →</a>
+            </article>
+
+            <article class="medicine-card">
+                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2024/01/novarel_2-70x70.png" alt="NOVAREL logo"></div>
+                <h3>NOVAREL®</h3>
+                <div class="medicine-area">Reproductive Medicine</div>
+                <p>Chorionic gonadotropin for injection used in certain fertility treatment plans.</p>
+                <a class="medicine-link" href="https://www.novarelhcp.com/" target="_blank" rel="noopener">Visit official product site →</a>
+            </article>
+
+            <article class="medicine-card">
+                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2021/08/logo-cervidil-mp-1-70x70.jpg" alt="CERVIDIL logo"></div>
+                <h3>CERVIDIL®</h3>
+                <div class="medicine-area">Maternal Health</div>
+                <p>Dinoprostone vaginal insert used in hospital-based cervical ripening when medically indicated.</p>
+                <a class="medicine-link" href="https://www.cervidil.com/" target="_blank" rel="noopener">Visit official product site →</a>
+            </article>
+
+            <article class="medicine-card">
+                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2023/08/Rebyota_Logo_4C_with_live_type_ALTERNATE_R3_OL-e1691149001810-70x70.png" alt="REBYOTA logo"></div>
+                <h3>REBYOTA®</h3>
+                <div class="medicine-area">Gastroenterology &amp; Microbiome</div>
+                <p>A microbiota-based prescription therapy associated with the prevention of recurrence of C. difficile infection in appropriate patients.</p>
+                <a class="medicine-link" href="https://www.rebyota.com/" target="_blank" rel="noopener">Visit official product site →</a>
+            </article>
+
+            <article class="medicine-card">
+                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2024/06/CLENPIQ%C2%AE_Logo_4C_175ml-70x70.png" alt="CLENPIQ logo"></div>
+                <h3>CLENPIQ®</h3>
+                <div class="medicine-area">Gastroenterology</div>
+                <p>Prescription bowel-preparation solution used before certain colonoscopy procedures.</p>
+                <a class="medicine-link" href="https://www.clenpiq.com/" target="_blank" rel="noopener">Visit official product site →</a>
+            </article>
+
+            <article class="medicine-card">
+                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2021/08/logo-euflexxa-mp-1-70x70.jpg" alt="EUFLEXXA logo"></div>
+                <h3>EUFLEXXA®</h3>
+                <div class="medicine-area">Orthopaedics</div>
+                <p>Sodium hyaluronate therapy used in the management of certain osteoarthritis-related knee pain.</p>
+                <a class="medicine-link" href="https://www.euflexxa.com/" target="_blank" rel="noopener">Visit official product site →</a>
+            </article>
+
+            <article class="medicine-card">
+                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2023/04/adstiladrin-70x70.png" alt="ADSTILADRIN logo"></div>
+                <h3>ADSTILADRIN®</h3>
+                <div class="medicine-area">Uro-Oncology</div>
+                <p>A prescription gene therapy used for certain forms of non-muscle invasive bladder cancer.</p>
+                <a class="medicine-link" href="https://www.adstiladrinhcp.com/" target="_blank" rel="noopener">Visit official product site →</a>
+            </article>
+
+            <article class="medicine-card">
+                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2021/08/logo-firmagon-1-70x70.png" alt="FIRMAGON logo"></div>
+                <h3>FIRMAGON®</h3>
+                <div class="medicine-area">Urology &amp; Oncology</div>
+                <p>Degarelix for injection, a prescription treatment used in prostate cancer care.</p>
+                <a class="medicine-link" href="https://firmagon.com/" target="_blank" rel="noopener">Visit official product site →</a>
+            </article>
+
+            <article class="medicine-card">
+                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2021/08/logo-zomacton-mp-1-1-70x70.jpg" alt="ZOMACTON logo"></div>
+                <h3>ZOMACTON®</h3>
+                <div class="medicine-area">Endocrinology</div>
+                <p>Somatropin for injection used for approved growth-hormone-related indications.</p>
+                <a class="medicine-link" href="https://www.zomacton.com/" target="_blank" rel="noopener">Visit official product site →</a>
+            </article>
+
+            <article class="medicine-card">
+                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2026/07/Stimate_RGB_1-70x70.jpg" alt="STIMATE logo"></div>
+                <h3>STIMATE®</h3>
+                <div class="medicine-area">Hematology</div>
+                <p>Desmopressin acetate nasal spray listed within Ferring's U.S. hematology portfolio.</p>
+                <a class="medicine-link" href="https://www.stimatehcp.com/" target="_blank" rel="noopener">Visit official product site →</a>
+            </article>
+        </div>
+
+        <div class="medicine-disclaimer">
+            <strong>Important:</strong> This gallery is for general educational information only. It does not rank medicines by popularity or recommend treatment. Prescription medicines should be used only for their approved indications and under the direction of a qualified healthcare professional. See each product's official website and prescribing information for complete safety information.
+        </div>
+    </div>
+</div>
+
     <footer>
         <p>&copy; 2024 Ferring World Opportunity</p>
     </footer>
@@ -990,6 +1693,17 @@ footer {
         let lastScroll = 0;
         const scrollHand = document.getElementById("scrollHand");
 
+        window.addEventListener('load', function () {
+            const firstAboutLine = document.querySelector('.about-slide');
+            const aboutCard = document.querySelector('.showcase-card.large');
+            if (firstAboutLine && aboutCard) {
+                const rect = aboutCard.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.9) {
+                    firstAboutLine.classList.add('visible');
+                }
+            }
+        });
+
         document.addEventListener("scroll", function() {
             const texts = document.querySelectorAll('.scroll-text');
             texts.forEach(text => {
@@ -998,6 +1712,28 @@ footer {
                     text.classList.add('visible');
                 }
             });
+
+            const aboutCard = document.querySelector('.showcase-card.large');
+            const aboutLines = document.querySelectorAll('.about-slide');
+
+            if (aboutCard && aboutLines.length) {
+                const cardRect = aboutCard.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
+                const startPoint = viewportHeight * 0.82;
+                const totalTravel = viewportHeight + cardRect.height;
+                const progress = Math.max(0, Math.min(1, (startPoint - cardRect.top) / totalTravel));
+
+                const revealCount = Math.max(
+                    cardRect.top < viewportHeight * 0.88 ? 1 : 0,
+                    Math.ceil(progress * aboutLines.length * 1.65)
+                );
+
+                aboutLines.forEach((line, index) => {
+                    if (index < revealCount) {
+                        line.classList.add('visible');
+                    }
+                });
+            }
 
             const cards = document.querySelectorAll('.card');
             cards.forEach(card => {
@@ -1016,6 +1752,8 @@ footer {
             }
             lastScroll = currentScroll;
         });
+
+
 
         document.getElementById('loginForm').addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -1062,6 +1800,113 @@ function hideMenu() {
 menuToggle.addEventListener('click', openMenu);
 closeMenu.addEventListener('click', hideMenu);
 menuOverlay.addEventListener('click', hideMenu);
+</script>
+
+<script>
+const medicineModal = document.getElementById('medicineModal');
+const openMedicines = document.getElementById('openMedicines');
+const closeMedicines = document.getElementById('closeMedicines');
+
+function showMedicines(e) {
+    if (e) e.preventDefault();
+    medicineModal.classList.add('active');
+    medicineModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideMedicines() {
+    medicineModal.classList.remove('active');
+    medicineModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+}
+
+if (openMedicines && medicineModal) {
+    openMedicines.addEventListener('click', showMedicines);
+}
+
+// Make every Products navigation link open the same medicine gallery.
+document.querySelectorAll('.products-trigger').forEach(function (productLink) {
+    productLink.addEventListener('click', function (e) {
+        if (typeof hideMenu === 'function') hideMenu();
+        showMedicines(e);
+    });
+});
+
+if (closeMedicines && medicineModal) {
+    closeMedicines.addEventListener('click', hideMedicines);
+}
+
+if (medicineModal) {
+    medicineModal.addEventListener('click', function(e) {
+        if (e.target === medicineModal) hideMedicines();
+    });
+}
+
+document.addEventListener('keydown', function(e) {
+    if (medicineModal && e.key === 'Escape' && medicineModal.classList.contains('active')) {
+        hideMedicines();
+    }
+});
+</script>
+
+
+<script>
+(function () {
+    const openAbout = document.getElementById('openAbout');
+    const aboutModal = document.getElementById('aboutModal');
+    const closeAbout = document.getElementById('closeAbout');
+
+    if (!openAbout || !aboutModal || !closeAbout) return;
+
+    function showAbout() {
+        aboutModal.classList.add('active');
+        aboutModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function hideAbout() {
+        aboutModal.classList.remove('active');
+        aboutModal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    openAbout.addEventListener('click', showAbout);
+    openAbout.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            showAbout();
+        }
+    });
+    closeAbout.addEventListener('click', hideAbout);
+    aboutModal.addEventListener('click', function (e) {
+        if (e.target === aboutModal) hideAbout();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && aboutModal.classList.contains('active')) hideAbout();
+    });
+})();
+</script>
+
+
+<script>
+(function () {
+    const therapyButton = document.getElementById('therapyMedicineButton');
+    if (!therapyButton) return;
+
+    therapyButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const existingMedicineTrigger = document.querySelector('#openMedicineGallery, .open-medicine-gallery, [data-open-medicines]');
+        if (existingMedicineTrigger) {
+            existingMedicineTrigger.click();
+            return;
+        }
+
+        const discoverButton = Array.from(document.querySelectorAll('a, button')).find(function (element) {
+            return element !== therapyButton && /learn more|explore medicines|discover.*medicine/i.test(element.textContent || '');
+        });
+        if (discoverButton) discoverButton.click();
+    });
+})();
 </script>
 </body>
 </html>
