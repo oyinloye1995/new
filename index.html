@@ -199,6 +199,10 @@ nav a:hover {
     color: #0369a1;
 }
 
+#loginForm {
+    scroll-margin-top: 110px;
+}
+
 .login-container input[type="text"],
 .login-container input[type="password"] {
     width: 100%;
@@ -1258,7 +1262,14 @@ footer {
 }
 
 .medicine-visual img {
-    width: 100%;
+        text-align: left;
+        margin-bottom: 22px;
+        color: #0369a1;
+    }
+
+    #loginForm {
+        scroll-margin-top: 110px;
+    }
     height: 100%;
     min-height: 520px;
     object-fit: cover;
@@ -1397,6 +1408,7 @@ footer {
     <a href="#pricing">Our Science</a>
     <a href="#" class="products-trigger">Products</a>
     <a href="register.html">Register</a>
+    <a href="#loginForm">Login</a>
   </nav>
 
  <div class="menu-toggle" id="menuToggle" style="display:block; margin-left:auto; font-size:30px; cursor:pointer;">☰</div>
@@ -1412,6 +1424,7 @@ footer {
   <a href="#pricing"> Our Science</a>
   <a href="#" class="products-trigger"> Products</a>
   <a href="register.html"> Register</a>
+    <a href="#loginForm"> Login</a>
 </div>
 
 <div class="menu-overlay" id="menuOverlay"></div>
@@ -1425,6 +1438,14 @@ footer {
     Advancing reproductive medicine, maternal health, and innovative therapies for a healthier future.
 </p>
         <a href="register.html" class="btn">Start Your Journey</a>
+    </div>
+    <div class="login-container">
+        <h2>Log in</h2>
+        <form id="loginForm">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Log in</button>
+        </form>
     </div>
 <section class="corporate-showcase">
     <div class="showcase-grid">
@@ -1472,15 +1493,6 @@ footer {
 
     </div>
 </section>
-    <div class="login-container">
-        <h2>Log in</h2>
-        <form id="loginForm">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Log in</button>
-        </form>
-    </div>
-    
     <div class="features">
         <div class="card">
             <h2>Commitment</h2>

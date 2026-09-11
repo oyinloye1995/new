@@ -319,6 +319,41 @@ button[type="submit"]:hover {
     font-weight: 600;
 }
 
+#password-requirements {
+    display: none;
+    margin: 8px 0 16px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: rgba(239, 246, 255, 0.8);
+    color: #64748b;
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+#password-requirements.visible {
+    display: block;
+}
+
+#password-requirements li {
+    list-style: none;
+}
+
+#password-requirements li::before {
+    content: '\2713';
+    display: inline-block;
+    width: 22px;
+    color: #94a3b8;
+    font-weight: 700;
+}
+
+#password-requirements li.valid {
+    color: #15803d;
+}
+
+#password-requirements li.valid::before {
+    color: #16a34a;
+}
+
 #profile-preview {
     display: none;
     width: 88px;
@@ -552,6 +587,12 @@ button[type="submit"]:hover {
                 </span>
             </div>
             <div id="password-strength" style="font-size: 12px; margin-top: 5px;"></div>
+            <ul id="password-requirements" aria-live="polite">
+                <li id="password-length">At least 8 characters</li>
+                <li id="password-uppercase">At least 1 uppercase letter</li>
+                <li id="password-number">At least 1 number</li>
+                <li id="password-symbol">At least 1 symbol</li>
+            </ul>
 
             <label for="confirm-password">Confirm Password:
                 <input type="password" id="confirm-password" class="form-control" name="ConfirmPassword" required aria-required="true" autocomplete="new-password">
@@ -675,7 +716,25 @@ button[type="submit"]:hover {
         this.textContent = pwd.type === 'password' ? 'Show' : 'Hide';
     };
 
-    // Password strength meter
+    // Password strength meter and live requirements
+    function updatePasswordRequirements(value) {
+        var checks = {
+            'password-length': value.length >= 8,
+            'password-uppercase': /[A-Z]/.test(value),
+            'password-number': /[0-9]/.test(value),
+            'password-symbol': /[^A-Za-z0-9]/.test(value)
+        };
+
+        Object.keys(checks).forEach(function(id) {
+            document.getElementById(id).classList.toggle('valid', checks[id]);
+        });
+    }
+
+    document.getElementById('password').addEventListener('focus', function() {
+        document.getElementById('password-requirements').classList.add('visible');
+        updatePasswordRequirements(this.value);
+    });
+
     document.getElementById('password').oninput = function() {
         var val = this.value;
         var strength = 0;
@@ -686,6 +745,7 @@ button[type="submit"]:hover {
         var meter = ['Weak', 'Fair', 'Good', 'Strong'];
         document.getElementById('password-strength').textContent = meter[strength-1] || '';
         document.getElementById('password-strength').style.color = ['red','orange','blue','green'][strength-1] || '';
+        updatePasswordRequirements(val);
     };
 
     // Password validation function
