@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Post a job | OpenPath</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="container section">
+      <a class="brand" href="/employer">Open<span>Path</span></a>
+      <div class="page-head">
+        <h1>Post an opportunity</h1>
+        <p class="muted">
+          Clear details help the right candidates find you. New listings go
+          through review.
+        </p>
+      </div>
+      {% if error %}
+      <div class="notice">{{ error }}</div>
+      {% endif %}
+      <form class="panel" method="post">
+        <div class="field">
+          <label>Job title</label
+          ><input
+            name="title"
+            list="job-title-options"
+            required
+            placeholder="e.g. Customer Success Manager"
+          />
+          <datalist id="job-title-options">
+            {% for title in job_titles %}
+            <option value="{{ title }}"></option>
+            {% endfor %}
+          </datalist>
+        </div>
+        <div class="field">
+          <label>Category</label
+          ><select name="category" required>
+            <option value="">Choose a category</option>
+            {% for category in job_categories %}
+            <option value="{{ category }}">{{ category }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label>Description</label
+          ><textarea name="description" required></textarea>
+        </div>
+        <div class="field">
+          <label>Responsibilities</label
+          ><textarea name="responsibilities"></textarea>
+        </div>
+        <div class="field">
+          <label>Requirements</label><textarea name="requirements"></textarea>
+        </div>
+        <div class="field">
+          <label>Skills</label
+          ><input
+            name="skills"
+            list="skill-options"
+            placeholder="Python, research, communication"
+          />
+          <datalist id="skill-options">
+            {% for skill in skills %}
+            <option value="{{ skill }}"></option>
+            {% endfor %}
+          </datalist>
+        </div>
+        <div class="filters">
+          <select name="experience_level">
+            {% for level in experience_levels %}
+            <option value="{{ level }}">{{ level }}</option>
+            {% endfor %}
+          </select>
+          <select name="education_level">
+            {% for level in education_levels %}
+            <option value="{{ level }}">{{ level }}</option>
+            {% endfor %}
+          </select>
+          <label class="checkbox-field"
+            ><input type="checkbox" name="experience_can_substitute" />
+            Experience can substitute for education</label
+          ><select name="employment_type">
+            {% for employment_type in employment_types %}
+            <option value="{{ employment_type }}">{{ employment_type }}</option>
+            {% endfor %}</select
+          ><select name="workplace_type">
+            {% for workplace_type in workplace_types %}
+            <option value="{{ workplace_type }}">{{ workplace_type }}</option>
+            {% endfor %}</select
+          ><select name="country">
+            <option value="">Country</option>
+            {% for country in countries %}
+            <option value="{{ country }}">{{ country }}</option>
+            {% endfor %}</select
+          ><input name="city" placeholder="City" />
+        </div>
+        <div class="filters">
+          <input
+            name="salary_min"
+            type="number"
+            min="0"
+            placeholder="Salary minimum"
+          /><input
+            name="salary_max"
+            type="number"
+            min="0"
+            placeholder="Salary maximum"
+          /><input name="currency" value="USD" placeholder="Currency" /><input
+            name="deadline"
+            type="date"
+          /><select name="application_mode">
+            <option value="internal">Apply on OpenPath</option>
+            <option value="external">Apply on employer website</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>External application URL (only when selected above)</label
+          ><input
+            name="external_url"
+            type="url"
+            placeholder="https://company.example/careers/role"
+          />
+        </div>
+        <button type="submit">Submit for review</button>
+      </form>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Company profile | OpenPath</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="container section">
+      <a class="brand" href="/employer">Open<span>Path</span></a>
+      <div class="page-head">
+        <h1>Company profile</h1>
+        <p class="muted">
+          Give candidates useful context about your organization.
+        </p>
+      </div>
+      <form class="panel" method="post">
+        <div class="field">
+          <label>Company name</label
+          ><input name="name" value="{{ company.name }}" required />
+        </div>
+        <div class="field">
+          <label>Description</label
+          ><textarea name="description">{{ company.description }}</textarea>
+        </div>
+        <div class="field">
+          <label>Website</label
+          ><input
+            name="website"
+            type="url"
+            value="{{ company.website }}"
+            placeholder="https://example.com"
+          />
+        </div>
+        <div class="field">
+          <label>Industry</label
+          ><select name="industry">
+            <option value="">Choose an industry</option>
+            {% for industry in industries %}
+            <option
+              value="{{ industry }}"
+              {% if company.industry == industry %}selected{% endif %}
+            >
+              {{ industry }}
+            </option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="field">
+          <label>Location</label
+          ><input name="location" value="{{ company.location }}" />
+        </div>
+        <button type="submit">Save company profile</button>
+      </form>
+    </main>
+  </body>
+</html>

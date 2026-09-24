@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Applicants | OpenPath</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="container dashboard">
+      <div class="dashboard-head">
+        <div>
+          <a class="brand" href="/employer">Open<span>Path</span></a>
+          <h1>Applicants</h1>
+        </div>
+        <a href="/employer">Back to dashboard</a>
+      </div>
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Candidate</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Applied</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for applicant in applicants %}
+              <tr>
+                <td>{{ applicant.full_name }}</td>
+                <td>{{ applicant.email }}</td>
+                <td>{{ applicant.title }}</td>
+                <td>
+                  <select
+                    onchange="updateStatus({{ applicant.id }},this.value)"
+                  >
+                    <option
+                      value="applied"
+                      {%
+                      if
+                      applicant.status=""
+                      ="applied"
+                      %}selected{%
+                      endif
+                      %}
+                    >
+                      Applied
+                    </option>
+                    <option
+                      value="under_review"
+                      {%
+                      if
+                      applicant.status=""
+                      ="under_review"
+                      %}selected{%
+                      endif
+                      %}
+                    >
+                      Under review
+                    </option>
+                    <option
+                      value="shortlisted"
+                      {%
+                      if
+                      applicant.status=""
+                      ="shortlisted"
+                      %}selected{%
+                      endif
+                      %}
+                    >
+                      Shortlisted
+                    </option>
+                    <option
+                      value="interview"
+                      {%
+                      if
+                      applicant.status=""
+                      ="interview"
+                      %}selected{%
+                      endif
+                      %}
+                    >
+                      Interview
+                    </option>
+                    <option
+                      value="offer"
+                      {%
+                      if
+                      applicant.status=""
+                      ="offer"
+                      %}selected{%
+                      endif
+                      %}
+                    >
+                      Offer
+                    </option>
+                    <option
+                      value="rejected"
+                      {%
+                      if
+                      applicant.status=""
+                      ="rejected"
+                      %}selected{%
+                      endif
+                      %}
+                    >
+                      Rejected
+                    </option>
+                  </select>
+                </td>
+                <td>{{ applicant.created_at[:10] }}</td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="5" class="muted">
+                  Applications will appear here when candidates apply.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <script>
+      async function updateStatus(id, status) {
+        await fetch("/api/applications/" + id + "/status", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status }),
+        });
+      }
+    </script>
+  </body>
+</html>

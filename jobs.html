@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Find jobs | OpenPath</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="brand" href="/">Open<span>Path</span></a>
+        <div class="nav-links">
+          <a href="/jobs">Find jobs</a
+          ><a href="/jobs?workplace_type=remote">Remote jobs</a
+          ><a href="#companies">Companies</a
+          ><a href="#resources">Career resources</a>
+        </div>
+        <div class="nav-actions">
+          {% if user %}<a href="/dashboard">Dashboard</a
+          ><a href="/logout">Log out</a>{% else %}<a href="/login">Log in</a
+          ><a class="button" href="/register">Create account</a>{% endif %}
+        </div>
+      </nav>
+    </header>
+    <main class="container">
+      <div class="page-head">
+        <h1>Find work that fits your life.</h1>
+        <p class="muted">
+          Search current opportunities by role, place, and working style.
+        </p>
+      </div>
+      <form class="filters" method="get">
+        <input
+          name="title"
+          list="job-title-options"
+          value="{{ filters.title }}"
+          placeholder="Job title"
+        /><input
+          name="skill"
+          list="skill-options"
+          value="{{ filters.skill }}"
+          placeholder="Skill or keyword"
+        /><input
+          name="company"
+          value="{{ filters.company }}"
+          placeholder="Company"
+        /><input
+          name="location"
+          list="location-options"
+          value="{{ filters.location }}"
+          placeholder="City, country, or region"
+        /><select name="category">
+          <option value="">Any category</option>
+          {% for category in job_categories %}
+          <option
+            value="{{ category }}"
+            {% if filters.category == category %}selected{% endif %}
+          >
+            {{ category }}
+          </option>
+          {% endfor %}</select
+        ><select name="workplace_type">
+          <option value="">Any workplace</option>
+          <option
+            value="remote"
+            {% if filters.workplace_type == "remote" %}selected{% endif %}
+          >
+            Remote
+          </option>
+          <option
+            value="hybrid"
+            {% if filters.workplace_type == "hybrid" %}selected{% endif %}
+          >
+            Hybrid
+          </option>
+          <option
+            value="onsite"
+            {% if filters.workplace_type == "onsite" %}selected{% endif %}
+          >
+            Onsite
+          </option></select
+        ><select name="employment_type">
+          <option value="">Any type</option>
+          {% for employment_type in employment_types %}
+          <option
+            value="{{ employment_type }}"
+            {% if filters.employment_type == employment_type %}selected{% endif %}
+          >
+            {{ employment_type }}
+          </option>
+          {% endfor %}</select
+        ><select name="experience_level">
+          <option value="">Any experience</option>
+          {% for level in experience_levels %}
+          <option
+            value="{{ level }}"
+            {% if filters.experience_level == level %}selected{% endif %}
+          >
+            {{ level }}
+          </option>
+          {% endfor %}</select
+        ><select name="education_level">
+          <option value="">Any education</option>
+          {% for level in education_levels %}
+          <option
+            value="{{ level }}"
+            {% if filters.education_level == level %}selected{% endif %}
+          >
+            {{ level }}
+          </option>
+          {% endfor %}</select
+        ><button type="submit">Search</button>
+        <div class="search-catalog-bar">
+          <strong>Browse roles:</strong>
+          {% for title in entry_level_titles[:8] %}<a href="/jobs?title={{ title }}">{{ title }}</a>{% endfor %}
+          <a class="catalog-more" href="#all-taxonomy">All roles, skills, and filters ↓</a>
+        </div>
+      </form>
+      <datalist id="job-title-options">
+        {% for title in job_titles %}
+        <option value="{{ title }}"></option>
+        {% endfor %}
+      </datalist>
+      <datalist id="skill-options">
+        {% for skill in skills %}
+        <option value="{{ skill }}"></option>
+        {% endfor %}
+      </datalist>
+      <datalist id="location-options">
+        <option value="Remote worldwide"></option>
+        <option value="United States"></option>
+        <option value="Alabama, United States"></option>
+        <option value="Alaska, United States"></option>
+        <option value="Arizona, United States"></option>
+        <option value="California, United States"></option>
+        <option value="Colorado, United States"></option>
+        <option value="Florida, United States"></option>
+        <option value="Georgia, United States"></option>
+        <option value="Illinois, United States"></option>
+        <option value="Massachusetts, United States"></option>
+        <option value="New Jersey, United States"></option>
+        <option value="New York, United States"></option>
+        <option value="North Carolina, United States"></option>
+        <option value="Ohio, United States"></option>
+        <option value="Pennsylvania, United States"></option>
+        <option value="Texas, United States"></option>
+        <option value="Virginia, United States"></option>
+        <option value="Washington, United States"></option>
+        <option value="Toronto, Canada"></option>
+        <option value="Vancouver, Canada"></option>
+        <option value="Mexico City, Mexico"></option>
+        <option value="London, United Kingdom"></option>
+        <option value="Berlin, Germany"></option>
+        <option value="Munich, Germany"></option>
+      </datalist>
+      <div class="section-head">
+        <h2>{{ jobs|length }} opportunities</h2>
+        <form method="get">
+          <input type="hidden" name="title" value="{{ filters.title }}" /><input
+            type="hidden"
+            name="skill"
+            value="{{ filters.skill }}"
+          /><input
+            type="hidden"
+            name="company"
+            value="{{ filters.company }}"
+          /><input
+            type="hidden"
+            name="location"
+            value="{{ filters.location }}"
+          /><input
+            type="hidden"
+            name="category"
+            value="{{ filters.category }}"
+          /><input
+            type="hidden"
+            name="employment_type"
+            value="{{ filters.employment_type }}"
+          /><input
+            type="hidden"
+            name="experience_level"
+            value="{{ filters.experience_level }}"
+          /><input
+            type="hidden"
+            name="education_level"
+            value="{{ filters.education_level }}"
+          /><select name="sort" onchange="this.form.submit()">
+            <option value="newest">Newest</option>
+            <option
+              value="oldest"
+              {% if filters.sort == "oldest" %}selected{% endif %}
+            >
+              Oldest
+            </option>
+            <option
+              value="salary"
+              {% if filters.sort == "salary" %}selected{% endif %}
+            >
+              Salary
+            </option>
+          </select>
+        </form>
+      </div>
+      <div class="job-list">
+        {% for job in jobs %}
+        <article class="job-row">
+          <div>
+            <h2><a href="/jobs/{{ job.slug }}">{{ job.title }}</a></h2>
+            <div class="company">
+              {{ job.company_name }} {% if job.is_verified %}<span class="tag"
+                >Verified</span
+              >{% endif %}
+            </div>
+            <div class="meta">
+              <span class="tag">{{ job.workplace_type|capitalize }}</span
+              ><span class="tag neutral"
+                >{{ job.employment_type|capitalize }}</span
+              ><span>{{ job.city or job.country or 'Location flexible' }}</span
+              >{% if job.salary %}<span>{{ job.salary }}</span>{% endif %}
+            </div>
+            <small class="muted">Posted {{ job.created_at[:10] }}</small>
+          </div>
+          <div class="job-actions">
+            <a class="button secondary" href="/jobs/{{ job.slug }}">View job</a
+            >{% if user and user.role == 'job_seeker' %}<button
+              type="button"
+              onclick="saveJob({{ job.id }})"
+            >
+              Save</button
+            >{% endif %}
+          </div>
+        </article>
+        {% else %}
+        <div class="empty">
+          No published opportunities match these filters yet.
+        </div>
+        {% endfor %}
+      </div>
+      <section id="all-taxonomy" class="taxonomy-panel">
+        <div><strong>Role categories</strong>{% for category in job_categories %}<a href="/jobs?category={{ category }}">{{ category }}</a>{% endfor %}</div>
+        <div><strong>Popular skills</strong>{% for skill in skills[:32] %}<a href="/jobs?skill={{ skill }}">{{ skill }}</a>{% endfor %}</div>
+      </section>
+    </main>
+    <script>
+      async function saveJob(id) {
+        const r = await fetch("/api/jobs/" + id + "/save", { method: "POST" });
+        if (r.status === 401) location = "/login";
+        else alert(r.ok ? "Job saved" : "Unable to save job");
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Employer dashboard | OpenPath</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="brand" href="/">Open<span>Path</span></a>
+        <div class="nav-links">
+          <a href="/jobs">Find jobs</a><a href="/employer">Employer dashboard</a
+          ><a href="/employer/applicants">Applicants</a
+          ><a href="/employer/company">Company profile</a>
+        </div>
+        <div class="nav-actions">
+          <span>{{ user.full_name }}</span><a href="/logout">Log out</a>
+        </div>
+      </nav>
+    </header>
+    <main class="container dashboard">
+      <div class="dashboard-head">
+        <div>
+          <h1>Employer dashboard</h1>
+          <p class="muted">
+            Publish clear, legitimate opportunities and review applicants.
+          </p>
+        </div>
+        <a class="button" href="/employer/jobs/new">Post a job</a>
+      </div>
+      <div class="panel">
+        <h2>Your job listings</h2>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Applicants</th>
+                <th>Posted</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for job in jobs %}
+              <tr>
+                <td>{{ job.title }}</td>
+                <td><span class="tag">{{ job.status|capitalize }}</span></td>
+                <td>{{ job.applicant_count }}</td>
+                <td>{{ job.created_at[:10] }}</td>
+                <td>
+                  {% if job.status not in ['closed','rejected'] %}
+                  <form
+                    method="post"
+                    action="/employer/jobs/{{ job.id }}/close"
+                  >
+                    <button type="submit">Close</button>
+                  </form>
+                  {% endif %}
+                </td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="5" class="muted">
+                  No listings yet. Your first posting will be reviewed before
+                  publication.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

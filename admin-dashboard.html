@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Admin moderation | OpenPath</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="container dashboard">
+      <div class="dashboard-head">
+        <div>
+          <a class="brand" href="/">Open<span>Path</span></a>
+          <h1>Moderation</h1>
+        </div>
+        <a href="/logout">Log out</a>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <span class="muted">Users</span><strong>{{ stats.users }}</strong>
+        </div>
+        <div class="stat">
+          <span class="muted">Jobs</span><strong>{{ stats.jobs }}</strong>
+        </div>
+        <div class="stat">
+          <span class="muted">Pending review</span
+          ><strong>{{ stats.pending_jobs }}</strong>
+        </div>
+        <div class="stat">
+          <span class="muted">Applications</span
+          ><strong>{{ stats.applications }}</strong>
+        </div>
+      </div>
+      <div class="panel">
+        <h2>Jobs awaiting review</h2>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Employer</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for job in pending_jobs %}
+              <tr>
+                <td>{{ job.title }}</td>
+                <td>{{ job.company_name }}</td>
+                <td>
+                  <button onclick="moderate({{ job.id }},'published')">
+                    Approve
+                  </button>
+                  <button onclick="moderate({{ job.id }},'rejected')">
+                    Reject
+                  </button>
+                </td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="3" class="muted">
+                  No jobs are waiting for review.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <section class="section">
+        <div class="panel">
+          <h2>Open reports</h2>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Job</th>
+                  <th>Reason</th>
+                  <th>Reporter</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for report in reports %}
+                <tr>
+                  <td>{{ report.title }}</td>
+                  <td>{{ report.reason }}</td>
+                  <td>{{ report.reporter_email or 'Unknown' }}</td>
+                  <td>
+                    <button onclick="resolveReport({{ report.id }})">
+                      Resolve
+                    </button>
+                  </td>
+                </tr>
+                {% else %}
+                <tr>
+                  <td colspan="4" class="muted">No open reports.</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="panel">
+          <h2>User accounts</h2>
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for account in users %}
+                <tr>
+                  <td>{{ account.full_name }}</td>
+                  <td>{{ account.email }}</td>
+                  <td>{{ account.role }}</td>
+                  <td>{{ 'Active' if account.is_active else 'Suspended' }}</td>
+                  <td>
+                    {% if account.role != 'admin' %}<button
+                      onclick="setStatus({{ account.id }},{{ 0 if account.is_active else 1 }})"
+                    >
+                      {{ 'Suspend' if account.is_active else 'Activate' }}</button
+                    >{% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      async function moderate(id, status) {
+        const r = await fetch("/api/admin/jobs/" + id + "/moderate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status }),
+        });
+        if (r.ok) location.reload();
+      }
+      async function resolveReport(id) {
+        const r = await fetch("/api/admin/reports/" + id + "/resolve", {
+          method: "POST",
+        });
+        if (r.ok) location.reload();
+      }
+      async function setStatus(id, is_active) {
+        const r = await fetch("/api/admin/users/" + id + "/status", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ is_active }),
+        });
+        if (r.ok) location.reload();
+      }
+    </script>
+  </body>
+</html>

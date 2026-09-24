@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Edit profile | OpenPath</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="container section">
+      <a class="brand" href="/dashboard">Open<span>Path</span></a>
+      <div class="page-head">
+        <h1>Your professional profile</h1>
+        <p class="muted">Keep your information ready for every application.</p>
+      </div>
+      {% if error %}
+      <div class="notice">{{ error }}</div>
+      {% endif %}
+      <form class="panel" method="post" enctype="multipart/form-data">
+        <div class="field">
+          <label>Professional headline</label
+          ><input
+            name="headline"
+            value="{{ profile.headline }}"
+            placeholder="Product designer focused on accessible systems"
+          />
+        </div>
+        <div class="field">
+          <label>About you</label
+          ><textarea name="bio">{{ profile.bio }}</textarea>
+        </div>
+        <div class="field">
+          <label>Skills</label
+          ><input
+            name="skills"
+            value="{{ profile.skills }}"
+            placeholder="Separate skills with commas"
+          />
+        </div>
+        <div class="field">
+          <label>Education</label
+          ><textarea name="education">{{ profile.education }}</textarea>
+        </div>
+        <div class="field">
+          <label>Work experience</label
+          ><textarea name="experience">{{ profile.experience }}</textarea>
+        </div>
+        <div class="field">
+          <label>Preferred categories</label
+          ><input
+            name="preferred_categories"
+            value="{{ profile.preferred_categories }}"
+          />
+        </div>
+        <div class="field">
+          <label>Preferred locations</label
+          ><input
+            name="preferred_locations"
+            value="{{ profile.preferred_locations }}"
+          />
+        </div>
+        <div class="field">
+          <label>Workplace preference</label
+          ><select name="workplace_preference">
+            <option
+              value="remote"
+              {% if profile.workplace_preference == "remote" %}selected{% endif %}
+            >
+              Remote
+            </option>
+            <option
+              value="hybrid"
+              {% if profile.workplace_preference == "hybrid" %}selected{% endif %}
+            >
+              Hybrid
+            </option>
+            <option
+              value="onsite"
+              {% if profile.workplace_preference == "onsite" %}selected{% endif %}
+            >
+              Onsite
+            </option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Resume</label
+          ><input name="resume" type="file" accept=".pdf,.doc,.docx" /><small
+            class="muted"
+            >Current file: {{ profile.resume_filename or 'None uploaded'
+            }}</small
+          >
+        </div>
+        <button type="submit">Save profile</button>
+      </form>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{{ job.title }} at {{ job.company_name }} | OpenPath</title>
+    <meta
+      name="description"
+      content="{{ job.title }} at {{ job.company_name }}. {{ job.workplace_type|capitalize }} {{ job.employment_type }} opportunity."
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="brand" href="/">Open<span>Path</span></a>
+        <div class="nav-links">
+          <a href="/jobs">Find jobs</a
+          ><a href="/jobs?workplace_type=remote">Remote jobs</a>
+        </div>
+        <div class="nav-actions">
+          {% if user %}<a href="/dashboard">Dashboard</a
+          ><a href="/logout">Log out</a>{% else %}<a href="/login">Log in</a>{%
+          endif %}
+        </div>
+      </nav>
+    </header>
+    <main class="container section">
+      <div class="two-col">
+        <article class="detail">
+          <div class="meta">
+            <span class="tag">{{ job.workplace_type|capitalize }}</span
+            ><span class="tag neutral"
+              >{{ job.employment_type|capitalize }}</span
+            >{% if job.is_verified %}<span class="tag">Verified employer</span
+            >{% endif %}
+          </div>
+          <h1>{{ job.title }}</h1>
+          <p class="company">
+            {{ job.company_name }} · {{ job.city or job.country or 'Location
+            flexible' }}
+          </p>
+          <p class="muted">
+            Posted {{ job.created_at[:10] }}{% if job.deadline %} · Apply by {{
+            job.deadline }}{% endif %}
+          </p>
+          <div class="meta">
+            <span class="tag neutral">{{ job.category }}</span>
+            <span class="tag neutral">{{ job.experience_level }}</span>
+            <span class="tag neutral">{{ job.education_level or 'Not Required' }}</span>
+            {% if job.experience_can_substitute %}<span class="tag">Experience can substitute for education</span>{% endif %}
+          </div>
+          <section>
+            <h2>Job description</h2>
+            <div class="detail-copy">{{ job.description }}</div>
+          </section>
+          <section>
+            <h2>Responsibilities</h2>
+            <div class="detail-copy">
+              {{ job.responsibilities or 'The employer has not added
+              responsibilities yet.' }}
+            </div>
+          </section>
+          <section>
+            <h2>Requirements</h2>
+            <div class="detail-copy">
+              {{ job.requirements or 'The employer has not added requirements
+              yet.' }}
+            </div>
+          </section>
+          <section>
+            <h2>Skills</h2>
+            <p>{{ job.skills or 'Not specified' }}</p>
+          </section>
+        </article>
+        <aside class="panel">
+          <h2>Apply for this role</h2>
+          <p class="muted">
+            {% if job.application_mode == 'external' %}This application
+            continues on the employer website.{% else %}Apply with your OpenPath
+            profile and resume.{% endif %}
+          </p>
+          {% if user and user.role == 'job_seeker' %}{% if job.application_mode
+          == 'external' %}<a
+            class="button"
+            href="{{ job.external_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Apply on employer site</a
+          >{% else %}
+          <form id="applicationForm" enctype="multipart/form-data">
+            <div class="field">
+              <label for="resume">Resume (PDF, DOC, DOCX)</label
+              ><input
+                id="resume"
+                name="resume"
+                type="file"
+                accept=".pdf,.doc,.docx"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="cover_letter">Cover letter</label
+              ><textarea
+                id="cover_letter"
+                name="cover_letter"
+                placeholder="Tell the employer why this role fits you."
+              ></textarea>
+            </div>
+            <button type="submit">Submit application</button>
+            <p id="message" class="muted"></p>
+          </form>
+          {% endif %}{% elif not user %}<a
+            class="button"
+            href="/login?next=/jobs/{{ job.slug }}"
+            >Log in to apply</a
+          >{% else %}
+          <p class="muted">Employer accounts cannot apply to jobs.</p>
+          {% endif %}
+          <hr />
+          <p class="muted">Never pay money to apply for a job.</p>
+          {% if user %}
+          <form id="reportForm">
+            <div class="field">
+              <label for="reportReason">Report this listing</label
+              ><input
+                id="reportReason"
+                name="reason"
+                placeholder="What looks suspicious?"
+                required
+              />
+            </div>
+            <button type="submit" class="button secondary">Report job</button>
+            <p id="reportMessage" class="muted"></p>
+          </form>
+          {% endif %}
+        </aside>
+      </div>
+    </main>
+    <script>
+      const form = document.getElementById("applicationForm");
+      if (form)
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const response = await fetch("/api/jobs/{{ job.id }}/apply", {
+            method: "POST",
+            body: new FormData(form),
+          });
+          const data = await response.json();
+          document.getElementById("message").textContent =
+            data.message || data.error || "Application submitted";
+        });
+      const reportForm = document.getElementById("reportForm");
+      if (reportForm)
+        reportForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const response = await fetch("/api/jobs/{{ job.id }}/report", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              reason: document.getElementById("reportReason").value,
+            }),
+          });
+          const data = await response.json();
+          document.getElementById("reportMessage").textContent =
+            data.message || data.error || "Report submitted";
+        });
+    </script>
+  </body>
+</html>

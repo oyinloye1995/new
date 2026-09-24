@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Job alerts | OpenPath</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="container section">
+      <a class="brand" href="/dashboard">Open<span>Path</span></a>
+      <div class="page-head">
+        <h1>Job alerts</h1>
+        <p class="muted">
+          Set preferences now; email delivery can be connected later.
+        </p>
+      </div>
+      <form class="panel filters" method="post">
+        <input name="keywords" placeholder="Keywords" /><input
+          name="category"
+          placeholder="Category"
+        /><input name="location" placeholder="Location" /><select
+          name="workplace_type"
+        >
+          <option value="">Any workplace</option>
+          <option value="remote">Remote</option>
+          <option value="hybrid">Hybrid</option>
+          <option value="onsite">Onsite</option></select
+        ><select name="employment_type">
+          <option value="">Any employment type</option>
+          <option value="full-time">Full-time</option>
+          <option value="contract">Contract</option>
+          <option value="internship">Internship</option></select
+        ><button type="submit">Save alert</button>
+      </form>
+      <section class="section">
+        <h2>Saved preferences</h2>
+        {% for alert in alerts %}
+        <div class="panel" style="margin-top: 10px">
+          <strong>{{ alert.keywords or 'All roles' }}</strong
+          ><span class="muted">
+            · {{ alert.location or 'Any location' }} · {{ alert.workplace_type
+            or 'Any workplace' }}</span
+          >
+        </div>
+        {% else %}
+        <div class="empty">You have not created a job alert yet.</div>
+        {% endfor %}
+      </section>
+    </main>
+  </body>
+</html>

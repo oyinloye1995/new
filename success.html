@@ -1,133 +1,135 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registration Successful</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background: linear-gradient(135deg, #e0f2fe, #ecfeff);
+      }
+
+      .success-card {
+        width: 100%;
+        max-width: 900px;
+        background: white;
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px rgba(15, 23, 42, 0.12);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .left {
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .logo img {
+        width: 140px;
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        color: #003087;
+        margin-bottom: 20px;
+      }
+
+      p {
+        color: #475569;
+        line-height: 1.8;
+        margin-bottom: 30px;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 28px;
+        background: linear-gradient(135deg, #0ea5e9, #14b8a6);
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 999px;
+        width: max-content;
+      }
+
+      .right {
+        background: linear-gradient(135deg, #0ea5e9, #14b8a6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 30px;
+      }
+
+      .right img {
+        width: 100%;
+        max-width: 320px;
+        filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.25));
+      }
+
+      @media (max-width: 768px) {
+        .success-card {
+          grid-template-columns: 1fr;
         }
 
-        body{
-            font-family:'Poppins',sans-serif;
-            min-height:100vh;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            padding:20px;
-            background:linear-gradient(135deg,#e0f2fe,#ecfeff);
+        .left {
+          padding: 35px 24px;
+          text-align: center;
+          align-items: center;
         }
 
-        .success-card{
-            width:100%;
-            max-width:900px;
-            background:white;
-            border-radius:30px;
-            overflow:hidden;
-            box-shadow:0 25px 50px rgba(15,23,42,.12);
-            display:grid;
-            grid-template-columns:1fr 1fr;
+        h1 {
+          font-size: 2rem;
         }
-
-        .left{
-            padding:50px;
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-        }
-
-        .logo img{
-            width:140px;
-            margin-bottom:25px;
-        }
-
-        h1{
-            font-size:2.5rem;
-            color:#003087;
-            margin-bottom:20px;
-        }
-
-        p{
-            color:#475569;
-            line-height:1.8;
-            margin-bottom:30px;
-        }
-
-        .btn{
-            display:inline-block;
-            padding:14px 28px;
-            background:linear-gradient(135deg,#0ea5e9,#14b8a6);
-            color:white;
-            text-decoration:none;
-            font-weight:600;
-            border-radius:999px;
-            width:max-content;
-        }
-
-        .right{
-            background:linear-gradient(135deg,#0ea5e9,#14b8a6);
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            padding:30px;
-        }
-
-        .right img{
-            width:100%;
-            max-width:320px;
-            filter:drop-shadow(0 20px 35px rgba(0,0,0,.25));
-        }
-
-        @media(max-width:768px){
-            .success-card{
-                grid-template-columns:1fr;
-            }
-
-            .left{
-                padding:35px 24px;
-                text-align:center;
-                align-items:center;
-            }
-
-            h1{
-                font-size:2rem;
-            }
-        }
+      }
     </style>
-</head>
-<body>
-
-<div class="success-card">
-
-    <div class="left">
+  </head>
+  <body>
+    <div class="success-card">
+      <div class="left">
         <div class="logo">
-            <a href="index.html">
-                <img src="" alt="Apex Logo">
-            </a>
+          <a href="index.html">
+            <img src="" alt="Apex Logo" />
+          </a>
         </div>
 
         <h1>Registration Successful!</h1>
 
         <p>
-            Thank you for registering with Apex World.
-            Your information has been successfully submitted and saved.
-            We appreciate your interest in our healthcare innovation programs.
+          Thank you for registering with Apex World. Your information has been
+          successfully submitted and saved. We appreciate your interest in our
+          healthcare innovation programs.
         </p>
 
         <a href="index.html" class="btn">Return to Homepage</a>
+      </div>
+
+      <div class="right">
+        <img
+          src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80"
+          alt="Pharmaceutical Laboratory"
+        />
+      </div>
     </div>
-
-    <div class="right">
-        <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80" alt="Pharmaceutical Laboratory">
-    </div>
-
-</div>
-
-</body>
+  </body>
 </html>

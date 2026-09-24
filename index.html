@@ -1,1924 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex World Grant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-
-    <style>
-       /* =========================================
-   MODERN RESPONSIVE PHARMACEUTICAL HOME PAGE
-   Replace ONLY the CSS inside <style> in index.html
-   ========================================= */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #e0f7ff 0%, #eef9ff 40%, #dff6f2 100%);
-    min-height: 100vh;
-    overflow-x: hidden;
-    color: #0f172a;
-    position: relative;
-}
-
-/* Animated background */
-body::before,
-body::after {
-    content: "";
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(40px);
-    opacity: 0.25;
-    z-index: -1;
-}
-
-body::before {
-    width: 300px;
-    height: 300px;
-    background: #0ea5e9;
-    top: -100px;
-    left: -100px;
-    animation: floatBubble 10s ease-in-out infinite;
-}
-
-body::after {
-    width: 350px;
-    height: 350px;
-    background: #14b8a6;
-    bottom: -120px;
-    right: -120px;
-    animation: floatBubble 14s ease-in-out infinite reverse;
-}
-
-@keyframes floatBubble {
-    0%,100% { transform: translateY(0) translateX(0); }
-    50% { transform: translateY(-20px) translateX(15px); }
-}
-
-/* ================= HEADER ================= */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 14px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    background: rgba(255,255,255,0.85);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(14,165,233,0.12);
-    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-    z-index: 1000;
-}
-
-.logo img {
-    width: 95px;
-    height: 50px;
-    object-fit: contain;
-    background: white;
-    padding: 2px;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(14,165,233,0.15);
-    transition: transform 0.3s ease;
-}
-
-.logo img:hover {
-    transform: scale(1.04);
-}
-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-}
-
-nav a {
-    text-decoration: none;
-    color: #0369a1;
-    font-weight: 600;
-    padding: 10px 16px;
-    border-radius: 999px;
-    transition: all 0.25s ease;
-}
-
-nav a:hover {
-    background: linear-gradient(135deg, #0ea5e9, #14b8a6);
-    color: #ffffff;
-    transform: translateY(-1px);
-}
-
-/* ================= HERO / BANNER ================= */
-#banner {
-    min-height: 90vh;
-    padding: 140px 20px 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-}
-
-#banner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(135deg, rgba(14,165,233,0.12), rgba(20,184,166,0.12));
-    border-radius: 0 0 40px 40px;
-}
-
-.logo-text {
-    position: relative;
-    color: #0369a1;
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 14px;
-}
-
-#banner h1 {
-    position: relative;
-    font-size: clamp(2.2rem, 6vw, 4.5rem);
-    line-height: 1.1;
-    font-weight: 700;
-    color: #0f172a;
-    max-width: 900px;
-    margin-bottom: 22px;
-}
-
-/* ================= BUTTON ================= */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 32px;
-    border-radius: 999px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    background: linear-gradient(135deg, #0ea5e9, #14b8a6);
-    color: #ffffff;
-    box-shadow: 0 12px 24px rgba(14,165,233,0.22);
-    transition: all 0.3s ease;
-}
-
-.btn:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 18px 32px rgba(14,165,233,0.28);
-}
-
-/* ================= LOGIN ================= */
-.login-container {
-    width: min(100% - 32px, 430px);
-    margin: 0 auto 60px;
-    padding: 30px 24px;
-    border-radius: 28px;
-    background: rgba(255,255,255,0.78);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,0.6);
-    box-shadow: 0 20px 50px rgba(15,23,42,0.12);
-}
-
-.login-container h2 {
-    text-align: center;
-    margin-bottom: 22px;
-    color: #0369a1;
-}
-
-#loginForm {
-    scroll-margin-top: 110px;
-}
-
-.login-container input[type="text"],
-.login-container input[type="password"] {
-    width: 100%;
-    padding: 14px 16px;
-    margin-bottom: 16px;
-    border-radius: 16px;
-    border: 1px solid #cbd5e1;
-    background: rgba(255,255,255,0.96);
-    font-size: 15px;
-    transition: all 0.25s ease;
-}
-
-.login-container input:focus {
-    outline: none;
-    border-color: #0ea5e9;
-    box-shadow: 0 0 0 4px rgba(14,165,233,0.14);
-}
-
-.login-container button {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #0ea5e9, #14b8a6);
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.25s ease;
-}
-
-.login-container button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 24px rgba(14,165,233,0.24);
-}
-
-/* ================= FEATURES ================= */
-.features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 22px;
-    max-width: 1200px;
-    margin: 0 auto 70px;
-    padding: 0 20px;
-}
-
-.card {
-    padding: 28px 24px;
-    border-radius: 24px;
-    background: rgba(255,255,255,0.78);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255,255,255,0.6);
-    box-shadow: 0 16px 38px rgba(15,23,42,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    opacity: 0;
-    transform: translateY(30px);
-}
-
-.card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 22px 44px rgba(14,165,233,0.16);
-}
-
-.card h2 {
-    margin-bottom: 12px;
-    color: #0369a1;
-}
-
-.card p {
-    color: #475569;
-    line-height: 1.7;
-}
-
-/* ================= PRICING ================= */
-.pricing {
-    padding: 90px 20px;
-    text-align: center;
-}
-
-.pricing h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    color: #0f172a;
-    margin-bottom: 40px;
-}
-
-.price-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 24px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.price-card {
-    padding: 34px 28px;
-    border-radius: 26px;
-    background: rgba(255,255,255,0.82);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255,255,255,0.6);
-    box-shadow: 0 18px 40px rgba(15,23,42,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.price-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 24px 48px rgba(14,165,233,0.16);
-}
-
-.price-card h2 {
-    font-size: 2rem;
-    color: #0369a1;
-    margin-bottom: 12px;
-}
-
-/* ================= FOOTER ================= */
-footer {
-    margin-top: 40px;
-    padding: 26px 20px;
-    text-align: center;
-    color: #475569;
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-/* ================= SCROLL TEXT ================= */
-.scroll-text {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.scroll-text.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ================= GUIDE ================= */
-.guide {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    width: 72px;
-    height: 72px;
-    z-index: 100;
-    pointer-events: none;
-}
-
-.head {
-    width: 22px;
-    height: 22px;
-    background: #0ea5e9;
-    border-radius: 50%;
-    margin: 0 auto;
-}
-
-.body {
-    width: 10px;
-    height: 30px;
-    background: #0ea5e9;
-    margin: 5px auto;
-    border-radius: 10px;
-}
-
-.hand {
-    width: 36px;
-    height: 5px;
-    background: #14b8a6;
-    position: absolute;
-    top: 34px;
-    left: 50%;
-    transform-origin: left center;
-    transition: transform 0.3s ease;
-    border-radius: 999px;
-}
-
-.hand::after {
-    content: "";
-    position: absolute;
-    right: -8px;
-    top: -4px;
-    border-left: 8px solid #14b8a6;
-    border-top: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        padding: 12px 16px;
-    }
-
-    nav {
-        width: 100%;
-    }
-
-    nav a {
-        flex: 1 1 calc(50% - 10px);
-        text-align: center;
-    }
-
-    #banner {
-        padding-top: 180px;
-        min-height: auto;
-    }
-
-    .guide {
-        width: 60px;
-        height: 60px;
-        bottom: 16px;
-        right: 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    body::before {
-        width: 220px;
-        height: 220px;
-    }
-
-    body::after {
-        width: 240px;
-        height: 240px;
-    }
-
-    #banner {
-        padding: 190px 16px 60px;
-    }
-
-    .login-container {
-        padding: 24px 18px;
-    }
-
-    .card,
-    .price-card {
-        padding: 22px 18px;
-    }
-
-    nav a {
-        font-size: 0.92rem;
-    }
-}
-/* ===== HERO GLOW ===== */
-
-#banner::after {
-    content: "";
-    position: absolute;
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, rgba(14,165,233,0.25), transparent 70%);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    filter: blur(25px);
-    z-index: 0;
-    animation: pulseGlow 5s ease-in-out infinite;
-}
-
-@keyframes pulseGlow {
-    0%,100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.6;
-    }
-    50% {
-        transform: translate(-50%, -50%) scale(1.08);
-        opacity: 1;
-    }
-}
-
-/* ===== SUBTITLE ===== */
-
-.hero-subtitle {
-    position: relative;
-    z-index: 1;
-    max-width: 720px;
-    margin: 0 auto 28px;
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: #475569;
-}
-/* ===== LOGIN SHINE ===== */
-
-.login-container {
-    position: relative;
-    overflow: hidden;
-}
-
-.login-container::before {
-    content: "";
-    position: absolute;
-    top: -120%;
-    left: -40%;
-    width: 60%;
-    height: 300%;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.35),
-        transparent
-    );
-    transform: rotate(18deg);
-    animation: shimmer 6s infinite;
-}
-
-@keyframes shimmer {
-    0% { left: -60%; }
-    100% { left: 140%; }
-}
-
-/* ===== COLORFUL CARDS ===== */
-
-.card {
-    position: relative;
-    overflow: hidden;
-}
-
-.card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(90deg, #0ea5e9, #14b8a6, #3b82f6);
-}
-
-.card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 24px 48px rgba(14,165,233,0.18);
-}
-/* ===== CORPORATE PHARMA SHOWCASE ===== */
-
-.corporate-showcase {
-    max-width: 1250px;
-    margin: 80px auto;
-    padding: 0 20px;
-}
-
-.showcase-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 24px;
-    margin-bottom: 28px;
-}
-
-.showcase-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 28px;
-    min-height: 340px;
-    box-shadow: 0 20px 50px rgba(15,23,42,0.12);
-}
-
-.showcase-card.large {
-    min-height: 420px;
-}
-
-.showcase-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
-
-.showcase-card:hover img {
-    transform: scale(1.06);
-}
-
-.overlay {
-    position: absolute;
-    inset: 0;
-    padding: 32px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    color: white;
-}
-
-.overlay.blue {
-    background: linear-gradient(
-        135deg,
-        rgba(0,76,153,0.82),
-        rgba(14,165,233,0.65)
-    );
-}
-
-.overlay.center {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(
-        180deg,
-        rgba(3,105,161,0.18),
-        rgba(3,105,161,0.78)
-    );
-}
-
-.overlay h2 {
-    font-size: 2.4rem;
-    margin-bottom: 14px;
-}
-
-.overlay p {
-    font-size: 1rem;
-    line-height: 1.8;
-    max-width: 620px;
-}
-
-.icon-circle {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    margin-bottom: 18px;
-    backdrop-filter: blur(10px);
-}
-
-.outline-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 30px;
-    margin-top: 18px;
-    border: 2px solid rgba(255,255,255,0.9);
-    border-radius: 999px;
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-
-.outline-btn:hover {
-    background: white;
-    color: #0369a1;
-    transform: translateY(-2px);
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-}
-
-.info-card {
-    background: rgba(255,255,255,0.85);
-    border-radius: 24px;
-    overflow: hidden;
-    box-shadow: 0 16px 40px rgba(15,23,42,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.info-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 24px 50px rgba(14,165,233,0.14);
-}
-
-.info-card img {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
-}
-
-.info-content {
-    padding: 22px;
-}
-
-.info-content h3 {
-    color: #0369a1;
-    margin-bottom: 10px;
-    font-size: 1.35rem;
-}
-
-.info-content p {
-    color: #475569;
-    line-height: 1.7;
-}
-
-@media (max-width: 900px) {
-    .showcase-grid,
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .showcase-card.large {
-        min-height: 360px;
-    }
-
-    .overlay h2 {
-        font-size: 2rem;
-    }
-}
-
-@media (max-width: 600px) {
-    .corporate-showcase {
-        margin: 60px auto;
-        padding: 0 16px;
-    }
-
-    .overlay {
-        padding: 22px;
-    }
-
-    .overlay h2 {
-        font-size: 1.7rem;
-    }
-
-    .overlay p {
-        font-size: 0.95rem;
-    }
-
-    .info-card img {
-        height: 190px;
-    }
-}
-/* ===== CLEAN MOBILE HEADER & SIDEBAR ===== */
-
-.menu-toggle{\n    display:block;\n   
-     margin-left:auto;\n   
-      font-size:24px;\n  
-        font-weight:700;\n   
-         cursor:pointer;\n  
-           background:none;\n   
-            border:none;\n   
-             padding:0;\n
-                 box-shadow:none;\n 
-                    color:#0f172a;\n}
-
-.mobile-menu{
-    position:fixed;
-    top:0;
-    right:-100%;
-    width:280px;
-    height:100vh;
-    background:#ffffff;
-    padding:22px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-    transition:right .3s ease;
-    z-index:3000;
-    box-shadow:-10px 0 30px rgba(0,0,0,.12);
-}
-
-.mobile-menu.active{
-    right:0;
-}
-
-.mobile-menu-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
-    padding-bottom:14px;
-    border-bottom:1px solid #e5e7eb;
-}
-
-.mobile-menu-header img{
-    width:120px;
-    height:auto;
-    object-fit:contain;
-}
-
-.mobile-menu-header span{
-    font-size:26px;
-    cursor:pointer;
-    color:#334155;
-}
-
-.mobile-menu a{
-    text-decoration:none;
-    color:#0f172a;
-    font-weight:600;
-    font-size:18px;
-    padding:14px 16px;
-    border-radius:12px;
-    transition:.2s ease;
-}
-
-.mobile-menu a:hover{
-    background:#0ea5e9;
-    color:#ffffff;
-}
-
-.menu-overlay{
-    position:fixed;
-    inset:0;
-    background:rgba(15,23,42,.45);
-    opacity:0;
-    visibility:hidden;
-    transition:.25s ease;
-    z-index:2500;
-}
-
-.menu-overlay.active{
-    opacity:1;
-    visibility:visible;
-}
-
-/* ===== MOBILE FIX ===== */
-@media (max-width:768px){
-
-    header{
-        flex-direction:row !important;
-        justify-content:space-between !important;
-        align-items:center !important;
-        padding:14px 18px !important;
-    }
-
-    nav{
-        display:none !important;
-    }
-
-    .menu-toggle{
-        display:flex !important;
-    }
-
-    .logo img{
-        width:110px !important;
-        height:auto !important;
-        max-width:none !important;
-    }
-
-    /* Hide the huge logo inside the sidebar */
-    .mobile-menu-header img{
-        display:none;
-    }
-}
-
-/* ===== ABOUT SECTION ===== */
-.showcase-card.large {
-    min-height: 840px;
-}
-
-.showcase-card.large .overlay.blue {
-    justify-content: flex-start;
-    padding: clamp(78px, 7vw, 105px) clamp(30px, 4vw, 56px) clamp(36px, 4vw, 56px);
-    background: linear-gradient(
-        135deg,
-        rgba(0, 66, 132, 0.92),
-        rgba(3, 105, 161, 0.82)
-    );
-}
-
-.showcase-card.large .overlay h2 {
-    font-size: clamp(2rem, 3.2vw, 3rem);
-    line-height: 1.12;
-    margin-bottom: 20px;
-}
-
-.about-scroll {
-    width: 100%;
-    max-width: 780px;
-    max-height: none;
-    overflow: visible;
-    padding-right: 0;
-}
-
-.about-slide {
-    opacity: 0;
-    filter: blur(2px);
-    transition: opacity 0.6s ease, filter 0.6s ease;
-    margin: 0 0 16px;
-    font-size: clamp(0.93rem, 1.1vw, 1.02rem);
-    line-height: 1.72;
-    letter-spacing: 0.005em;
-}
-
-.about-slide strong {
-    display: inline;
-    font-weight: 700;
-    color: #ffffff;
-}
-
-.about-slide.visible {
-    opacity: 1;
-    filter: blur(0);
-}
-
-.about-slide:first-child {
-    font-size: clamp(1rem, 1.3vw, 1.12rem);
-    line-height: 1.7;
-}
-
-@media (max-width: 1100px) {
-    .showcase-grid {
-        grid-template-columns: 1.6fr 1fr;
-    }
-
-    .showcase-card.large {
-        min-height: 880px;
-    }
-}
-
-@media (max-width: 900px) {
-    .showcase-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .showcase-card.large {
-        min-height: 900px;
-    }
-
-    .showcase-card.large .overlay.blue {
-        padding: 70px 32px 36px;
-    }
-
-    .about-scroll {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 600px) {
-    .showcase-card.large {
-        min-height: 980px;
-        border-radius: 22px;
-    }
-
-    .showcase-card.large .overlay.blue {
-        justify-content: flex-start;
-        padding: 48px 22px 28px;
-    }
-
-    .showcase-card.large .icon-circle {
-        width: 54px;
-        height: 54px;
-        margin-bottom: 14px;
-    }
-
-    .showcase-card.large .overlay h2 {
-        margin-bottom: 16px;
-    }
-
-    .about-slide {
-        margin-bottom: 15px;
-        line-height: 1.64;
-    }
-}
-
-/* ===== CLICKABLE ABOUT CARD + FULL ABOUT MODAL ===== */
-.about-card-clickable {
-    cursor: pointer;
-    min-height: 520px !important;
-}
-
-.about-card-clickable:focus-visible {
-    outline: 3px solid rgba(255,255,255,0.95);
-    outline-offset: 4px;
-}
-
-.about-card-clickable .overlay.blue {
-    justify-content: flex-end;
-    padding: clamp(54px, 6vw, 82px) clamp(30px, 4vw, 56px) clamp(46px, 5vw, 70px);
-}
-
-.about-card-clickable .about-slide {
-    opacity: 1;
-    filter: none;
-    max-width: 700px;
-}
-
-.about-read-more {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 8px;
-    padding: 12px 22px;
-    border: 1px solid rgba(255,255,255,.85);
-    border-radius: 999px;
-    background: rgba(255,255,255,.12);
-    color: #fff;
-    font: inherit;
-    font-weight: 600;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-    transition: background .25s ease, transform .25s ease;
-}
-
-.about-card-clickable:hover .about-read-more {
-    background: rgba(255,255,255,.22);
-    transform: translateY(-2px);
-}
-
-.about-modal {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    background: rgba(15,23,42,.72);
-    backdrop-filter: blur(9px);
-    -webkit-backdrop-filter: blur(9px);
-    z-index: 5200;
-}
-
-.about-modal.active { display: flex; }
-
-.about-panel {
-    width: min(900px, 96vw);
-    max-height: 88vh;
-    overflow-y: auto;
-    background: #ffffff;
-    border-radius: 28px;
-    box-shadow: 0 30px 80px rgba(15,23,42,.30);
-    padding: clamp(24px, 4vw, 44px);
-    position: relative;
-}
-
-.about-panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 24px;
-}
-
-.about-panel-header h2 {
-    color: #0369a1;
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.1;
-    margin: 0;
-}
-
-.about-close {
-    flex: 0 0 auto;
-    width: 44px;
-    height: 44px;
-    border: 0;
-    border-radius: 50%;
-    background: #eef6fb;
-    color: #0f172a;
-    font-size: 28px;
-    line-height: 1;
-    cursor: pointer;
-}
-
-.about-full-content p {
-    color: #475569;
-    line-height: 1.8;
-    margin: 0 0 18px;
-    font-size: 1rem;
-}
-
-.about-full-content h3 {
-    color: #0369a1;
-    margin: 26px 0 8px;
-    font-size: 1.2rem;
-}
-
-@media (max-width: 600px) {
-    .about-card-clickable { min-height: 560px !important; }
-    .about-card-clickable .overlay.blue { padding: 44px 22px 34px; }
-    .about-panel { border-radius: 20px; padding: 22px 18px; }
-    .about-panel-header { gap: 12px; }
-}
-
-/* ===== MEDICINE GALLERY MODAL ===== */
-.medicine-modal {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    background: rgba(15, 23, 42, 0.68);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 5000;
-}
-
-.medicine-modal.active {
-    display: flex;
-}
-
-.medicine-panel {
-    width: min(1180px, 96vw);
-    max-height: 90vh;
-    overflow-y: auto;
-    background: #f8fbff;
-    border-radius: 28px;
-    box-shadow: 0 30px 80px rgba(15, 23, 42, 0.28);
-    padding: 28px;
-    position: relative;
-}
-
-.medicine-panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 24px;
-}
-
-.medicine-panel-header h2 {
-    color: #0f172a;
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    margin-bottom: 8px;
-}
-
-.medicine-panel-header p {
-    color: #64748b;
-    line-height: 1.7;
-    max-width: 760px;
-}
-
-.medicine-close {
-    width: 44px;
-    height: 44px;
-    border: none;
-    border-radius: 50%;
-    background: #e0f2fe;
-    color: #0369a1;
-    font-size: 24px;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-
-.medicine-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
-}
-
-.medicine-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 20px;
-    padding: 20px;
-    min-height: 245px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07);
-    transition: transform .25s ease, box-shadow .25s ease;
-}
-
-.medicine-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 16px 34px rgba(14, 165, 233, 0.14);
-}
-
-.medicine-logo-wrap {
-    height: 82px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 14px;
-    background: #f8fafc;
-    border-radius: 14px;
-}
-
-.medicine-logo-wrap img {
-    max-width: 120px;
-    max-height: 68px;
-    object-fit: contain;
-}
-
-.medicine-card h3 {
-    color: #0369a1;
-    font-size: 1.12rem;
-    margin-bottom: 7px;
-}
-
-.medicine-area {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: #0f766e;
-    margin-bottom: 10px;
-}
-
-.medicine-card p {
-    color: #64748b;
-    font-size: 0.9rem;
-    line-height: 1.55;
-    margin-bottom: 16px;
-}
-
-.medicine-link {
-    margin-top: auto;
-    text-decoration: none;
-    color: #0369a1;
-    font-weight: 600;
-    font-size: 0.9rem;
-}
-
-.medicine-disclaimer {
-    margin-top: 22px;
-    padding: 16px 18px;
-    border-radius: 16px;
-    background: #eef8ff;
-    color: #475569;
-    line-height: 1.6;
-    font-size: 0.88rem;
-}
-
-@media (max-width: 600px) {
-    .medicine-modal { padding: 10px; }
-    .medicine-panel { padding: 20px 15px; border-radius: 20px; }
-    .medicine-panel-header { align-items: flex-start; }
-    .medicine-grid { grid-template-columns: 1fr; }
-}
-
-
-/* ===== THERAPEUTIC FOCUS REPLACEMENT ===== */
-.therapeutic-focus {
-    max-width: 1250px;
-    margin: 30px auto 80px;
-    padding: 70px 20px;
-    text-align: left;
-}
-
-.therapeutic-intro {
-    max-width: 760px;
-    margin: 0 auto 38px;
-    text-align: center;
-}
-
-.section-kicker {
-    display: inline-block;
-    margin-bottom: 10px;
-    color: #0284c7;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-}
-
-.therapeutic-focus .therapeutic-intro h1 {
-    margin-bottom: 14px;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-}
-
-.therapeutic-intro p {
-    color: #475569;
-    line-height: 1.8;
-    font-size: 1.02rem;
-}
-
-.therapeutic-showcase {
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(340px, 0.85fr);
-    gap: 28px;
-    align-items: stretch;
-}
-
-.medicine-visual {
-    position: relative;
-    min-height: 520px;
-    overflow: hidden;
-    border-radius: 30px;
-    box-shadow: 0 24px 60px rgba(15,23,42,0.14);
-}
-
-.medicine-visual img {
-        text-align: left;
-        margin-bottom: 22px;
-        color: #0369a1;
-    }
-
-    #loginForm {
-        scroll-margin-top: 110px;
-    }
-    height: 100%;
-    min-height: 520px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.7s ease;
-}
-
-.medicine-visual:hover img {
-    transform: scale(1.035);
-}
-
-.medicine-visual-overlay {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 38px;
-    color: #fff;
-    background: linear-gradient(180deg, rgba(3,105,161,0.04) 18%, rgba(3,105,161,0.82) 100%);
-}
-
-.medicine-visual-overlay span {
-    margin-bottom: 12px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.medicine-visual-overlay h2 {
-    max-width: 560px;
-    font-size: clamp(1.65rem, 3vw, 2.6rem);
-    line-height: 1.2;
-}
-
-.therapeutic-cards {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 18px;
-}
-
-.therapy-card {
-    position: relative;
-    padding: 26px 26px 24px;
-    border-radius: 24px;
-    background: rgba(255,255,255,0.88);
-    border: 1px solid rgba(14,165,233,0.12);
-    box-shadow: 0 14px 34px rgba(15,23,42,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.therapy-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 44px rgba(14,165,233,0.14);
-}
-
-.therapy-icon {
-    width: 44px;
-    height: 44px;
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #0ea5e9, #14b8a6);
-    color: #fff;
-    font-size: 0.88rem;
-    font-weight: 700;
-}
-
-.therapy-card h3 {
-    margin-bottom: 9px;
-    color: #0369a1;
-    font-size: 1.18rem;
-}
-
-.therapy-card p {
-    color: #475569;
-    line-height: 1.68;
-}
-
-.therapeutic-action {
-    margin-top: 32px;
-    text-align: center;
-}
-
-@media (max-width: 900px) {
-    .therapeutic-showcase {
-        grid-template-columns: 1fr;
-    }
-
-    .medicine-visual,
-    .medicine-visual img {
-        min-height: 420px;
-    }
-}
-
-@media (max-width: 600px) {
-    .therapeutic-focus {
-        padding: 55px 16px;
-        margin-bottom: 55px;
-    }
-
-    .therapeutic-intro {
-        margin-bottom: 28px;
-    }
-
-    .medicine-visual,
-    .medicine-visual img {
-        min-height: 360px;
-    }
-
-    .medicine-visual-overlay {
-        padding: 24px;
-    }
-
-    .therapy-card {
-        padding: 22px 20px;
-    }
-}
-</style>
-    
-</head>
-<body>
-    
-   <header style="display:flex; justify-content:space-between; align-items:center;">
- <div class="logo">
-    <a href="index.html">
-  <img src="" alt="Apex Logo">
-    </a>
-</div>
-
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="#pricing">Our Science</a>
-    <a href="#" class="products-trigger">Products</a>
-    <a href="register.html">Register</a>
-    <a href="#loginForm">Login</a>
-  </nav>
-
- <div class="menu-toggle" id="menuToggle" style="display:block; margin-left:auto; font-size:30px; cursor:pointer;">☰</div>
-</header>
-
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-header">
-    <span></span>
-    <span id="closeMenu">✕</span>
-  </div>
-
-  <a href="index.html"> Home</a>
-  <a href="#pricing"> Our Science</a>
-  <a href="#" class="products-trigger"> Products</a>
-  <a href="register.html"> Register</a>
-    <a href="#loginForm"> Login</a>
-</div>
-
-<div class="menu-overlay" id="menuOverlay"></div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>OpenPath | Find work that fits your life</title>
+    <meta
+      name="description"
+      content="Find remote, hybrid, onsite, internship, and early-career opportunities on OpenPath."
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="brand" href="/">Open<span>Path</span></a>
+        <div class="nav-links">
+          <a href="/jobs">Find jobs</a
+          ><a href="/jobs?workplace_type=remote">Remote jobs</a
+          ><a href="#companies">Companies</a
+          ><a href="#resources">Career resources</a>
+        </div>
+        <div class="nav-actions">
+          {% if user %}<a href="/dashboard">Dashboard</a
+          ><a href="/logout">Log out</a>{% else %}<a href="/login">Log in</a
+          ><a class="button" href="/register">Create account</a>{% endif %}
+        </div>
+      </nav>
     </header>
-
-    <div id="banner">
-        <div class="logo-text">Industry</div>
-       <h1>Apex World Grants</h1>
-
-<p class="hero-subtitle">
-    Advancing reproductive medicine, maternal health, and innovative therapies for a healthier future.
-</p>
-        <a href="register.html" class="btn">Start Your Journey</a>
-    </div>
-    <div class="login-container">
-        <h2>Log in</h2>
-        <form id="loginForm">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit">Log in</button>
-        </form>
-    </div>
-<section class="corporate-showcase">
-    <div class="showcase-grid">
-
-        <div class="showcase-card large about-card-clickable" id="openAbout" role="button" tabindex="0" aria-label="Open full About Apex information">
-            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" alt="Laboratory">
-            <div class="overlay blue">
-                <div class="icon-circle">🌍</div>
-                <h2>About Ferring</h2>
-                <div class="about-scroll">
-                    <p class="about-slide visible">Ferring Pharmaceuticals is a research-driven, specialty biopharmaceutical company dedicated to developing innovative medicines that help people build families and live better lives.</p>
-                    <p class="about-slide visible">Through research, development, manufacturing, and commercialization, Apex works to address important and often complex healthcare needs.</p>
-                    <button type="button" class="about-read-more">Read Full About Apex →</button>
-                </div>
+    <main>
+      <section class="hero">
+        <div class="container">
+          <p class="tag">A clearer path to your next role</p>
+          <h1>Find work that fits<br /><em>your life.</em></h1>
+          <p>
+            Discover thoughtful opportunities from employers who value how and
+            where great work gets done.
+          </p>
+          <form class="search-box" action="/jobs" method="get">
+            <input
+              name="title"
+              list="job-title-options"
+              placeholder="Job title"
+            /><input
+              name="skill"
+              list="skill-options"
+              placeholder="Skill or keyword"
+            /><input name="company" placeholder="Company" /><input
+              name="location"
+              list="location-options"
+              placeholder="City, country, or region"
+            /><select name="workplace_type">
+              <option value="">Remote, hybrid, or onsite</option>
+              <option value="remote">Remote</option>
+              <option value="hybrid">Hybrid</option>
+              <option value="onsite">Onsite</option></select
+            ><button type="submit">Search jobs</button>
+            <div class="search-catalog-bar">
+              <strong>Browse roles:</strong>
+              {% for title in entry_level_titles[:8] %}<a href="/jobs?title={{ title }}">{{ title }}</a>{% endfor %}
+              <a class="catalog-more" href="/jobs">View all roles and filters →</a>
             </div>
+          </form>
+          <datalist id="job-title-options">
+            {% for title in job_titles %}
+            <option value="{{ title }}"></option>
+            {% endfor %}
+          </datalist>
+          <datalist id="skill-options">
+            {% for skill in skills %}
+            <option value="{{ skill }}"></option>
+            {% endfor %}
+          </datalist>
+          <datalist id="location-options">
+            <option value="Remote worldwide"></option>
+            <option value="United States"></option>
+            <option value="Alabama, United States"></option>
+            <option value="Alaska, United States"></option>
+            <option value="Arizona, United States"></option>
+            <option value="California, United States"></option>
+            <option value="Colorado, United States"></option>
+            <option value="Florida, United States"></option>
+            <option value="Georgia, United States"></option>
+            <option value="Illinois, United States"></option>
+            <option value="Massachusetts, United States"></option>
+            <option value="New Jersey, United States"></option>
+            <option value="New York, United States"></option>
+            <option value="North Carolina, United States"></option>
+            <option value="Ohio, United States"></option>
+            <option value="Pennsylvania, United States"></option>
+            <option value="Texas, United States"></option>
+            <option value="Virginia, United States"></option>
+            <option value="Washington, United States"></option>
+            <option value="Toronto, Canada"></option>
+            <option value="Vancouver, Canada"></option>
+            <option value="Mexico City, Mexico"></option>
+            <option value="London, United Kingdom"></option>
+            <option value="Berlin, Germany"></option>
+            <option value="Munich, Germany"></option>
+          </datalist>
         </div>
-
-        <div class="showcase-card">
-            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="Medical research">
-            <div class="overlay center">
-                <h3>Discover our life-changing medicines</h3>
-                <a href="#" class="outline-btn" id="openMedicines">Explore Medicines</a>
-            </div>
+      </section>
+      <section class="section container">
+        <div class="section-head">
+          <div>
+            <h2>Featured opportunities</h2>
+            <p class="muted">Roles currently published on OpenPath.</p>
+          </div>
+          <a href="/jobs">View all jobs →</a>
         </div>
-
-    </div>
-
-    <div class="info-grid">
-
-        <div class="info-card">
-            <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=800&q=80" alt="People and families">
-            <div class="info-content">
-                <h3>People & Families</h3>
-                <p>Supporting healthier families through innovative reproductive and maternal health solutions.</p>
-            </div>
-        </div>
-
-        <div class="info-card">
-            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80" alt="Science and innovation">
-            <div class="info-content">
-                <h3>Science & Innovation</h3>
-                <p>Investing in cutting-edge research and scientific breakthroughs that transform patient care.</p>
-            </div>
-        </div>
-
-    </div>
-</section>
-    <div class="features">
-        <div class="card">
-            <h2>Commitment</h2>
-            <p class="scroll-text">At Apex, we are committed to helping people become parents and to keeping mothers and babies healthy...</p>
-        </div>
-        <div class="card">
-            <h2>Quote</h2>
-            <p class="scroll-text">“We organized with UFCW Local 5 because pharmacy professionals need to have a voice...”</p>
-        </div>
-        <div class="card">
-            <h2>New</h2>
-            <p class="scroll-text">Apex demonstrates effectiveness of a treat-to-target approach...</p>
-        </div>
-        <div class="card">
-            <h2>Contact Us</h2>
-            <p class="scroll-text">officie361@gmail.com.</p>
-        </div>
-    </div>
-
-    <!-- THERAPEUTIC FOCUS SECTION -->
-    <section class="pricing therapeutic-focus" id="pricing">
-        <div class="therapeutic-intro">
-            <span class="section-kicker">Science with purpose</span>
-            <h1>Our Therapeutic Focus</h1>
-            <p>
-                Apex combines research, science and patient-focused innovation across
-                specialist areas where meaningful advances can improve health and quality of life.
+        <div class="job-grid">
+          {% for job in featured %}
+          <article class="job-card">
+            <h3><a href="/jobs/{{ job.slug }}">{{ job.title }}</a></h3>
+            <p class="company">
+              {{ job.company_name }} {% if job.is_verified %}<span class="tag"
+                >Verified</span
+              >{% endif %}
             </p>
-        </div>
-
-        <div class="therapeutic-showcase">
-            <div class="medicine-visual">
-                <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1200&q=85" alt="Pharmaceutical capsules and medicine">
-                <div class="medicine-visual-overlay">
-                    <span>Research • Innovation • Patient Care</span>
-                    <h2>Turning science into meaningful treatment options.</h2>
-                </div>
+            <div class="meta">
+              <span class="tag neutral">{{ job.category }}</span>
+              <span class="tag">{{ job.workplace_type|capitalize }}</span
+              ><span class="tag neutral"
+                >{{ job.employment_type|capitalize }}</span
+              ><span>{{ job.city or job.country or 'Location flexible' }}</span>
             </div>
-
-            <div class="therapeutic-cards">
-                <article class="therapy-card">
-                    <div class="therapy-icon">01</div>
-                    <h3>Reproductive Medicine &amp; Maternal Health</h3>
-                    <p>Supporting fertility care, assisted reproduction and important areas of maternal health.</p>
-                </article>
-
-                <article class="therapy-card">
-                    <div class="therapy-icon">02</div>
-                    <h3>Gastroenterology &amp; the Microbiome</h3>
-                    <p>Advancing approaches to digestive health and serious gastrointestinal conditions.</p>
-                </article>
-
-                <article class="therapy-card">
-                    <div class="therapy-icon">03</div>
-                    <h3>Urology &amp; Uro-Oncology</h3>
-                    <p>Developing specialist therapies for significant urological conditions and uro-oncology.</p>
-                </article>
-            </div>
+            {% if job.education_level == 'Not Required' or job.experience_level in ['No Experience Required', 'Entry Level', 'Internship', 'Apprentice/Trainee'] %}<p class="muted opportunity-note">Accessible entry-level opportunity</p>{% endif %}
+            <a href="/jobs/{{ job.slug }}">View opportunity →</a>
+          </article>
+          {% else %}
+          <div class="empty">
+            New opportunities will appear here as verified employers publish
+            them.
+          </div>
+          {% endfor %}
         </div>
-
-        <div class="therapeutic-action">
-            <a href="#" class="btn" id="therapyMedicineButton">Discover Our Medicines</a>
+      </section>
+      <section class="section" style="background: #fff">
+        <div class="container">
+          <div class="section-head"><h2>Browse by category</h2></div>
+          <div class="category-grid">
+            {% for category in job_categories %}<a
+              class="category"
+              href="/jobs?category={{ category }}"
+              >{{ category }} <span>→</span></a
+            >{% endfor %}
+          </div>
         </div>
-    </section>
-     
-
-
-<!-- FULL ABOUT APEX MODAL -->
-<div class="about-modal" id="aboutModal" aria-hidden="true">
-    <div class="about-panel" role="dialog" aria-modal="true" aria-labelledby="aboutModalTitle">
-        <div class="about-panel-header">
-            <h2 id="aboutModalTitle">About Apex </h2>
-            <button class="about-close" id="closeAbout" aria-label="Close About Apex">&times;</button>
+      </section>
+      <section class="section container entry-level-section">
+        <div class="section-head">
+          <div>
+            <h2>Opportunities without a degree barrier</h2>
+            <p class="muted">
+              Find entry-level roles, apprenticeships, practical work, and
+              trainee opportunities.
+            </p>
+          </div>
+          <a href="/jobs?category=Entry-Level%20%26%20No-Degree%20Jobs"
+            >Explore entry-level jobs →</a
+          >
         </div>
-        <div class="about-full-content">
-            <p>Apex  is a research-driven, specialty biopharmaceutical company dedicated to developing innovative medicines that help people build families and live better lives.</p>
-            <p>Through research, development, manufacturing, and commercialization, Apex works to address important and often complex healthcare needs. The company combines scientific expertise with a strong commitment to patients, healthcare professionals, and the communities it serves.</p>
-            <h3>Reproductive Medicine &amp; Maternal Health</h3>
-            <p>Apex has a longstanding commitment to reproductive medicine, providing treatments that support fertility care, including assisted reproductive technologies such as in vitro fertilization (IVF), as well as other areas of reproductive and maternal health.</p>
-            <h3>Urology &amp; Uro-Oncology</h3>
-            <p>Apex develops and provides therapies addressing significant urological conditions, with a growing focus on uro-oncology and treatments for diseases such as bladder cancer.</p>
-            <h3>Gastroenterology &amp; the Microbiome</h3>
-            <p>Apex is advancing treatments in gastroenterology and microbiome science, including innovative approaches to serious gastrointestinal conditions such as recurrent <em>Clostridioides difficile</em> (C. difficile) infection.</p>
-            <h3>Driven by Science. Focused on Patients.</h3>
-            <p>Across its therapeutic areas, Apex is committed to translating scientific research into meaningful treatments. By investing in innovation and addressing areas of significant unmet medical need, Apex aims to improve health outcomes and make a lasting difference in the lives of patients and families.</p>
+        <div class="category-grid">
+          {% for title in entry_level_titles[:16] %}<a
+            class="category"
+            href="/jobs?title={{ title }}"
+            >{{ title }}</a
+          >{% endfor %}
         </div>
-    </div>
-</div>
-
-<!-- APEX MEDICINE GALLERY -->
-<div class="medicine-modal" id="medicineModal" aria-hidden="true">
-    <div class="medicine-panel" role="dialog" aria-modal="true" aria-labelledby="medicineTitle">
-        <div class="medicine-panel-header">
-            <div>
-                <h2 id="medicineTitle">Apex Medicines</h2>
-                <p>Explore selected medicines from Apex's U.S. portfolio across reproductive medicine, gastroenterology, orthopaedics, urology, uro-oncology, endocrinology and hematology.</p>
-            </div>
-            <button class="medicine-close" id="closeMedicines" aria-label="Close medicines">&times;</button>
+      </section>
+      <section class="section container" id="resources">
+        <div class="section-head">
+          <div>
+            <h2>Start with the right next step</h2>
+            <p class="muted">A simple process for a more focused search.</p>
+          </div>
         </div>
-
-        <div class="medicine-grid">
-            <article class="medicine-card">
-                <div class="medicine-logo-wrap"><img src="" alt="MENOPUR logo"></div>
-                <h3>MENOPUR®</h3>
-                <div class="medicine-area">Reproductive Medicine</div>
-                <p>Menotropins for injection used as part of fertility treatment under medical supervision.</p>
-                <a class="medicine-link" href="https://www.menopur.com/" target="_blank" rel="noopener">Visit official product site →</a>
-            </article>
-
-            <article class="medicine-card">
-                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2024/01/endometrin_2-70x70.png" alt="ENDOMETRIN logo"></div>
-                <h3>ENDOMETRIN®</h3>
-                <div class="medicine-area">Reproductive Medicine</div>
-                <p>Progesterone vaginal insert used in assisted reproductive treatment as directed by a healthcare professional.</p>
-                <a class="medicine-link" href="https://www.endometrin.com/" target="_blank" rel="noopener">Visit official product site →</a>
-            </article>
-
-            <article class="medicine-card">
-                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2024/01/novarel_2-70x70.png" alt="NOVAREL logo"></div>
-                <h3>NOVAREL®</h3>
-                <div class="medicine-area">Reproductive Medicine</div>
-                <p>Chorionic gonadotropin for injection used in certain fertility treatment plans.</p>
-                <a class="medicine-link" href="https://www.novarelhcp.com/" target="_blank" rel="noopener">Visit official product site →</a>
-            </article>
-
-            <article class="medicine-card">
-                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2021/08/logo-cervidil-mp-1-70x70.jpg" alt="CERVIDIL logo"></div>
-                <h3>CERVIDIL®</h3>
-                <div class="medicine-area">Maternal Health</div>
-                <p>Dinoprostone vaginal insert used in hospital-based cervical ripening when medically indicated.</p>
-                <a class="medicine-link" href="https://www.cervidil.com/" target="_blank" rel="noopener">Visit official product site →</a>
-            </article>
-
-            <article class="medicine-card">
-                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2023/08/Rebyota_Logo_4C_with_live_type_ALTERNATE_R3_OL-e1691149001810-70x70.png" alt="REBYOTA logo"></div>
-                <h3>REBYOTA®</h3>
-                <div class="medicine-area">Gastroenterology &amp; Microbiome</div>
-                <p>A microbiota-based prescription therapy associated with the prevention of recurrence of C. difficile infection in appropriate patients.</p>
-                <a class="medicine-link" href="https://www.rebyota.com/" target="_blank" rel="noopener">Visit official product site →</a>
-            </article>
-
-            <article class="medicine-card">
-                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2024/06/CLENPIQ%C2%AE_Logo_4C_175ml-70x70.png" alt="CLENPIQ logo"></div>
-                <h3>CLENPIQ®</h3>
-                <div class="medicine-area">Gastroenterology</div>
-                <p>Prescription bowel-preparation solution used before certain colonoscopy procedures.</p>
-                <a class="medicine-link" href="https://www.clenpiq.com/" target="_blank" rel="noopener">Visit official product site →</a>
-            </article>
-
-            <article class="medicine-card">
-                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2021/08/logo-euflexxa-mp-1-70x70.jpg" alt="EUFLEXXA logo"></div>
-                <h3>EUFLEXXA®</h3>
-                <div class="medicine-area">Orthopaedics</div>
-                <p>Sodium hyaluronate therapy used in the management of certain osteoarthritis-related knee pain.</p>
-                <a class="medicine-link" href="https://www.euflexxa.com/" target="_blank" rel="noopener">Visit official product site →</a>
-            </article>
-
-            <article class="medicine-card">
-                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2023/04/adstiladrin-70x70.png" alt="ADSTILADRIN logo"></div>
-                <h3>ADSTILADRIN®</h3>
-                <div class="medicine-area">Uro-Oncology</div>
-                <p>A prescription gene therapy used for certain forms of non-muscle invasive bladder cancer.</p>
-                <a class="medicine-link" href="https://www.adstiladrinhcp.com/" target="_blank" rel="noopener">Visit official product site →</a>
-            </article>
-
-            <article class="medicine-card">
-                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2021/08/logo-firmagon-1-70x70.png" alt="FIRMAGON logo"></div>
-                <h3>FIRMAGON®</h3>
-                <div class="medicine-area">Urology &amp; Oncology</div>
-                <p>Degarelix for injection, a prescription treatment used in prostate cancer care.</p>
-                <a class="medicine-link" href="https://firmagon.com/" target="_blank" rel="noopener">Visit official product site →</a>
-            </article>
-
-            <article class="medicine-card">
-                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2021/08/logo-zomacton-mp-1-1-70x70.jpg" alt="ZOMACTON logo"></div>
-                <h3>ZOMACTON®</h3>
-                <div class="medicine-area">Endocrinology</div>
-                <p>Somatropin for injection used for approved growth-hormone-related indications.</p>
-                <a class="medicine-link" href="https://www.zomacton.com/" target="_blank" rel="noopener">Visit official product site →</a>
-            </article>
-
-            <article class="medicine-card">
-                <div class="medicine-logo-wrap"><img src="https://ferringusa.com/wp-content/uploads/2026/07/Stimate_RGB_1-70x70.jpg" alt="STIMATE logo"></div>
-                <h3>STIMATE®</h3>
-                <div class="medicine-area">Hematology</div>
-                <p>Desmopressin acetate nasal spray listed within Apex's U.S. hematology portfolio.</p>
-                <a class="medicine-link" href="https://www.stimatehcp.com/" target="_blank" rel="noopener">Visit official product site →</a>
-            </article>
+        <div class="steps">
+          <div class="step">
+            <b>01</b>
+            <h3>Create your profile</h3>
+            <p class="muted">
+              Show employers your skills, experience, and goals in one place.
+            </p>
+          </div>
+          <div class="step">
+            <b>02</b>
+            <h3>Discover opportunities</h3>
+            <p class="muted">
+              Use practical filters for work style, role, category, and
+              location.
+            </p>
+          </div>
+          <div class="step">
+            <b>03</b>
+            <h3>Apply and track</h3>
+            <p class="muted">
+              Apply securely and keep every application status together.
+            </p>
+          </div>
         </div>
-
-        <div class="medicine-disclaimer">
-            <strong>Important:</strong> This gallery is for general educational information only. It does not rank medicines by popularity or recommend treatment. Prescription medicines should be used only for their approved indications and under the direction of a qualified healthcare professional. See each product's official website and prescribing information for complete safety information.
+      </section>
+      <section class="section" style="background: var(--navy); color: #fff">
+        <div class="container">
+          <h2 style="color: #fff">For employers</h2>
+          <p style="max-width: 560px; color: #c4d4e3; line-height: 1.7">
+            Reach thoughtful candidates with structured, transparent listings.
+            Every new opportunity enters review before it becomes visible.
+          </p>
+          <a class="button" href="/register">Create an employer account</a>
         </div>
-    </div>
-</div>
-
-    <footer>
-        <p>&copy; 2024 Apex World Opportunity</p>
+      </section>
+    </main>
+    <footer class="footer">
+      <div class="container">
+        OpenPath helps people find legitimate work opportunities. Never pay
+        money simply to apply for a job.
+      </div>
     </footer>
-
-    <div class="guide">
-        <div class="person">
-            <div class="head"></div>
-            <div class="body"></div>
-            <div class="hand" id="scrollHand"></div>
-        </div>
-    </div>
-
-    <script>
-        let lastScroll = 0;
-        const scrollHand = document.getElementById("scrollHand");
-
-        window.addEventListener('load', function () {
-            const firstAboutLine = document.querySelector('.about-slide');
-            const aboutCard = document.querySelector('.showcase-card.large');
-            if (firstAboutLine && aboutCard) {
-                const rect = aboutCard.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.9) {
-                    firstAboutLine.classList.add('visible');
-                }
-            }
-        });
-
-        document.addEventListener("scroll", function() {
-            const texts = document.querySelectorAll('.scroll-text');
-            texts.forEach(text => {
-                const rect = text.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
-                    text.classList.add('visible');
-                }
-            });
-
-            const aboutCard = document.querySelector('.showcase-card.large');
-            const aboutLines = document.querySelectorAll('.about-slide');
-
-            if (aboutCard && aboutLines.length) {
-                const cardRect = aboutCard.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
-                const startPoint = viewportHeight * 0.82;
-                const totalTravel = viewportHeight + cardRect.height;
-                const progress = Math.max(0, Math.min(1, (startPoint - cardRect.top) / totalTravel));
-
-                const revealCount = Math.max(
-                    cardRect.top < viewportHeight * 0.88 ? 1 : 0,
-                    Math.ceil(progress * aboutLines.length * 1.65)
-                );
-
-                aboutLines.forEach((line, index) => {
-                    if (index < revealCount) {
-                        line.classList.add('visible');
-                    }
-                });
-            }
-
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                let position = card.getBoundingClientRect().top;
-                if(position < window.innerHeight - 100){
-                    card.style.opacity = 1;
-                    card.style.transform = "translateY(0)";
-                }
-            });
-
-            let currentScroll = window.scrollY;
-            if (currentScroll > lastScroll) {
-                scrollHand.style.transform = "rotate(45deg)";
-            } else {
-                scrollHand.style.transform = "rotate(-45deg)";
-            }
-            lastScroll = currentScroll;
-        });
-
-
-
-        document.getElementById('loginForm').addEventListener('submit', async function (e) {
-            e.preventDefault();
-            window.location.href = 'grant-dashboard'; // Redirect to dashboard on login
-            const form = e.currentTarget;
-            const payload = {
-                username: form.username.value.trim(),
-                password: form.password.value
-            };
-
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(payload)
-            });
-
-            const result = await response.json();
-            if (!response.ok) {
-                alert(result.message || 'Login failed');
-                return;
-            }
-
-            alert(result.message || 'Login successful');
-            window.location.href = '/grant-dashboard';
-        });
-
-    </script>
-    <script>
-const menuToggle = document.getElementById('menuToggle');
-const mobileMenu = document.getElementById('mobileMenu');
-const closeMenu = document.getElementById('closeMenu');
-const menuOverlay = document.getElementById('menuOverlay');
-
-function openMenu() {
-    mobileMenu.classList.add('active');
-    menuOverlay.classList.add('active');
-}
-
-function hideMenu() {
-    mobileMenu.classList.remove('active');
-    menuOverlay.classList.remove('active');
-}
-
-menuToggle.addEventListener('click', openMenu);
-closeMenu.addEventListener('click', hideMenu);
-menuOverlay.addEventListener('click', hideMenu);
-</script>
-
-<script>
-const medicineModal = document.getElementById('medicineModal');
-const openMedicines = document.getElementById('openMedicines');
-const closeMedicines = document.getElementById('closeMedicines');
-
-function showMedicines(e) {
-    if (e) e.preventDefault();
-    medicineModal.classList.add('active');
-    medicineModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-}
-
-function hideMedicines() {
-    medicineModal.classList.remove('active');
-    medicineModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-}
-
-if (openMedicines && medicineModal) {
-    openMedicines.addEventListener('click', showMedicines);
-}
-
-// Make every Products navigation link open the same medicine gallery.
-document.querySelectorAll('.products-trigger').forEach(function (productLink) {
-    productLink.addEventListener('click', function (e) {
-        if (typeof hideMenu === 'function') hideMenu();
-        showMedicines(e);
-    });
-});
-
-if (closeMedicines && medicineModal) {
-    closeMedicines.addEventListener('click', hideMedicines);
-}
-
-if (medicineModal) {
-    medicineModal.addEventListener('click', function(e) {
-        if (e.target === medicineModal) hideMedicines();
-    });
-}
-
-document.addEventListener('keydown', function(e) {
-    if (medicineModal && e.key === 'Escape' && medicineModal.classList.contains('active')) {
-        hideMedicines();
-    }
-});
-</script>
-
-
-<script>
-(function () {
-    const openAbout = document.getElementById('openAbout');
-    const aboutModal = document.getElementById('aboutModal');
-    const closeAbout = document.getElementById('closeAbout');
-
-    if (!openAbout || !aboutModal || !closeAbout) return;
-
-    function showAbout() {
-        aboutModal.classList.add('active');
-        aboutModal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function hideAbout() {
-        aboutModal.classList.remove('active');
-        aboutModal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    }
-
-    openAbout.addEventListener('click', showAbout);
-    openAbout.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            showAbout();
-        }
-    });
-    closeAbout.addEventListener('click', hideAbout);
-    aboutModal.addEventListener('click', function (e) {
-        if (e.target === aboutModal) hideAbout();
-    });
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && aboutModal.classList.contains('active')) hideAbout();
-    });
-})();
-</script>
-
-
-<script>
-(function () {
-    const therapyButton = document.getElementById('therapyMedicineButton');
-    if (!therapyButton) return;
-
-    therapyButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        const existingMedicineTrigger = document.querySelector('#openMedicineGallery, .open-medicine-gallery, [data-open-medicines]');
-        if (existingMedicineTrigger) {
-            existingMedicineTrigger.click();
-            return;
-        }
-
-        const discoverButton = Array.from(document.querySelectorAll('a, button')).find(function (element) {
-            return element !== therapyButton && /learn more|explore medicines|discover.*medicine/i.test(element.textContent || '');
-        });
-        if (discoverButton) discoverButton.click();
-    });
-})();
-</script>
-</body>
+  </body>
 </html>

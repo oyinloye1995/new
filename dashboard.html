@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>My dashboard | OpenPath</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a class="brand" href="/">Open<span>Path</span></a>
+        <div class="nav-links">
+          <a href="/jobs">Find jobs</a
+          ><a href="/jobs?workplace_type=remote">Remote jobs</a
+          ><a href="/alerts">Job alerts</a>
+        </div>
+        <div class="nav-actions">
+          <span>{{ user.full_name }}</span><a href="/logout">Log out</a>
+        </div>
+      </nav>
+    </header>
+    <main class="container dashboard">
+      <div class="dashboard-head">
+        <div>
+          <h1>Your job search</h1>
+          <p class="muted">
+            Keep your profile current and your next move visible.
+          </p>
+        </div>
+        <a class="button" href="/jobs">Find opportunities</a>
+      </div>
+      <div class="panel">
+        <h2>Profile</h2>
+        <p class="muted">
+          {{ profile.headline or 'Add a headline, skills, and resume to improve
+          your applications.' }}
+        </p>
+        <a href="/profile" class="button secondary">Edit profile</a>
+      </div>
+      <section class="section">
+        <div class="section-head">
+          <h2>My applications</h2>
+          <span class="muted">{{ applications|length }} recent</span>
+        </div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Role</th>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Applied</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in applications %}
+              <tr>
+                <td>{{ item.title }}</td>
+                <td>{{ item.company_name }}</td>
+                <td>
+                  <span class="tag"
+                    >{{ item.status|replace('_',' ')|capitalize }}</span
+                  >
+                </td>
+                <td>{{ item.created_at[:10] }}</td>
+              </tr>
+              {% else %}
+              <tr>
+                <td colspan="4" class="muted">
+                  Applications you submit will appear here.
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <section>
+        <div class="section-head"><h2>Saved jobs</h2></div>
+        <div class="job-grid">
+          {% for job in saved %}
+          <article class="job-card">
+            <h3><a href="/jobs/{{ job.slug }}">{{ job.title }}</a></h3>
+            <p class="company">{{ job.company_name }}</p>
+            <div class="meta">
+              <span class="tag">{{ job.workplace_type|capitalize }}</span>
+            </div>
+          </article>
+          {% else %}
+          <div class="empty">
+            Save opportunities while browsing to compare them here.
+          </div>
+          {% endfor %}
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
