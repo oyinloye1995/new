@@ -122,6 +122,10 @@ a:hover {
   color: var(--muted);
   line-height: 1.7;
 }
+.hero-action {
+  margin-top: 24px;
+  background: var(--gold);
+}
 .search-box {
   margin-top: 32px;
   background: var(--paper);

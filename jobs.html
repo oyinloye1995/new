@@ -13,7 +13,6 @@
         <div class="nav-links">
           <a href="/jobs">Find jobs</a
           ><a href="/jobs?workplace_type=remote">Remote jobs</a
-          ><a href="#companies">Companies</a
           ><a href="#resources">Career resources</a>
         </div>
         <div class="nav-actions">
@@ -113,7 +112,7 @@
         ><button type="submit">Search</button>
         <div class="search-catalog-bar">
           <strong>Browse roles:</strong>
-          {% for title in entry_level_titles[:8] %}<a href="/jobs?title={{ title }}">{{ title }}</a>{% endfor %}
+          {% for title in job_titles[:24] %}<a href="/jobs?title={{ title }}">{{ title }}</a>{% endfor %}
           <a class="catalog-more" href="#all-taxonomy">All roles, skills, and filters ↓</a>
         </div>
       </form>

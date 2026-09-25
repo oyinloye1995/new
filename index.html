@@ -17,7 +17,6 @@
         <div class="nav-links">
           <a href="/jobs">Find jobs</a
           ><a href="/jobs?workplace_type=remote">Remote jobs</a
-          ><a href="#companies">Companies</a
           ><a href="#resources">Career resources</a>
         </div>
         <div class="nav-actions">
@@ -36,68 +35,7 @@
             Discover thoughtful opportunities from employers who value how and
             where great work gets done.
           </p>
-          <form class="search-box" action="/jobs" method="get">
-            <input
-              name="title"
-              list="job-title-options"
-              placeholder="Job title"
-            /><input
-              name="skill"
-              list="skill-options"
-              placeholder="Skill or keyword"
-            /><input name="company" placeholder="Company" /><input
-              name="location"
-              list="location-options"
-              placeholder="City, country, or region"
-            /><select name="workplace_type">
-              <option value="">Remote, hybrid, or onsite</option>
-              <option value="remote">Remote</option>
-              <option value="hybrid">Hybrid</option>
-              <option value="onsite">Onsite</option></select
-            ><button type="submit">Search jobs</button>
-            <div class="search-catalog-bar">
-              <strong>Browse roles:</strong>
-              {% for title in entry_level_titles[:8] %}<a href="/jobs?title={{ title }}">{{ title }}</a>{% endfor %}
-              <a class="catalog-more" href="/jobs">View all roles and filters →</a>
-            </div>
-          </form>
-          <datalist id="job-title-options">
-            {% for title in job_titles %}
-            <option value="{{ title }}"></option>
-            {% endfor %}
-          </datalist>
-          <datalist id="skill-options">
-            {% for skill in skills %}
-            <option value="{{ skill }}"></option>
-            {% endfor %}
-          </datalist>
-          <datalist id="location-options">
-            <option value="Remote worldwide"></option>
-            <option value="United States"></option>
-            <option value="Alabama, United States"></option>
-            <option value="Alaska, United States"></option>
-            <option value="Arizona, United States"></option>
-            <option value="California, United States"></option>
-            <option value="Colorado, United States"></option>
-            <option value="Florida, United States"></option>
-            <option value="Georgia, United States"></option>
-            <option value="Illinois, United States"></option>
-            <option value="Massachusetts, United States"></option>
-            <option value="New Jersey, United States"></option>
-            <option value="New York, United States"></option>
-            <option value="North Carolina, United States"></option>
-            <option value="Ohio, United States"></option>
-            <option value="Pennsylvania, United States"></option>
-            <option value="Texas, United States"></option>
-            <option value="Virginia, United States"></option>
-            <option value="Washington, United States"></option>
-            <option value="Toronto, Canada"></option>
-            <option value="Vancouver, Canada"></option>
-            <option value="Mexico City, Mexico"></option>
-            <option value="London, United Kingdom"></option>
-            <option value="Berlin, Germany"></option>
-            <option value="Munich, Germany"></option>
-          </datalist>
+          <a class="button hero-action" href="/jobs">Browse all roles →</a>
         </div>
       </section>
       <section class="section container">
