@@ -2173,3 +2173,481 @@ button:hover,
   font-size: 10px;
   font-weight: 700;
 }
+/* ==========================================
+   FINAL DASHBOARD MOBILE FIX
+   Paste at the VERY END of style.css
+========================================== */
+
+@media screen and (max-width: 768px) {
+
+  /* STOP HORIZONTAL OVERFLOW */
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .candidate-dashboard {
+    width: 100%;
+    max-width: 100%;
+    padding: 14px 14px 50px;
+    overflow: hidden;
+  }
+
+
+  /* ==========================
+     HEADER
+  ========================== */
+
+  .dashboard-header .nav {
+    padding: 12px 14px;
+    gap: 10px;
+  }
+
+  .dashboard-header .brand img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .dashboard-user-nav {
+    margin-left: auto;
+    gap: 7px;
+  }
+
+  .nav-user-avatar {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    font-size: 12px;
+  }
+
+  .nav-user-details {
+    display: none !important;
+  }
+
+  .dashboard-logout {
+    padding-left: 8px;
+    margin-left: 0;
+    font-size: 12px;
+  }
+
+  .dashboard-nav-links {
+    width: 100%;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    overflow: visible;
+  }
+
+  .dashboard-nav-links a {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+
+  /* ==========================
+     HERO
+  ========================== */
+
+  .candidate-hero {
+    width: 100%;
+    min-height: auto;
+    padding: 30px 21px;
+    display: block;
+    border-radius: 14px;
+  }
+
+  .candidate-hero-content {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Remove desktop circle graphic on phone */
+  .candidate-hero-visual {
+    display: none !important;
+  }
+
+  .dashboard-eyebrow {
+    font-size: 9px;
+    margin-bottom: 10px;
+  }
+
+  .candidate-hero h1 {
+    width: 100%;
+    max-width: 100%;
+    font-size: 36px;
+    line-height: 1.04;
+    overflow-wrap: break-word;
+  }
+
+  .hero-description {
+    width: 100%;
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+
+  /* ==========================
+     120 JOBS WAITING
+  ========================== */
+
+  .jobs-waiting {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 11px;
+    margin-top: 20px;
+    padding: 11px;
+  }
+
+  .jobs-waiting-copy {
+    min-width: 0;
+  }
+
+  .jobs-waiting-copy strong {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+
+  .jobs-waiting-copy small {
+    font-size: 9px;
+    line-height: 1.4;
+  }
+
+
+  /* ==========================
+     HERO BUTTONS
+  ========================== */
+
+  .candidate-hero-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .hero-job-button {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .hero-profile-link {
+    text-align: center;
+    padding: 6px;
+  }
+
+
+  /* ==========================
+     STATS
+  ========================== */
+
+  .candidate-stats {
+    width: 100%;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 9px;
+    margin: 14px 0 20px;
+  }
+
+  .candidate-stat {
+    width: 100%;
+    min-width: 0;
+    min-height: 108px;
+    padding: 13px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    gap: 7px;
+  }
+
+  .candidate-stat-icon {
+    width: 37px;
+    height: 37px;
+    flex: 0 0 37px;
+  }
+
+  .candidate-stat strong {
+    font-size: 16px;
+  }
+
+  .candidate-stat span {
+    font-size: 10px;
+  }
+
+  .candidate-stat-action b {
+    top: 14px;
+    right: 12px;
+  }
+
+
+  /* ==========================
+     VERY IMPORTANT:
+     FORCE MAIN DASHBOARD
+     INTO ONE COLUMN
+  ========================== */
+
+  .candidate-dashboard-grid {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-template-columns: none !important;
+  }
+
+  .candidate-main {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .candidate-sidebar {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin-top: 15px !important;
+  }
+
+
+  /* ==========================
+     ALL CARDS
+  ========================== */
+
+  .candidate-card,
+  .candidate-profile-card,
+  .candidate-quick-card,
+  .candidate-career-tip {
+    position: relative !important;
+
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+
+    margin: 0 0 14px !important;
+
+    grid-column: auto !important;
+
+    box-sizing: border-box;
+  }
+
+  .candidate-card {
+    padding: 19px;
+  }
+
+
+  /* ==========================
+     SECTION HEADINGS
+  ========================== */
+
+  .candidate-card-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+    margin-bottom: 17px;
+  }
+
+  .candidate-card-heading > div {
+    width: 100%;
+  }
+
+  .candidate-card-heading h2 {
+    font-size: 21px;
+  }
+
+  .candidate-card-heading p {
+    line-height: 1.5;
+  }
+
+  .dashboard-count {
+    align-self: flex-start;
+  }
+
+  .candidate-view-link {
+    align-self: flex-start;
+  }
+
+
+  /* ==========================
+     APPLICATIONS
+  ========================== */
+
+  .application-list {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .application-row {
+    width: 100%;
+
+    display: grid !important;
+
+    grid-template-columns:
+      40px minmax(0, 1fr) !important;
+
+    gap: 10px;
+
+    padding: 13px;
+  }
+
+  .application-information {
+    min-width: 0;
+  }
+
+  .application-information h3,
+  .application-information p {
+    overflow-wrap: anywhere;
+  }
+
+  .application-status {
+    grid-column: 2 !important;
+  }
+
+  .application-date {
+    grid-column: 2 !important;
+  }
+
+
+  /* ==========================
+     EMPTY APPLICATION
+  ========================== */
+
+  .candidate-empty {
+    width: 100%;
+    max-width: 100%;
+    padding: 30px 17px;
+  }
+
+  .candidate-empty p {
+    max-width: 100%;
+  }
+
+
+  /* ==========================
+     SAVED JOBS
+  ========================== */
+
+  .saved-job-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+
+    width: 100%;
+    max-width: 100%;
+
+    gap: 11px;
+  }
+
+  .candidate-job-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+
+  /* ==========================
+     PROFILE CARD
+  ========================== */
+
+  .candidate-profile-card {
+    padding: 20px;
+  }
+
+  .candidate-profile-top {
+    width: 100%;
+  }
+
+  .candidate-profile-top > div:last-child {
+    min-width: 0;
+  }
+
+  .candidate-profile-top h2 {
+    overflow-wrap: anywhere;
+  }
+
+  .candidate-profile-button {
+    width: 100%;
+  }
+
+
+  /* ==========================
+     QUICK ACTIONS
+  ========================== */
+
+  .candidate-quick-card {
+    padding: 20px;
+  }
+
+  .candidate-quick-link {
+    width: 100%;
+
+    grid-template-columns:
+      36px minmax(0, 1fr) auto;
+  }
+
+  .candidate-quick-link > div:nth-child(2) {
+    min-width: 0;
+  }
+
+  .candidate-quick-link small {
+    white-space: normal;
+  }
+
+
+  /* ==========================
+     CAREER TIP
+  ========================== */
+
+  .candidate-career-tip {
+    padding: 22px;
+    grid-column: auto !important;
+  }
+
+  .candidate-career-tip h3 {
+    font-size: 18px;
+  }
+}
+
+
+/* ==========================================
+   EXTRA SMALL PHONES
+========================================== */
+
+@media screen and (max-width: 390px) {
+
+  .candidate-dashboard {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .candidate-hero {
+    padding: 27px 18px;
+  }
+
+  .candidate-hero h1 {
+    font-size: 31px;
+  }
+
+  .candidate-stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .candidate-stat {
+    padding: 11px;
+  }
+
+  .dashboard-nav-links a {
+    font-size: 10px;
+  }
+}
