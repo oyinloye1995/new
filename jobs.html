@@ -9,7 +9,7 @@
   <body>
     <header class="site-header">
       <nav class="nav">
-        <a class="brand" href="/"><img src="/apex-logo.jpeg" alt="APEX OpenPath logo" /><span>APEX <b>OpenPath</b></span></a>
+        <a class="brand" href="/"><img src="/apex-logo.jpeg" alt="APEX logo" /></a>
         <div class="nav-links">
           <a href="/jobs">Find jobs</a
           ><a href="/jobs?workplace_type=remote">Remote jobs</a
@@ -40,10 +40,6 @@
           list="skill-options"
           value="{{ filters.skill }}"
           placeholder="Skill or keyword"
-        /><input
-          name="company"
-          value="{{ filters.company }}"
-          placeholder="Company"
         /><input
           name="location"
           list="location-options"
@@ -87,16 +83,6 @@
             {% if filters.employment_type == employment_type %}selected{% endif %}
           >
             {{ employment_type }}
-          </option>
-          {% endfor %}</select
-        ><select name="experience_level">
-          <option value="">Any experience</option>
-          {% for level in experience_levels %}
-          <option
-            value="{{ level }}"
-            {% if filters.experience_level == level %}selected{% endif %}
-          >
-            {{ level }}
           </option>
           {% endfor %}</select
         ><select name="education_level">
@@ -162,10 +148,6 @@
             value="{{ filters.skill }}"
           /><input
             type="hidden"
-            name="company"
-            value="{{ filters.company }}"
-          /><input
-            type="hidden"
             name="location"
             value="{{ filters.location }}"
           /><input
@@ -176,10 +158,6 @@
             type="hidden"
             name="employment_type"
             value="{{ filters.employment_type }}"
-          /><input
-            type="hidden"
-            name="experience_level"
-            value="{{ filters.experience_level }}"
           /><input
             type="hidden"
             name="education_level"

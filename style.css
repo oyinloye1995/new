@@ -71,12 +71,18 @@ a:hover {
   text-decoration: none;
 }
 .brand img {
-  width: 42px;
-  height: 42px;
+  width: 58px;
+  height: 58px;
   object-fit: cover;
-  border: 2px solid var(--gold);
+  border: 3px solid var(--gold);
   border-radius: 50%;
   background: var(--paper);
+  box-shadow: 0 5px 16px rgba(6, 59, 36, 0.16);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.brand img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 22px rgba(198, 146, 20, 0.24);
 }
 .brand > span {
   color: var(--gold);
