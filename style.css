@@ -61,13 +61,35 @@ a:hover {
   gap: 28px;
 }
 .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   font-weight: 800;
   color: var(--navy);
   font-size: 20px;
   letter-spacing: -0.03em;
+  text-decoration: none;
 }
-.brand span {
+.brand img {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  background: var(--paper);
+}
+.brand > span {
   color: var(--gold);
+  white-space: nowrap;
+}
+.brand b {
+  color: var(--navy);
+}
+.brand-kicker {
+  color: var(--gold);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
 }
 .nav-links {
   display: flex;
@@ -269,6 +291,22 @@ button:hover,
   padding: 22px;
   border-radius: 7px;
 }
+.job-card,
+.role-chip,
+.step {
+  animation: rise-in 0.6s ease both;
+}
+.job-card:hover,
+.role-chip:hover,
+.step:hover {
+  transform: translateY(-4px);
+  border-color: rgba(198, 146, 20, 0.55);
+  box-shadow: 0 14px 30px rgba(6, 59, 36, 0.12);
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 .job-card h3 {
   margin: 0 0 9px;
   font-size: 18px;
@@ -317,6 +355,30 @@ button:hover,
   border-radius: 5px;
   color: var(--navy);
   font-weight: 600;
+}
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.role-chip {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  padding: 13px 15px;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+.section-link {
+  color: var(--gold);
+  font-weight: 700;
+  white-space: nowrap;
 }
 .steps {
   display: grid;
@@ -499,7 +561,8 @@ button:hover,
     grid-template-columns: 1fr 1fr;
   }
   .job-grid,
-  .category-grid {
+  .category-grid,
+  .role-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .two-col {
@@ -525,6 +588,21 @@ button:hover,
   }
   .nav-actions {
     margin-left: auto;
+  }
+  .section-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .role-grid {
+    grid-template-columns: 1fr;
+  }
+  .role-chip {
+    min-height: 46px;
+  }
+  .job-card:hover,
+  .role-chip:hover,
+  .step:hover {
+    transform: none;
   }
   .hero {
     padding-top: 45px;

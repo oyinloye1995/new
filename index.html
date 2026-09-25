@@ -13,7 +13,7 @@
   <body>
     <header class="site-header">
       <nav class="nav">
-        <a class="brand" href="/">Open<span>Path</span></a>
+        <a class="brand" href="/"><img src="/apex-logo.jpeg" alt="APEX OpenPath logo" /><span>APEX <b>OpenPath</b></span></a>
         <div class="nav-links">
           <a href="/jobs">Find jobs</a
           ><a href="/jobs?workplace_type=remote">Remote jobs</a
@@ -29,7 +29,7 @@
     <main>
       <section class="hero">
         <div class="container">
-          <p class="tag">A clearer path to your next role</p>
+          <p class="tag brand-kicker">APEX OpenPath</p>
           <h1>Find work that fits<br /><em>your life.</em></h1>
           <p>
             Discover thoughtful opportunities from employers who value how and
@@ -73,34 +73,20 @@
           {% endfor %}
         </div>
       </section>
-      <section class="section" style="background: #fff">
-        <div class="container">
-          <div class="section-head"><h2>Browse by category</h2></div>
-          <div class="category-grid">
-            {% for category in job_categories %}<a
-              class="category"
-              href="/jobs?category={{ category }}"
-              >{{ category }} <span>→</span></a
-            >{% endfor %}
-          </div>
-        </div>
-      </section>
       <section class="section container entry-level-section">
         <div class="section-head">
           <div>
-            <h2>Opportunities without a degree barrier</h2>
+            <h2>Start where you are</h2>
             <p class="muted">
-              Find entry-level roles, apprenticeships, practical work, and
-              trainee opportunities.
+              Find practical roles, apprenticeships, and first opportunities
+              without needing a university degree.
             </p>
           </div>
-          <a href="/jobs?category=Entry-Level%20%26%20No-Degree%20Jobs"
-            >Explore entry-level jobs →</a
-          >
+          <a class="section-link" href="/jobs?category=Entry-Level%20%26%20No-Degree%20Jobs">Explore roles →</a>
         </div>
-        <div class="category-grid">
+        <div class="role-grid">
           {% for title in entry_level_titles[:16] %}<a
-            class="category"
+            class="role-chip"
             href="/jobs?title={{ title }}"
             >{{ title }}</a
           >{% endfor %}

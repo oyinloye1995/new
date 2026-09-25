@@ -338,6 +338,11 @@ def stylesheet():
     return send_from_directory(BASE_DIR, "style.css")
 
 
+@app.route("/apex-logo.jpeg")
+def apex_logo():
+    return send_from_directory(BASE_DIR, "WhatsApp Image 2026-09-24 at 4.19.30 PM.jpeg")
+
+
 @app.route("/jobs")
 def jobs():
     filters = {
