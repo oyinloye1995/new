@@ -3154,3 +3154,11 @@ button:hover,
     width: 100%;
   }
 }
+/* Smooth scroll from Find jobs to homepage search */
+html {
+  scroll-behavior: smooth;
+}
+
+#find-jobs {
+  scroll-margin-top: 125px;
+}
