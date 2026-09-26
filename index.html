@@ -34,7 +34,64 @@
             Discover thoughtful opportunities from employers who value how and
             where great work gets done.
           </p>
-          <a class="button hero-action" href="/jobs">Browse all roles →</a>
+          <div class="home-job-search">
+  <div class="home-search-heading">
+    <span class="search-kicker">FIND YOUR NEXT OPPORTUNITY</span>
+    <h2>What kind of job are you looking for?</h2>
+  </div>
+
+  <form
+    class="home-search-form"
+    action="{% if user %}/jobs{% else %}/login{% endif %}"
+    method="get"
+  >
+    <div class="home-search-field">
+      <label for="home-job-title">Job title or keyword</label>
+      <input
+        type="text"
+        id="home-job-title"
+        name="title"
+        placeholder="e.g. Data Analyst, Designer"
+      />
+    </div>
+
+    <div class="home-search-field">
+      <label for="home-location">Location</label>
+      <input
+        type="text"
+        id="home-location"
+        name="location"
+        placeholder="e.g. Lagos, Remote"
+      />
+    </div>
+
+    <div class="home-search-field">
+      <label for="home-work-type">Work type</label>
+      <select id="home-work-type" name="workplace_type">
+        <option value="">Any work type</option>
+        <option value="remote">Remote</option>
+        <option value="hybrid">Hybrid</option>
+        <option value="onsite">On-site</option>
+      </select>
+    </div>
+
+    {% if user %}
+    <button type="submit" class="home-search-button">
+      Search jobs →
+    </button>
+    {% else %}
+    <button type="submit" class="home-search-button">
+      Search jobs →
+    </button>
+    {% endif %}
+  </form>
+
+  {% if not user %}
+  <p class="home-search-note">
+    Create a free account or log in to start exploring opportunities.
+  </p>
+  {% endif %}
+</div>
         </div>
       </section>
       <section class="section container">
